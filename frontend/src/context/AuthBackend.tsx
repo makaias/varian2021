@@ -3,7 +3,9 @@ import LoginWall from '../component/login/LoginWall';
 import callJsonEndpoint, {BearerTokenSendingCommand} from '../util/api/callJsonEndpoint';
 import BearerTokenService from "../service/BearerTokenService";
 import {LoginCommand} from "../component/login/LoginForm";
-
+import {
+    useLocation
+} from "react-router-dom";
 
 export interface User {
     id: number;
@@ -15,12 +17,14 @@ export interface AuthBackend {
     user: User;
     isLoggedIn: boolean;
     logout: () => Promise<void>;
+    login: (loginCommand: LoginCommand) => Promise<void>;
 }
 
 export const AuthBackendContext = createContext<AuthBackend>({
     user: null,
     isLoggedIn: null,
     logout: null,
+    login: null,
 });
 
 interface Props {
@@ -29,10 +33,15 @@ interface Props {
 
 
 const AuthBackend: FunctionComponent = ({children}: Props): JSX.Element => {
-
+    const location = useLocation();
     const [user, setUser] = useState<User>(null);
 
     function shouldApplyLoginWallOnCurrentPath(): boolean {
+        const path = location.pathname;
+
+        if (path?.startsWith('/articles')) {
+            return false;
+        }
         return true;
     }
 
@@ -90,7 +99,8 @@ const AuthBackend: FunctionComponent = ({children}: Props): JSX.Element => {
     const contextValue: AuthBackend = {
         user: user,
         isLoggedIn: isLoggedIn(),
-        logout: logout
+        logout: logout,
+        login: attemptLogin,
     };
 
     function getPageContent(): ReactNode {
