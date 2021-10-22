@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "documents",
   "info": {
-    "name": "Document"
+    "name": "Document",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -11,8 +12,11 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Content": {
+    "content": {
       "type": "json"
+    },
+    "patient": {
+      "type": "integer"
     }
   }
 }
