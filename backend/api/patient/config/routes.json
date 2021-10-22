@@ -2,7 +2,7 @@
   "routes": [
     {
       "method": "PUT",
-      "path": "/patients/fillData/:username?:userid",
+      "path": "/patients/fill-data/:userid",
       "handler": "patient.fillPersonalData",
       "config": {
         "policies": []
@@ -10,7 +10,7 @@
     },
     {
       "method": "PUT",
-      "path": "/patients/updateData/:username?:userid",
+      "path": "/patients/update-data/:userid",
       "handler": "patient.updatePersonalData",
       "config": {
         "policies": []
@@ -42,7 +42,7 @@
     },
     {
       "method": "GET",
-      "path": "/patients/treatments/:username?:userid",
+      "path": "/patients/treatments/:userid",
       "handler": "patient.getTreatmentPlans",
       "config": {
         "policies": []

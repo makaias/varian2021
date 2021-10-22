@@ -5,6 +5,16 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "szabi npm startja",
+      "request": "launch",
+      "runtimeArgs": ["run-script", "develop"],
+      "runtimeExecutable": "npm",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node",
+      "cwd": "${workspaceFolder}/backend",
+      "console": "integratedTerminal"
+    },
+    {
       "command": "npm run develop",
       "name": "Run npm start",
       "request": "launch",
