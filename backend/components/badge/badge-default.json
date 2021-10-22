@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_badge_badge_defaults",
+  "info": {
+    "name": "BadgeDefault",
+    "icon": "award"
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "STARTED",
+        "FINISHED",
+        "ONE_MONTH",
+        "TWO_MONTH",
+        "THREE_MONTH"
+      ]
+    }
+  }
+}

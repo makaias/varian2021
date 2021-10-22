@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "statistics",
+  "info": {
+    "name": "Statistics",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "daysGone": {
+      "type": "integer"
+    },
+    "badges": {
+      "type": "component",
+      "repeatable": true,
+      "component": "badge.badge-default"
+    },
+    "lifeStatisfaction": {
+      "type": "component",
+      "repeatable": true,
+      "component": "life-statisfaction.life-statisfaction"
+    },
+    "eatingBehavior": {
+      "type": "component",
+      "repeatable": true,
+      "component": "eating-behavior.eating-behavior"
+    },
+    "sleeping": {
+      "type": "component",
+      "repeatable": true,
+      "component": "sleeping.sleeping"
+    },
+    "socialInteraction": {
+      "type": "component",
+      "repeatable": true,
+      "component": "social-interaction.social-interaction"
+    }
+  }
+}

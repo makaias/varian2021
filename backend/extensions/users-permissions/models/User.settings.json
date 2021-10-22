@@ -84,9 +84,9 @@
     "treatment_plans": {
       "collection": "treatment-plan"
     },
-    "pacients": {
+    "doctor": {
       "plugin": "users-permissions",
-      "collection": "user"
+      "model": "user"
     },
     "complete": {
       "type": "boolean"
