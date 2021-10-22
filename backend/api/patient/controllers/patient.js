@@ -1,23 +1,12 @@
 "use strict";
 const { parseMultipartData, sanitizeEntity } = require("strapi-utils");
-const {
-  userTypes,
-} = require("../../../extensions/users-permissions/models/User.settings.json");
 
 module.exports = {
-  /**
-   * @param {*} ctx.id
-   * @param {*} ctx.data
-   * @returns
-   */
   async fillPersonalData(ctx) {
-    const { id } = ctx.params;
-    const userType = ctx.state.userType;
-    const isPatient = userType === userTypes.PATIENT;
-
-    if (!isPatient) {
-      throw new Error("request not sent by patient");
+    if (ctx.state.user?.userType !== "PATIENT") {
+      return null;
     }
+    const { id } = ctx.params;
 
     let entity;
     if (ctx.is("multipart")) {
@@ -28,18 +17,12 @@ module.exports = {
     }
 
     return sanitizeEntity(entity, { model: strapi.models.patient });
+    return ctx.throw(400, "unimplemented operation");
   },
-  /**
-   *
-   * @param {*} ctx
-   * @returns
-   */
-  async updatePersonalData(ctx) {
-    const userType = ctx.state.userType;
-    const isPatient = userType === userTypes.PATIENT;
 
-    if (!isPatient) {
-      throw new Error("request not sent by patient");
+  async updatePersonalData(ctx) {
+    if (ctx.state.user?.userType !== "PATIENT") {
+      return null;
     }
 
     let entity;
@@ -52,12 +35,10 @@ module.exports = {
 
     return sanitizeEntity(entity, { model: strapi.models.patient });
   },
-  async getSurveys(ctx) {
-    const userType = ctx.state.userType;
-    const isPatient = userType === userTypes.PATIENT;
 
-    if (!isPatient) {
-      throw new Error("request not sent by patient");
+  async getSurveys(ctx) {
+    if (ctx.state.user?.userType !== "PATIENT") {
+      return null;
     }
 
     const { id } = ctx.params;
@@ -69,13 +50,7 @@ module.exports = {
     });
     return sanitizeEntity(entity, { model: strapi.models.survey });
   },
-  /**
-   *
-   * @param {*} ctx.id
-   * @param {*} ctx.state.user.id
-   * @param {*} ctx.surveyId
-   * @returns
-   */
+
   async getSurvey(ctx) {
     const { id, surveyId } = ctx.params;
     const patientId = ctx.state.user?.id;
@@ -86,47 +61,13 @@ module.exports = {
       surveyIds,
     });
     return sanitizeEntity(entity, { model: strapi.models.survey });
+
+    return ctx.throw(400, "unimplemented operation");
   },
+
   async fillSurvey(ctx) {
     const { id, surveyId } = ctx.params;
     const patientId = ctx.state.user?.id;
-  },
-  // getTreatmentPlan(ctx) {},
-  // getTreatmentPlans(ctx) {},
-  async findOne(ctx) {
-    if (ctx.state.user?.userType !== "PATIENT") {
-      return null;
-    }
-    return ctx.throw(400, "unimplemented operation");
-  },
-
-  async fillData(ctx) {
-    if (ctx.state.user?.userType !== "PATIENT") {
-      return null;
-    }
-    return ctx.throw(400, "unimplemented operation");
-  },
-
-  async updateData(ctx) {
-    if (ctx.state.user?.userType !== "PATIENT") {
-      return null;
-    }
-    return ctx.throw(400, "unimplemented operation");
-  },
-
-  async getSurveys(ctx) {
-    if (ctx.state.user?.userType !== "PATIENT") {
-      return null;
-    }
-    return ctx.throw(400, "unimplemented operation");
-  },
-
-  async getSurvey(ctx) {
-    return ctx.throw(400, "unimplemented operation");
-  },
-
-  async fillSurvey(ctx) {
-    return ctx.throw(400, "unimplemented operation");
   },
 
   async getTreatmentPlans(ctx) {

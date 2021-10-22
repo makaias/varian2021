@@ -1,14 +1,6 @@
 {
   "routes": [
     {
-      "method": "GET",
-      "path": "/patients/:id",
-      "handler": "patient.findOne",
-      "config": {
-        "policies": []
-      }
-    },
-    {
       "method": "PUT",
       "path": "/patients/fillData/:username?:userid",
       "handler": "patient.fillPersonalData",
