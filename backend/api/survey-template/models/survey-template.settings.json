@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "surveyTemplates",
+  "info": {
+    "name": "SurveyTemplate",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "data": {
+      "type": "json"
+    },
+    "owner": {
+      "plugin": "users-permissions",
+      "model": "user"
+    }
+  }
+}

@@ -83,6 +83,10 @@
     },
     "treatment_plans": {
       "collection": "treatment-plan"
+    },
+    "pacients": {
+      "plugin": "users-permissions",
+      "collection": "user"
     }
   }
 }
