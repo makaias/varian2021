@@ -2,6 +2,9 @@ import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import React, { PropsWithChildren, ReactElement } from "react";
 
 const theme = extendTheme({
+  fonts: {
+    body: "Gilroy",
+  },
   colors: {
     brand: {
       900: "#1a365d",
