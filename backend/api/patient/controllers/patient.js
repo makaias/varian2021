@@ -43,12 +43,9 @@ module.exports = {
     if (ctx.state.user?.userType !== "PATIENT") {
       throw Boom.forbidden("not patient");
     }
-
-    const { id } = ctx.params;
     const patientId = ctx.state.user?.id;
 
     const entity = await strapi.services.survey.find({
-      id,
       user_to_complete: patientId,
     });
     return entity;
@@ -59,37 +56,57 @@ module.exports = {
     if (ctx.state.user?.userType !== "PATIENT") {
       throw Boom.forbidden("not patient");
     }
-    const { id, surveyId } = ctx.params;
+    const { surveyId } = ctx.params;
     const patientId = ctx.state.user?.id;
 
-    const entity = await strapi.services.survey.find({
-      id,
+    return await strapi.services.survey.find({
       user_to_complete: patientId,
-      surveyId,
+      id: surveyId,
     });
-    return sanitizeEntity(entity, { model: strapi.models.survey });
   },
 
+  // TODO specify survey
   async fillSurvey(ctx) {
     if (ctx.state.user?.userType !== "PATIENT") {
       throw Boom.forbidden("not patient");
     }
-    const { id, surveyId } = ctx.params;
+    const { surveyId } = ctx.params;
     const patientId = ctx.state.user?.id;
     const surveyResult = ctx.request.body;
+
+    const entity = await strapi.services.survey.update({
+      patientId: patientId,
+      surveyId: surveyId,
+      surveyResult: surveyResult,
+    });
+    return entity;
   },
 
   async getTreatmentPlans(ctx) {
     if (ctx.state.user?.userType !== "PATIENT") {
       throw Boom.forbidden("not patient");
     }
-    return ctx.throw(400, "unimplemented operation");
+
+    const patientName = ctx.state.user?.username;
+
+    const entity = await strapi.services["treatment-plan"].find({
+      patientName: patientName,
+    });
+    return entity;
   },
 
   async getTreatmentPlan(ctx) {
     if (ctx.state.user?.userType !== "PATIENT") {
       throw Boom.forbidden("not patient");
     }
-    return ctx.throw(400, "unimplemented operation");
+
+    const patientName = ctx.state.user?.username;
+    const { treatmentId } = ctx.params;
+
+    const entity = await strapi.services["treatment-plan"].find({
+      patientName: patientName,
+      id: treatmentId,
+    });
+    return entity;
   },
 };
