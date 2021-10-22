@@ -1,10 +1,5 @@
 {
-  "dependencies": {
-    "@chakra-ui/react": "^1.6.10",
-    "@emotion/react": "^11",
-    "@emotion/styled": "^11",
-    "framer-motion": "^4"
-  },
+  "dependencies": {},
   "scripts": {
     "develop": "cd backend; npm run develop"
   }
