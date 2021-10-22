@@ -7,19 +7,23 @@ import Routing from "./routing";
 import "./style.css";
 import AuthBackend from "../context/AuthBackend";
 import LoginFeedback from "../components/login/LoginFeedback";
+import ApiCallTestComponent from "../ApiCallTestComponent";
 
 function App() {
     return (
-        <AuthBackend>
-            <Chakra>
-                <Router>
-                    <Layout>
-                        <LoginFeedback/>
-                        <Routing/>
-                    </Layout>
-                </Router>
-            </Chakra>
-        </AuthBackend>
+        <>
+            <ApiCallTestComponent/>
+            <AuthBackend>
+                <Chakra>
+                    <Router>
+                        <Layout>
+                            <LoginFeedback/>
+                            <Routing/>
+                        </Layout>
+                    </Router>
+                </Chakra>
+            </AuthBackend>
+        </>
     );
 }
 
