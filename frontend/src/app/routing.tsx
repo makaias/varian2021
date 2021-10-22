@@ -5,11 +5,6 @@ import {useAuthBackend} from "../context/AuthBackend";
 import LoginWall from "../components/login/LoginWall";
 import AtiGrafikontTesztel from "../pages/AtiGrafikontTesztel";
 
-const routesRequiringLogin = [
-  <Route exact path='/me' component={() => <p>User profile page</p>} />,
-  <Route exact path='/exampleNeedsLogin' component={() => <p>exampleNeedsLogin</p>} />
-];
-
 const routesNotRequiringLogin = [
   <Route exact path='/' component={Home} />,
   <Route exact path='/articles' component={() => <p>Articles page</p>} />
