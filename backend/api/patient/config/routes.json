@@ -1,0 +1,68 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/patients/:id",
+      "handler": "patient.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/patients/fillData/:username?:userid",
+      "handler": "patient.fillData",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/patients/updateData/:username?:userid",
+      "handler": "patient.updateData",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/patients/surveys/:patientId",
+      "handler": "patient.getSurveys",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/patients/surveys/:surveyId",
+      "handler": "patient.getSurvey",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/patients/surveys/fill/:surveyId",
+      "handler": "patient.fillSurvey",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/patients/treatments/:username?:userid",
+      "handler": "patient.getTreatmentPlans",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/patients/treatments/:treatmentId",
+      "handler": "patient.getTreatmentPlan",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
