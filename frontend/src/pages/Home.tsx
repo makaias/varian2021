@@ -36,7 +36,7 @@ export default function Home({}: Props): ReactElement {
           </Text>
         </VStack>
         <UniformGrid columns={[1, 1, 2]} gap={4}>
-          <HomeTile>For doctors</HomeTile>
+          <HomeTile>For Doctors</HomeTile>
           <HomeTile>For Patients</HomeTile>
         </UniformGrid>
       </VStack>
