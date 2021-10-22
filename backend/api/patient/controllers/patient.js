@@ -1,10 +1,11 @@
 "use strict";
 const { parseMultipartData, sanitizeEntity } = require("strapi-utils");
+const { Boom } = require("boom");
 
 module.exports = {
   async fillPersonalData(ctx) {
     if (ctx.state.user?.userType !== "PATIENT") {
-      return null;
+      throw Boom.forbidden("not patient");
     }
     const { id } = ctx.params;
 
@@ -17,12 +18,11 @@ module.exports = {
     }
 
     return sanitizeEntity(entity, { model: strapi.models.patient });
-    return ctx.throw(400, "unimplemented operation");
   },
 
   async updatePersonalData(ctx) {
     if (ctx.state.user?.userType !== "PATIENT") {
-      return null;
+      throw Boom.forbidden("not patient");
     }
 
     let entity;
@@ -38,7 +38,7 @@ module.exports = {
 
   async getSurveys(ctx) {
     if (ctx.state.user?.userType !== "PATIENT") {
-      return null;
+      throw Boom.forbidden("not patient");
     }
 
     const { id } = ctx.params;
@@ -61,25 +61,26 @@ module.exports = {
       surveyIds,
     });
     return sanitizeEntity(entity, { model: strapi.models.survey });
-
-    return ctx.throw(400, "unimplemented operation");
   },
 
   async fillSurvey(ctx) {
+    if (ctx.state.user?.userType !== "PATIENT") {
+      throw Boom.forbidden("not patient");
+    }
     const { id, surveyId } = ctx.params;
     const patientId = ctx.state.user?.id;
   },
 
   async getTreatmentPlans(ctx) {
     if (ctx.state.user?.userType !== "PATIENT") {
-      return null;
+      throw Boom.forbidden("not patient");
     }
     return ctx.throw(400, "unimplemented operation");
   },
 
   async getTreatmentPlan(ctx) {
     if (ctx.state.user?.userType !== "PATIENT") {
-      return null;
+      throw Boom.forbidden("not patient");
     }
     return ctx.throw(400, "unimplemented operation");
   },
