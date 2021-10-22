@@ -15,7 +15,7 @@ function ApiCallTestComponent() {
     })
 
     return (
-        <div className="App">
+        <div>
             <button onClick={() => callJsonEndpoint({
                 conf: {
                     url: "/treatment-plans",
