@@ -1,11 +1,18 @@
 "use strict";
 const { parseMultipartData, sanitizeEntity } = require("strapi-utils");
-const { Boom } = require("boom");
+const Boom = require("boom");
 
 module.exports = {
   /**
+   *{
+     "username": "...",
+     "email": "...",
+     "password": "...",
+     "firstname": "...",
+     "surename": "...",
+     "date_of_birth": "...",
+   }
    *
-   * @param {*} ctx
    *
    * @returns
    */
@@ -13,17 +20,11 @@ module.exports = {
     if (ctx.state.user?.userType !== "PATIENT") {
       throw Boom.forbidden("not patient");
     }
-    const { id } = ctx.params;
 
-    let entity;
-    if (ctx.is("multipart")) {
-      const { data } = parseMultipartData(ctx);
-      entity = await strapi.services.patient.update({ id }, data);
-    } else {
-      entity = await strapi.services.patient.update({ id }, ctx.request.body);
-    }
-
-    return sanitizeEntity(entity, { model: strapi.models.patient });
+    return await strapi.services.patient.update(
+      ctx.state.user,
+      ctx.request.body
+    );
   },
 
   async updatePersonalData(ctx) {
@@ -31,17 +32,13 @@ module.exports = {
       throw Boom.forbidden("not patient");
     }
 
-    let entity;
-    if (data) {
-      const { data } = parseMultipartData(ctx);
-      entity = await strapi.services.patient.update(data);
-    } else {
-      entity = await strapi.services.patient.update(ctx.request.body);
-    }
-
-    return sanitizeEntity(entity, { model: strapi.models.patient });
+    return await strapi.services.patient.update(
+      ctx.state.user,
+      ctx.request.body
+    );
   },
 
+  // TODO test
   async getSurveys(ctx) {
     if (ctx.state.user?.userType !== "PATIENT") {
       throw Boom.forbidden("not patient");
@@ -54,17 +51,21 @@ module.exports = {
       id,
       user_to_complete: patientId,
     });
-    return sanitizeEntity(entity, { model: strapi.models.survey });
+    return entity;
   },
 
+  // TODO test
   async getSurvey(ctx) {
+    if (ctx.state.user?.userType !== "PATIENT") {
+      throw Boom.forbidden("not patient");
+    }
     const { id, surveyId } = ctx.params;
     const patientId = ctx.state.user?.id;
 
     const entity = await strapi.services.survey.find({
       id,
       user_to_complete: patientId,
-      surveyIds,
+      surveyId,
     });
     return sanitizeEntity(entity, { model: strapi.models.survey });
   },

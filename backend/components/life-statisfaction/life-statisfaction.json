@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_life_statisfaction_life_statisfactions",
+  "info": {
+    "name": "life_statisfaction",
+    "icon": "beer"
+  },
+  "options": {},
+  "attributes": {
+    "value": {
+      "type": "decimal"
+    }
+  }
+}
