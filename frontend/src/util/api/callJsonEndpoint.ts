@@ -3,7 +3,7 @@ import FrontendApiCallException from "../../exception/FrontendApiCallException";
 import Exception from "../../exception/Exception";
 import BearerTokenService from "../../service/BearerTokenService";
 
-export const HEADER_NAME_BEARER_TOKEN = 'Bearer ';
+export const HEADER_NAME_AUTHORIZATION = 'Authorization';
 
 export enum BearerTokenSendingCommand {
     AUTO = 1,
@@ -48,20 +48,17 @@ async function prepareRequestConfig(axiosRequestConfig: AxiosRequestConfig,
         axiosRequestConfig.url = 'http://localhost:1337' + axiosRequestConfig.url;
     }
 
+    if (!axiosRequestConfig.headers) {
+        axiosRequestConfig.headers = {};
+    }
+
     if (insertJsonContentType) {
-        if (axiosRequestConfig.headers) {
-            axiosRequestConfig.headers["Content-type"] = "application/json";
-            axiosRequestConfig.headers["accept"] = "application/json";
-        } else {
-            axiosRequestConfig.headers = {
-                "Content-type": "application/json",
-                accept: "application/json",
-            };
-        }
+        axiosRequestConfig.headers["Content-type"] = "application/json";
+        axiosRequestConfig.headers["accept"] = "application/json";
     }
 
     async function includeBearerToken() {
-        axiosRequestConfig.headers[HEADER_NAME_BEARER_TOKEN] = await BearerTokenService.getToken();
+        axiosRequestConfig.headers[HEADER_NAME_AUTHORIZATION] = 'Bearer ' + await BearerTokenService.getToken();
     }
 
     switch (bearerTokenSendingCommand) {
@@ -115,7 +112,7 @@ export interface CallJsonEndpointCommand {
 
 const callJsonEndpoint = async <ReturnType>(command: CallJsonEndpointCommand): Promise<AxiosResponse<ReturnType>> => {
     await prepareCommand(command);
-console.log(command.conf);
+
     const axiosPromise: AxiosPromise<ReturnType> = axios(command.conf) as AxiosPromise<ReturnType>;
 
     return axiosPromise

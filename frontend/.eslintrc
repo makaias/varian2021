@@ -16,6 +16,7 @@
       "fdescribe"
     ],
     "no-empty-pattern": ["off"],
-    "@typescript-eslint/ban-types": "off"
+    "@typescript-eslint/ban-types": "off",
+    "prefer-const": "off"
   }
 }
