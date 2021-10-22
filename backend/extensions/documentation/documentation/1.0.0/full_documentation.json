@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "10/22/2021 10:33:18 PM"
+    "x-generation-date": "10/22/2021 9:01:07 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -45,6 +45,61 @@
     }
   ],
   "paths": {
+    "/doctors/me": {
+      "get": {
+        "deprecated": false,
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Doctor"],
+        "parameters": []
+      }
+    },
     "/doctors/create-user": {
       "post": {
         "deprecated": false,
@@ -96,9 +151,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Doctor"
-        ],
+        "tags": ["Doctor"],
         "requestBody": {
           "description": "",
           "required": true,
@@ -167,9 +220,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Doctor"
-        ],
+        "tags": ["Doctor"],
         "requestBody": {
           "description": "",
           "required": true,
@@ -238,9 +289,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Doctor"
-        ],
+        "tags": ["Doctor"],
         "requestBody": {
           "description": "",
           "required": true,
@@ -309,9 +358,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Doctor"
-        ],
+        "tags": ["Doctor"],
         "requestBody": {
           "description": "",
           "required": true,
@@ -380,9 +427,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Doctor"
-        ],
+        "tags": ["Doctor"],
         "parameters": []
       }
     },
@@ -436,9 +481,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Document"
-        ],
+        "tags": ["Document"],
         "parameters": [
           {
             "name": "_limit",
@@ -624,9 +667,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Document"
-        ],
+        "tags": ["Document"],
         "requestBody": {
           "description": "",
           "required": true,
@@ -691,9 +732,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Document"
-        ],
+        "tags": ["Document"],
         "parameters": []
       }
     },
@@ -744,9 +783,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Document"
-        ],
+        "tags": ["Document"],
         "parameters": [
           {
             "name": "id",
@@ -806,9 +843,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Document"
-        ],
+        "tags": ["Document"],
         "requestBody": {
           "description": "",
           "required": true,
@@ -880,9 +915,73 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Document"
-        ],
+        "tags": ["Document"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "deprecated": false,
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/patients/{id}": {
+      "get": {
+        "deprecated": false,
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Patient"],
         "parameters": [
           {
             "name": "id",
@@ -948,9 +1047,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Patient"
-        ],
+        "tags": ["Patient"],
         "requestBody": {
           "description": "",
           "required": true,
@@ -1041,9 +1138,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Patient"
-        ],
+        "tags": ["Patient"],
         "requestBody": {
           "description": "",
           "required": true,
@@ -1134,9 +1229,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Patient"
-        ],
+        "tags": ["Patient"],
         "parameters": [
           {
             "name": "patientId",
@@ -1202,9 +1295,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Patient"
-        ],
+        "tags": ["Patient"],
         "parameters": [
           {
             "name": "surveyId",
@@ -1270,9 +1361,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Patient"
-        ],
+        "tags": ["Patient"],
         "requestBody": {
           "description": "",
           "required": true,
@@ -1341,9 +1430,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Patient"
-        ],
+        "tags": ["Patient"],
         "parameters": [
           {
             "name": "username",
@@ -1419,9 +1506,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Patient"
-        ],
+        "tags": ["Patient"],
         "parameters": [
           {
             "name": "treatmentId",
@@ -1487,9 +1572,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Survey-template"
-        ],
+        "tags": ["Survey-template"],
         "parameters": [
           {
             "name": "_limit",
@@ -1679,9 +1762,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Survey-template"
-        ],
+        "tags": ["Survey-template"],
         "requestBody": {
           "description": "",
           "required": true,
@@ -1746,9 +1827,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Survey-template"
-        ],
+        "tags": ["Survey-template"],
         "parameters": []
       }
     },
@@ -1803,9 +1882,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Survey-template"
-        ],
+        "tags": ["Survey-template"],
         "parameters": [
           {
             "name": "id",
@@ -1869,9 +1946,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Survey-template"
-        ],
+        "tags": ["Survey-template"],
         "requestBody": {
           "description": "",
           "required": true,
@@ -1943,9 +2018,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Survey-template"
-        ],
+        "tags": ["Survey-template"],
         "parameters": [
           {
             "name": "id",
@@ -2010,9 +2083,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Survey"
-        ],
+        "tags": ["Survey"],
         "parameters": [
           {
             "name": "_limit",
@@ -2198,9 +2269,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Survey"
-        ],
+        "tags": ["Survey"],
         "requestBody": {
           "description": "",
           "required": true,
@@ -2265,9 +2334,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Survey"
-        ],
+        "tags": ["Survey"],
         "parameters": []
       }
     },
@@ -2318,9 +2385,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Survey"
-        ],
+        "tags": ["Survey"],
         "parameters": [
           {
             "name": "id",
@@ -2380,9 +2445,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Survey"
-        ],
+        "tags": ["Survey"],
         "requestBody": {
           "description": "",
           "required": true,
@@ -2454,9 +2517,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Survey"
-        ],
+        "tags": ["Survey"],
         "parameters": [
           {
             "name": "id",
@@ -2522,9 +2583,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Treatment-plan"
-        ],
+        "tags": ["Treatment-plan"],
         "parameters": [
           {
             "name": "_limit",
@@ -2714,9 +2773,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Treatment-plan"
-        ],
+        "tags": ["Treatment-plan"],
         "requestBody": {
           "description": "",
           "required": true,
@@ -2781,9 +2838,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Treatment-plan"
-        ],
+        "tags": ["Treatment-plan"],
         "parameters": []
       }
     },
@@ -2838,9 +2893,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Treatment-plan"
-        ],
+        "tags": ["Treatment-plan"],
         "parameters": [
           {
             "name": "id",
@@ -2904,9 +2957,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Treatment-plan"
-        ],
+        "tags": ["Treatment-plan"],
         "requestBody": {
           "description": "",
           "required": true,
@@ -2978,9 +3029,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Treatment-plan"
-        ],
+        "tags": ["Treatment-plan"],
         "parameters": [
           {
             "name": "id",
@@ -3046,9 +3095,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Email - Email"
-        ],
+        "tags": ["Email - Email"],
         "requestBody": {
           "description": "",
           "required": true,
@@ -3117,9 +3164,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Email - Email"
-        ],
+        "tags": ["Email - Email"],
         "requestBody": {
           "description": "",
           "required": true,
@@ -3188,9 +3233,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Email - Email"
-        ],
+        "tags": ["Email - Email"],
         "parameters": []
       }
     },
@@ -3245,9 +3288,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Upload - File"
-        ],
+        "tags": ["Upload - File"],
         "requestBody": {
           "description": "",
           "required": true,
@@ -3316,9 +3357,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Upload - File"
-        ],
+        "tags": ["Upload - File"],
         "parameters": []
       }
     },
@@ -3373,9 +3412,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Upload - File"
-        ],
+        "tags": ["Upload - File"],
         "parameters": []
       }
     },
@@ -3430,9 +3467,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Upload - File"
-        ],
+        "tags": ["Upload - File"],
         "parameters": [
           {
             "name": "id",
@@ -3496,9 +3531,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Upload - File"
-        ],
+        "tags": ["Upload - File"],
         "parameters": [
           {
             "name": "id",
@@ -3564,9 +3597,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Upload - File"
-        ],
+        "tags": ["Upload - File"],
         "parameters": [
           {
             "name": "id",
@@ -3628,9 +3659,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "UsersPermissions - Role"
-        ],
+        "tags": ["UsersPermissions - Role"],
         "parameters": [
           {
             "name": "id",
@@ -3695,9 +3724,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "UsersPermissions - Role"
-        ],
+        "tags": ["UsersPermissions - Role"],
         "parameters": [
           {
             "name": "_limit",
@@ -3883,9 +3910,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "UsersPermissions - Role"
-        ],
+        "tags": ["UsersPermissions - Role"],
         "requestBody": {
           "description": "",
           "required": true,
@@ -3946,9 +3971,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "UsersPermissions - Role"
-        ],
+        "tags": ["UsersPermissions - Role"],
         "parameters": [
           {
             "name": "role",
@@ -4023,9 +4046,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "UsersPermissions - Role"
-        ],
+        "tags": ["UsersPermissions - Role"],
         "parameters": [
           {
             "name": "role",
@@ -4090,9 +4111,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "UsersPermissions - User"
-        ],
+        "tags": ["UsersPermissions - User"],
         "parameters": [
           {
             "name": "id",
@@ -4294,9 +4313,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "UsersPermissions - User"
-        ],
+        "tags": ["UsersPermissions - User"],
         "parameters": []
       }
     },
@@ -4351,9 +4368,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "UsersPermissions - User"
-        ],
+        "tags": ["UsersPermissions - User"],
         "requestBody": {
           "description": "",
           "required": true,
@@ -4418,9 +4433,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "UsersPermissions - User"
-        ],
+        "tags": ["UsersPermissions - User"],
         "requestBody": {
           "description": "",
           "required": true,
@@ -4485,9 +4498,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "UsersPermissions - User"
-        ],
+        "tags": ["UsersPermissions - User"],
         "parameters": [
           {
             "name": "provider",
@@ -4553,9 +4564,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "UsersPermissions - User"
-        ],
+        "tags": ["UsersPermissions - User"],
         "requestBody": {
           "description": "",
           "required": true,
@@ -4624,9 +4633,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "UsersPermissions - User"
-        ],
+        "tags": ["UsersPermissions - User"],
         "requestBody": {
           "description": "",
           "required": true,
@@ -4695,9 +4702,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "UsersPermissions - User"
-        ],
+        "tags": ["UsersPermissions - User"],
         "parameters": []
       }
     },
@@ -4752,9 +4757,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "UsersPermissions - User"
-        ],
+        "tags": ["UsersPermissions - User"],
         "requestBody": {
           "description": "",
           "required": true,
@@ -4822,9 +4825,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "UsersPermissions - User"
-        ],
+        "tags": ["UsersPermissions - User"],
         "parameters": [
           {
             "name": "_limit",
@@ -5012,9 +5013,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "UsersPermissions - User"
-        ],
+        "tags": ["UsersPermissions - User"],
         "parameters": []
       }
     },
@@ -5065,9 +5064,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "UsersPermissions - User"
-        ],
+        "tags": ["UsersPermissions - User"],
         "parameters": [
           {
             "name": "id",
@@ -5127,9 +5124,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "UsersPermissions - User"
-        ],
+        "tags": ["UsersPermissions - User"],
         "parameters": [
           {
             "name": "id",
@@ -5204,9 +5199,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "UsersPermissions - User"
-        ],
+        "tags": ["UsersPermissions - User"],
         "parameters": [
           {
             "name": "id",
@@ -5251,9 +5244,7 @@
   "components": {
     "schemas": {
       "Document": {
-        "required": [
-          "id"
-        ],
+        "required": ["id"],
         "properties": {
           "id": {
             "type": "string"
@@ -5291,9 +5282,7 @@
         }
       },
       "Survey-template": {
-        "required": [
-          "id"
-        ],
+        "required": ["id"],
         "properties": {
           "id": {
             "type": "string"
@@ -5302,11 +5291,7 @@
             "type": "object"
           },
           "owner": {
-            "required": [
-              "id",
-              "username",
-              "email"
-            ],
+            "required": ["id", "username", "email"],
             "properties": {
               "id": {
                 "type": "string"
@@ -5340,10 +5325,7 @@
               },
               "userType": {
                 "type": "string",
-                "enum": [
-                  "DOCTOR",
-                  "PATIENT"
-                ]
+                "enum": ["DOCTOR", "PATIENT"]
               },
               "firstname": {
                 "type": "string"
@@ -5413,17 +5395,13 @@
         }
       },
       "Survey": {
-        "required": [
-          "id"
-        ],
+        "required": ["id"],
         "properties": {
           "id": {
             "type": "string"
           },
           "survey_template": {
-            "required": [
-              "id"
-            ],
+            "required": ["id"],
             "properties": {
               "id": {
                 "type": "string"
@@ -5446,11 +5424,7 @@
             }
           },
           "user_to_complete": {
-            "required": [
-              "id",
-              "username",
-              "email"
-            ],
+            "required": ["id", "username", "email"],
             "properties": {
               "id": {
                 "type": "string"
@@ -5484,10 +5458,7 @@
               },
               "userType": {
                 "type": "string",
-                "enum": [
-                  "DOCTOR",
-                  "PATIENT"
-                ]
+                "enum": ["DOCTOR", "PATIENT"]
               },
               "firstname": {
                 "type": "string"
@@ -5569,9 +5540,7 @@
         }
       },
       "Treatment-plan": {
-        "required": [
-          "id"
-        ],
+        "required": ["id"],
         "properties": {
           "id": {
             "type": "string"
@@ -5773,10 +5742,7 @@
         }
       },
       "UsersPermissionsRole": {
-        "required": [
-          "id",
-          "name"
-        ],
+        "required": ["id", "name"],
         "properties": {
           "id": {
             "type": "string"
@@ -5794,13 +5760,7 @@
           "permissions": {
             "type": "array",
             "items": {
-              "required": [
-                "id",
-                "type",
-                "controller",
-                "action",
-                "enabled"
-              ],
+              "required": ["id", "type", "controller", "action", "enabled"],
               "properties": {
                 "id": {
                   "type": "string"
@@ -5835,11 +5795,7 @@
           "users": {
             "type": "array",
             "items": {
-              "required": [
-                "id",
-                "username",
-                "email"
-              ],
+              "required": ["id", "username", "email"],
               "properties": {
                 "id": {
                   "type": "string"
@@ -5873,10 +5829,7 @@
                 },
                 "userType": {
                   "type": "string",
-                  "enum": [
-                    "DOCTOR",
-                    "PATIENT"
-                  ]
+                  "enum": ["DOCTOR", "PATIENT"]
                 },
                 "firstname": {
                   "type": "string"
@@ -5923,9 +5876,7 @@
         }
       },
       "NewUsersPermissionsRole": {
-        "required": [
-          "name"
-        ],
+        "required": ["name"],
         "properties": {
           "name": {
             "type": "string",
@@ -5958,11 +5909,7 @@
         }
       },
       "UsersPermissionsUser": {
-        "required": [
-          "id",
-          "username",
-          "email"
-        ],
+        "required": ["id", "username", "email"],
         "properties": {
           "id": {
             "type": "string"
@@ -5987,10 +5934,7 @@
             "default": false
           },
           "role": {
-            "required": [
-              "id",
-              "name"
-            ],
+            "required": ["id", "name"],
             "properties": {
               "id": {
                 "type": "string"
@@ -6026,10 +5970,7 @@
           },
           "userType": {
             "type": "string",
-            "enum": [
-              "DOCTOR",
-              "PATIENT"
-            ]
+            "enum": ["DOCTOR", "PATIENT"]
           },
           "firstname": {
             "type": "string"
@@ -6047,9 +5988,7 @@
           "documents": {
             "type": "array",
             "items": {
-              "required": [
-                "id"
-              ],
+              "required": ["id"],
               "properties": {
                 "id": {
                   "type": "string"
@@ -6075,9 +6014,7 @@
           "treatment_plans": {
             "type": "array",
             "items": {
-              "required": [
-                "id"
-              ],
+              "required": ["id"],
               "properties": {
                 "id": {
                   "type": "string"
@@ -6184,11 +6121,7 @@
           "pacients": {
             "type": "array",
             "items": {
-              "required": [
-                "id",
-                "username",
-                "email"
-              ],
+              "required": ["id", "username", "email"],
               "properties": {
                 "id": {
                   "type": "string"
@@ -6222,10 +6155,7 @@
                 },
                 "userType": {
                   "type": "string",
-                  "enum": [
-                    "DOCTOR",
-                    "PATIENT"
-                  ]
+                  "enum": ["DOCTOR", "PATIENT"]
                 },
                 "firstname": {
                   "type": "string"
@@ -6275,10 +6205,7 @@
         }
       },
       "NewUsersPermissionsUser": {
-        "required": [
-          "username",
-          "email"
-        ],
+        "required": ["username", "email"],
         "properties": {
           "username": {
             "type": "string",
@@ -6315,10 +6242,7 @@
           },
           "userType": {
             "type": "string",
-            "enum": [
-              "DOCTOR",
-              "PATIENT"
-            ]
+            "enum": ["DOCTOR", "PATIENT"]
           },
           "firstname": {
             "type": "string"
@@ -6363,10 +6287,7 @@
         }
       },
       "Error": {
-        "required": [
-          "code",
-          "message"
-        ],
+        "required": ["code", "message"],
         "properties": {
           "code": {
             "type": "integer",

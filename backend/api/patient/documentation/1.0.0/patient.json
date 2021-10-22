@@ -1,5 +1,71 @@
 {
   "paths": {
+    "/patients/{id}": {
+      "get": {
+        "deprecated": false,
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": ["Patient"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "deprecated": false,
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
     "/patients/fillData/{username}{userid}": {
       "put": {
         "deprecated": false,
@@ -51,9 +117,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Patient"
-        ],
+        "tags": ["Patient"],
         "requestBody": {
           "description": "",
           "required": true,
@@ -144,9 +208,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Patient"
-        ],
+        "tags": ["Patient"],
         "requestBody": {
           "description": "",
           "required": true,
@@ -237,9 +299,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Patient"
-        ],
+        "tags": ["Patient"],
         "parameters": [
           {
             "name": "patientId",
@@ -305,9 +365,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Patient"
-        ],
+        "tags": ["Patient"],
         "parameters": [
           {
             "name": "surveyId",
@@ -373,9 +431,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Patient"
-        ],
+        "tags": ["Patient"],
         "requestBody": {
           "description": "",
           "required": true,
@@ -444,9 +500,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Patient"
-        ],
+        "tags": ["Patient"],
         "parameters": [
           {
             "name": "username",
@@ -522,9 +576,7 @@
           }
         },
         "summary": "",
-        "tags": [
-          "Patient"
-        ],
+        "tags": ["Patient"],
         "parameters": [
           {
             "name": "treatmentId",
