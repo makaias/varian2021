@@ -11,17 +11,17 @@ interface Props {
 export default function Routing({}: Props): ReactElement {
   const authBackend = useAuthBackend();
 
-  const routesRequiringLogin = [
-    <Route exact path='/me' component={() => <p>User profile page</p>} />,
-    <Route exact path='/exampleNeedsLogin' component={() => <p>exampleNeedsLogin</p>} />
-  ];
-  return (
-    <Switch>
-      <Route exact path='/' component={Home} />
+    const routesRequiringLogin = [
+        <Route exact path="/me" component={() => <p>User profile page</p>}/>,
+        <Route exact path="/exampleNeedsLogin" component={() => <p>exampleNeedsLogin</p>}/>
+        <Route exact path="/ati" component={AtiGrafikontTesztel} />
+    ];
+    return (
+        <Switch>
+            <Route exact path="/" component={Home}/>
 
       {authBackend.isLoggedIn && routesRequiringLogin}
 
-            <Route exact path="/ati" component={AtiGrafikontTesztel} />
             <Route exact path="/articles" component={() => <p>Articles page</p>}/>
 
       {!authBackend.isLoggedIn && (
