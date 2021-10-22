@@ -28,11 +28,11 @@ module.exports = {
      *                  "provider", "provider2"
      *              ],
      *          "cancerType": "type",
-     *          "DiagnosysDate": date,
+     *          "diagnosysDate": date,
      *          "stage": "stage",
      *          "surgery": true/false,
      *          "surgeryDate": date/null" (ha null nem kell),
-     *          "SurgicalProcedure": "...",
+     *          "surgicalProcedure": "...",
      *          "radiation": true/false,
      *          "bodyAreaTreated": "area",
      *          "endYear": 2021,
@@ -96,7 +96,7 @@ module.exports = {
     },
 
         /**
-     * Example json for document:
+     * Example json for survey template:
      * {
      *      "name": "name"
      *      "elements": [

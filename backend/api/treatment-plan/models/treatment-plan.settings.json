@@ -12,94 +12,94 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "PatientName": {
+    "patientName": {
       "type": "string"
     },
-    "Phone": {
+    "phone": {
       "type": "string",
       "regex": "^[+]?[0-9]+"
     },
-    "PatientDOB": {
+    "patientDOB": {
       "type": "string"
     },
-    "Email": {
+    "email": {
       "type": "email"
     },
-    "PrimaryCareProvider": {
+    "primaryCareProvider": {
       "type": "string"
     },
-    "Surgeon": {
+    "surgeon": {
       "type": "string"
     },
-    "RadiationOncologist": {
+    "radiationOncologist": {
       "type": "string"
     },
-    "MedicalOncologyst": {
+    "medicalOncologyst": {
       "type": "string"
     },
-    "OtherProviders": {
+    "otherProviders": {
       "type": "json"
     },
-    "CancerType": {
+    "cancerType": {
       "type": "string"
     },
-    "DiagnosysDate": {
+    "diagnosysDate": {
       "type": "integer",
       "min": 1900
     },
-    "Stage": {
+    "stage": {
       "type": "string"
     },
-    "Surgery": {
+    "surgery": {
       "type": "boolean"
     },
-    "SurgeryDate": {
+    "surgeryDate": {
       "type": "json"
     },
-    "SurgicalProcedure": {
+    "surgicalProcedure": {
       "type": "richtext"
     },
-    "Radiation": {
+    "radiation": {
       "type": "boolean"
     },
-    "BodyAreaTreated": {
+    "bodyAreaTreated": {
       "type": "string"
     },
-    "EndYear": {
+    "endYear": {
       "type": "integer",
       "min": 1900
     },
-    "SystemicTherapy": {
+    "systemicTherapy": {
       "type": "boolean"
     },
-    "AgentsUsed": {
+    "agentsUsed": {
       "type": "json"
     },
-    "SymptomsSideEffects": {
+    "symptomsSideEffects": {
       "type": "boolean"
     },
-    "SymptomsSideEffectsDescription": {
+    "symptomsSideEffectsDescription": {
       "type": "richtext"
     },
-    "NeedOngoingTreatment": {
+    "needOngoingTreatment": {
       "type": "boolean"
     },
-    "AdditionalTreatments": {
+    "additionalTreatments": {
       "type": "json"
     },
-    "ClinicVisits": {
+    "clinicVisits": {
       "type": "json"
     },
-    "SurvillanceTests": {
+    "survillanceTests": {
       "type": "json"
     },
-    "OtherComments": {
+    "otherComments": {
       "type": "richtext"
     },
-    "PreparedBy": {
+    "preparedBy": {
       "type": "string"
     },
-    "DeliveredOn": {
+    "deliveredOn": {
       "type": "date"
     }
   }
