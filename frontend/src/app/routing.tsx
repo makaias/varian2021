@@ -3,6 +3,7 @@ import {Route, Switch} from "react-router-dom";
 import Home from "../pages/Home";
 import {useAuthBackend} from "../context/AuthBackend";
 import LoginWall from "../components/login/LoginWall";
+import AtiGrafikontTesztel from "../pages/AtiGrafikontTesztel";
 
 interface Props {
 }
@@ -20,6 +21,7 @@ export default function Routing({}: Props): ReactElement {
 
             {authBackend.isLoggedIn && routesRequiringLogin}
 
+            <Route exact path="/ati" component={AtiGrafikontTesztel} />
             <Route exact path="/articles" component={() => <p>Articles page</p>}/>
 
             {!authBackend.isLoggedIn && (
