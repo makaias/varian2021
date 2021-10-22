@@ -87,6 +87,9 @@
     "pacients": {
       "plugin": "users-permissions",
       "collection": "user"
+    },
+    "complete": {
+      "type": "boolean"
     }
   }
 }

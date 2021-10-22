@@ -1,4 +1,7 @@
 {
   "dependencies": {
+  },
+  "scripts": {
+    "develop": "cd backend; npm run develop"
   }
 }
