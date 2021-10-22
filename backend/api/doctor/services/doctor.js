@@ -1,16 +1,9 @@
 'use strict';
 
 module.exports = {
-    async getMe(user) {
-        if (user){
-            return user.id;
-        }
-        return null;
-    },
-
     //body based on patient.create
-    async createUser(body) {
-        let patientId = await strapi.services.patient.create(body);
+    async createUser(body, doctorId) {
+        let patientId = await strapi.services.patient.create(body, doctorId);
         return patientId;
     },
 
