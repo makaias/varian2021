@@ -4,23 +4,23 @@ import Home from '../pages/Home';
 import {useAuthBackend} from '../context/AuthBackend';
 import LoginWall from '../components/login/LoginWall';
 
-interface Props {
-}
+const routesRequiringLogin = [
+  <Route exact path='/me' component={() => <p>User profile page</p>} />,
+  <Route exact path='/exampleNeedsLogin' component={() => <p>exampleNeedsLogin</p>} />
+];
 
-export default function Routing({}: Props): ReactElement {
+const routesNotRequiringLogin = [
+  <Route exact path='/' component={Home} />,
+  <Route exact path='/articles' component={() => <p>Articles page</p>} />
+];
+
+export default function Routing(): ReactElement {
   const authBackend = useAuthBackend();
 
-  const routesRequiringLogin = [
-    <Route exact path='/me' component={() => <p>User profile page</p>} />,
-    <Route exact path='/exampleNeedsLogin' component={() => <p>exampleNeedsLogin</p>} />
-  ];
   return (
     <Switch>
-      <Route exact path='/' component={Home} />
-
       {authBackend.isLoggedIn && routesRequiringLogin}
-
-      <Route exact path='/articles' component={() => <p>Articles page</p>} />
+      {routesNotRequiringLogin}
 
       {!authBackend.isLoggedIn && (
         <LoginWall />
