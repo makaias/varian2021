@@ -3,6 +3,12 @@ const { parseMultipartData, sanitizeEntity } = require("strapi-utils");
 const { Boom } = require("boom");
 
 module.exports = {
+  /**
+   *
+   * @param {*} ctx
+   *
+   * @returns
+   */
   async fillPersonalData(ctx) {
     if (ctx.state.user?.userType !== "PATIENT") {
       throw Boom.forbidden("not patient");
