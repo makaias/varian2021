@@ -76,6 +76,7 @@ module.exports = {
     }
     const { id, surveyId } = ctx.params;
     const patientId = ctx.state.user?.id;
+    const surveyResult = ctx.request.body;
   },
 
   async getTreatmentPlans(ctx) {
