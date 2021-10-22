@@ -5,29 +5,36 @@ import {useAuthBackend} from "../context/AuthBackend";
 import LoginWall from "../components/login/LoginWall";
 import AtiGrafikontTesztel from "../pages/AtiGrafikontTesztel";
 
-interface Props {
-}
+const routesRequiringLogin = [
+  <Route exact path='/me' component={() => <p>User profile page</p>} />,
+  <Route exact path='/exampleNeedsLogin' component={() => <p>exampleNeedsLogin</p>} />
+];
 
-export default function Routing({}: Props): ReactElement {
+const routesNotRequiringLogin = [
+  <Route exact path='/' component={Home} />,
+  <Route exact path='/articles' component={() => <p>Articles page</p>} />
+];
+
+const routesRequiringLogin = [
+    <Route exact path="/me" component={() => <p>User profile page</p>}/>,
+    <Route exact path="/exampleNeedsLogin" component={() => <p>exampleNeedsLogin</p>}/>,
+    <Route exact path="/ati" component={AtiGrafikontTesztel} />
+];
+
+export default function Routing(): ReactElement {
   const authBackend = useAuthBackend();
 
-    const routesRequiringLogin = [
-        <Route exact path="/me" component={() => <p>User profile page</p>}/>,
-        <Route exact path="/exampleNeedsLogin" component={() => <p>exampleNeedsLogin</p>}/>,
-        <Route exact path="/ati" component={AtiGrafikontTesztel} />
-    ];
-    return (
-        <Switch>
-            <Route exact path="/" component={Home}/>
+  return (
+    <Switch>
+        <Route exact path="/" component={Home}/>
 
-      {authBackend.isLoggedIn && routesRequiringLogin}
+        {authBackend.isLoggedIn && routesRequiringLogin}
+        {routesNotRequiringLogin}
 
-            <Route exact path="/articles" component={() => <p>Articles page</p>}/>
-
-      {!authBackend.isLoggedIn && (
-        <LoginWall />
-      )}
-      <Route component={() => <p>Not found</p>} />
+        {!authBackend.isLoggedIn && (
+          <LoginWall />
+        )}
+        <Route component={() => <p>Not found</p>} />
     </Switch>
   );
 }
