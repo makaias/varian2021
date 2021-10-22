@@ -1,21 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 import callJsonEndpoint, {BearerTokenSendingCommand} from "./util/api/callJsonEndpoint";
 
-function App() {
+function ApiCallTestComponent() {
     return (
         <div className="App">
             <button onClick={() => callJsonEndpoint({
                 conf: {
-                    url: "/api/randomtest",
+                    url: "/api/threatment-plans",
                 },
-                bearerTokenSendingCommand: BearerTokenSendingCommand.DO_NOT_SEND,
-            }).catch(err => console.log(err))}>test req 1
+            }).catch(err => console.log(err))}>get treatment plans req
             </button>
+            <br/>
             <button onClick={() => callJsonEndpoint({
                 conf: {
-                    url: "/api/randomtest",
+                    url: "/auth/local",
+                    method:'post',
+                    data:{
+                        identifier: 'test1',
+                        password: 'password'
+                    }
                 },
                 bearerTokenSendingCommand: BearerTokenSendingCommand.DO_NOT_SEND,
             }).catch(err => console.log(err))}>login req
@@ -24,4 +27,4 @@ function App() {
     );
 }
 
-export default App;
+export default ApiCallTestComponent;

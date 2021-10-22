@@ -44,6 +44,10 @@ async function prepareRequestConfig(axiosRequestConfig: AxiosRequestConfig,
         axiosRequestConfig.method = "GET";
     }
 
+    if (axiosRequestConfig.url?.startsWith('/')) {
+        axiosRequestConfig.url = 'http://localhost:1337' + axiosRequestConfig.url;
+    }
+
     if (insertJsonContentType) {
         if (axiosRequestConfig.headers) {
             axiosRequestConfig.headers["Content-type"] = "application/json";
@@ -109,14 +113,9 @@ export interface CallJsonEndpointCommand {
     insertJsonContentType?: boolean;
 }
 
-/**
- * Use this function for every call made by the client-side (browser) code. This takes care of the proper global error handling.
- *
- * @return If the API call succeeds AND the statusCode is contained by acceptedResponseCodes: Fulfilled promise with the response. Otherwise: rejected promise.
- */
 const callJsonEndpoint = async <ReturnType>(command: CallJsonEndpointCommand): Promise<AxiosResponse<ReturnType>> => {
     await prepareCommand(command);
-
+console.log(command.conf);
     const axiosPromise: AxiosPromise<ReturnType> = axios(command.conf) as AxiosPromise<ReturnType>;
 
     return axiosPromise
