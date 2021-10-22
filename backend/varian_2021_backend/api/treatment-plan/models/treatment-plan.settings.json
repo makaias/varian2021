@@ -1,0 +1,106 @@
+{
+  "kind": "collectionType",
+  "collectionName": "treatment_plans",
+  "info": {
+    "name": "TreatmentPlan",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "PatientName": {
+      "type": "string"
+    },
+    "Phone": {
+      "type": "string",
+      "regex": "^[+]?[0-9]+"
+    },
+    "PatientDOB": {
+      "type": "string"
+    },
+    "Email": {
+      "type": "email"
+    },
+    "PrimaryCareProvider": {
+      "type": "string"
+    },
+    "Surgeon": {
+      "type": "string"
+    },
+    "RadiationOncologist": {
+      "type": "string"
+    },
+    "MedicalOncologyst": {
+      "type": "string"
+    },
+    "OtherProviders": {
+      "type": "json"
+    },
+    "CancerType": {
+      "type": "string"
+    },
+    "DiagnosysDate": {
+      "type": "integer",
+      "min": 1900
+    },
+    "Stage": {
+      "type": "string"
+    },
+    "Surgery": {
+      "type": "boolean"
+    },
+    "SurgeryDate": {
+      "type": "json"
+    },
+    "SurgicalProcedure": {
+      "type": "richtext"
+    },
+    "Radiation": {
+      "type": "boolean"
+    },
+    "BodyAreaTreated": {
+      "type": "string"
+    },
+    "EndYear": {
+      "type": "integer",
+      "min": 1900
+    },
+    "SystemicTherapy": {
+      "type": "boolean"
+    },
+    "AgentsUsed": {
+      "type": "json"
+    },
+    "SymptomsSideEffects": {
+      "type": "boolean"
+    },
+    "SymptomsSideEffectsDescription": {
+      "type": "richtext"
+    },
+    "NeedOngoingTreatment": {
+      "type": "boolean"
+    },
+    "AdditionalTreatments": {
+      "type": "json"
+    },
+    "ClinicVisits": {
+      "type": "json"
+    },
+    "SurvillanceTests": {
+      "type": "json"
+    },
+    "OtherComments": {
+      "type": "richtext"
+    },
+    "PreparedBy": {
+      "type": "string"
+    },
+    "DeliveredOn": {
+      "type": "date"
+    }
+  }
+}
