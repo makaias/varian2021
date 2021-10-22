@@ -8,7 +8,7 @@ export default function Layout({
   const { user } = { user: null };
 
   return (
-    <VStack align="stretch" bg="secondary.100">
+    <VStack align="stretch" bg="primary.50">
       <Box bg="white" p={3}>
         <Container maxWidth="container.lg">
           {!user && (
@@ -18,7 +18,9 @@ export default function Layout({
           )}
         </Container>
       </Box>
-      <Container maxWidth="container.lg">{children}</Container>
+      <Box>
+        <Container maxWidth="container.lg">{children}</Container>
+      </Box>
     </VStack>
   );
 }
