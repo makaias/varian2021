@@ -1,6 +1,6 @@
 "use strict";
 const { parseMultipartData, sanitizeEntity } = require("strapi-utils");
-const { Boom } = require("boom");
+const Boom = require("boom");
 
 module.exports = {
   /**
@@ -32,7 +32,10 @@ module.exports = {
       throw Boom.forbidden("not patient");
     }
 
-    return await strapi.services.patient.update(ctx.state.user, data);
+    return await strapi.services.patient.update(
+      ctx.state.user,
+      ctx.request.body
+    );
   },
 
   async getSurveys(ctx) {

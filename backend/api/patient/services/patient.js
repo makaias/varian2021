@@ -1,5 +1,5 @@
 "use strict";
-const { Boom } = require("boom");
+const Boom = require("boom");
 
 function isPersonalDataComplete(user, newData) {
   const dataFieldsToValidate = [
