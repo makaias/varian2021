@@ -113,7 +113,7 @@ const callJsonEndpoint = async <ReturnType>(command: CallJsonEndpointCommand): P
 
     return axiosPromise
         .catch((err) => {
-            //This catch clause is intentionally put before the then clause to not to catch exceptions thrown there (there = then clause)
+            //This catch clause is intentionally put before the then clause because the exceptions thrown there are candidates for propagation
             throw extractExceptionFromResponse(false, null, command.conf, err);
         })
         .then((response) => {

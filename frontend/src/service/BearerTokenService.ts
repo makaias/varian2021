@@ -2,19 +2,19 @@ import {isValidNonEmptyString} from "../util/CommonValidators";
 
 const LOCALSTORAGE_KEY_BEARER_TOKEN = 'BearerToken';
 
-async function setToken(token: string) {
+function setToken(token: string) {
     localStorage.setItem(LOCALSTORAGE_KEY_BEARER_TOKEN, token);
 }
 
-async function deleteToken() {
+function deleteToken() {
     localStorage.removeItem(LOCALSTORAGE_KEY_BEARER_TOKEN);
 }
 
-export function reloadPage() {
+function reloadPage() {
     location.reload();
 }
 
-export function isTokenSet(): boolean {
+function isTokenSet(): boolean {
     const supposedToken = localStorage.getItem(LOCALSTORAGE_KEY_BEARER_TOKEN);
     return isValidNonEmptyString(supposedToken);
 }
