@@ -11,7 +11,7 @@
     {
       "method": "PUT",
       "path": "/patients/fillData/:username?:userid",
-      "handler": "patient.fillData",
+      "handler": "patient.fillPersonalData",
       "config": {
         "policies": []
       }
@@ -19,7 +19,7 @@
     {
       "method": "PUT",
       "path": "/patients/updateData/:username?:userid",
-      "handler": "patient.updateData",
+      "handler": "patient.updatePersonalData",
       "config": {
         "policies": []
       }
