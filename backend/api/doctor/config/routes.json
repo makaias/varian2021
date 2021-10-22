@@ -1,0 +1,20 @@
+{
+    "routes": [
+        {
+            "method": "GET",
+            "path": "/doctors/:id",
+            "handler": "doctor.findOne",
+            "config": {
+                "policies": []
+            }
+        },
+        {
+            "method": "PUT",
+            "path": "doctors/create/:username?:userid",
+            "handler": "doctor.createUser",
+            "config": {
+                "policies": []
+            }
+        }
+    ]
+}
