@@ -44,10 +44,6 @@ async function prepareRequestConfig(axiosRequestConfig: AxiosRequestConfig,
         axiosRequestConfig.method = "GET";
     }
 
-    if (axiosRequestConfig.url?.startsWith('/')) {
-        axiosRequestConfig.url = 'http://localhost:1337' + axiosRequestConfig.url;
-    }
-
     if (!axiosRequestConfig.headers) {
         axiosRequestConfig.headers = {};
     }

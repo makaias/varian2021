@@ -10,8 +10,8 @@ async function deleteToken() {
     localStorage.removeItem(LOCALSTORAGE_KEY_BEARER_TOKEN);
 }
 
-export function redirectToLogin() {
-    location.replace('/login');
+export function reloadPage() {
+    location.reload();
 }
 
 export function isTokenSet(): boolean {
@@ -21,7 +21,7 @@ export function isTokenSet(): boolean {
 
 function getToken(): string {
     if (!isTokenSet()) {
-        redirectToLogin();
+        reloadPage();
     }
     return localStorage.getItem(LOCALSTORAGE_KEY_BEARER_TOKEN) as string;
 }

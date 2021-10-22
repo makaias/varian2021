@@ -54,5 +54,5 @@
     "@typescript-eslint/eslint-plugin": "^5.1.0",
     "@typescript-eslint/parser": "^5.1.0"
   },
-  "proxy": "localhost:1337"
+  "proxy": "http://localhost:1337"
 }
