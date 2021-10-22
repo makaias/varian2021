@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "surveys",
+  "info": {
+    "name": "Survey",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "survey_template": {
+      "model": "survey-template"
+    },
+    "user_to_complete": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "complete": {
+      "type": "boolean"
+    },
+    "answers": {
+      "type": "json"
+    }
+  }
+}
