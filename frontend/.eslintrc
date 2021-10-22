@@ -17,6 +17,7 @@
     ],
     "no-empty-pattern": ["off"],
     "@typescript-eslint/ban-types": "off",
-    "prefer-const": "off"
+    "prefer-const": "off",
+    "@typescript-eslint/no-empty-function": "off"
   }
 }
