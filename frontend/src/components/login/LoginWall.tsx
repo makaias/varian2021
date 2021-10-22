@@ -1,16 +1,13 @@
 import React, {FC} from 'react';
 import LoginForm, {LoginCommand} from "./LoginForm";
+import {useAuthBackend} from "../../context/AuthBackend";
 
-interface Props {
-    onLogin: (loginCommand: LoginCommand) => Promise<void>;
-}
-
-const LoginWall: FC<Props> = (props) => {
-
+const LoginWall: FC = () => {
+    const authBackend = useAuthBackend();
     return (
         <>
             <h2>Log In</h2>
-            <LoginForm onLogin={props.onLogin}/>
+            <LoginForm onLogin={authBackend.login}/>
         </>
     );
 };

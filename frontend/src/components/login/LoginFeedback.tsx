@@ -9,16 +9,18 @@ const LoginFeedback: FC = () => {
     if (authBackend.isLoggedIn) {
         return (
             <button onClick={() => authBackend.logout().catch(err => alert('Cannot log you out :/'))}>
-                LOGOUT ({authBackend.user?.username})
+                LOGOUT (you: {authBackend.user?.username})
             </button>
         );
     }
 
     return (
         <>
-            <button onClick={() => setLoginFormShown(true)}>
-                LOGIN
-            </button>
+            {!isLoginFormShown && (
+                <button onClick={() => setLoginFormShown(true)}>
+                    LOGIN
+                </button>
+            )}
 
             {isLoginFormShown && (
                 <LoginForm onLogin={authBackend.login}/>

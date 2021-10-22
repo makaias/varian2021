@@ -1,11 +1,7 @@
 import React, {createContext, FunctionComponent, ReactNode, useContext, useEffect, useState} from 'react';
-import LoginWall from '../component/login/LoginWall';
 import callJsonEndpoint, {BearerTokenSendingCommand} from '../util/api/callJsonEndpoint';
 import BearerTokenService from "../service/BearerTokenService";
-import {LoginCommand} from "../component/login/LoginForm";
-import {
-    useLocation
-} from "react-router-dom";
+import {LoginCommand} from "../components/login/LoginForm";
 
 export interface User {
     id: number;
@@ -33,17 +29,7 @@ interface Props {
 
 
 const AuthBackend: FunctionComponent = ({children}: Props): JSX.Element => {
-    const location = useLocation();
     const [user, setUser] = useState<User>(null);
-
-    function shouldApplyLoginWallOnCurrentPath(): boolean {
-        const path = location.pathname;
-
-        if (path?.startsWith('/articles')) {
-            return false;
-        }
-        return true;
-    }
 
     function tryToReuseSavedBearerToken() {
         if (!BearerTokenService.isTokenSet()) {
@@ -103,18 +89,7 @@ const AuthBackend: FunctionComponent = ({children}: Props): JSX.Element => {
         login: attemptLogin,
     };
 
-    function getPageContent(): ReactNode {
-        if (!shouldApplyLoginWallOnCurrentPath()) {
-            return children;
-        }
-
-        if (isLoggedIn()) {
-            return children;
-        }
-        return <LoginWall onLogin={attemptLogin}/>;
-    }
-
-    return <AuthBackendContext.Provider value={contextValue}>{getPageContent()}</AuthBackendContext.Provider>;
+    return <AuthBackendContext.Provider value={contextValue}>{children}</AuthBackendContext.Provider>;
 };
 
 export default AuthBackend;
