@@ -1,52 +1,44 @@
 {
-    "routes": [
-        {
-            "method": "GET",
-            "path": "/doctors/me",
-            "handler": "doctor.getMe",
-            "config": {
-                "policies": []
-            }
-        },
-        {
-            "method": "POST",
-            "path": "/doctors/create-user",
-            "handler": "doctor.createUser",
-            "config": {
-                "policies": []
-            }
-        },
-        {
-            "method": "POST",
-            "path": "/doctors/create-treatment-plan",
-            "handler": "doctor.createTreatmentPlan",
-            "config": {
-                "policies": []
-            }
-        },
-        {
-            "method": "POST",
-            "path": "/doctors/create-document",
-            "handler": "doctor.createDocument",
-            "config": {
-                "policies": []
-            }
-        },
-        {
-            "method": "POST",
-            "path": "/doctors/create-survey-template",
-            "handler": "doctor.createSurveyTemplate",
-            "config": {
-                "policies": []
-            }
-        },
-        {
-            "method": "GET",
-            "path": "/doctors/patients",
-            "handler": "doctor.patients",
-            "config": {
-                "policies": []
-            }
-        }
-    ]
+  "routes": [
+    {
+      "method": "POST",
+      "path": "/doctors/create-user",
+      "handler": "doctor.createUser",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/doctors/create-treatment-plan",
+      "handler": "doctor.createTreatmentPlan",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/doctors/create-document",
+      "handler": "doctor.createDocument",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/doctors/create-survey-template",
+      "handler": "doctor.createSurveyTemplate",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/doctors/patients",
+      "handler": "doctor.patients",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
 }
