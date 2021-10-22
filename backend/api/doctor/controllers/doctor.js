@@ -1,15 +1,13 @@
 'use strict';
 
-module.exports = {
-    async getMe(ctx) {
-        return await strapi.services.doctor.getMe(ctx.state.user);
-    },
+const Boom = require("boom");
 
+module.exports = {
     async createUser(ctx) {
         if (ctx.state.user?.userType !== "DOCTOR") {
-            return null;
+            throw Boom.forbidden("not doctor");
         }
-        return await strapi.services.doctor.createUser(ctx.request.body);
+        return await strapi.services.doctor.createUser(ctx.request.body, ctx.state.user.id);
     },
 
     /**
@@ -76,7 +74,7 @@ module.exports = {
      */
     async createTreatmentPlan(ctx) {
         if (ctx.state.user?.userType !== "DOCTOR") {
-            return null;
+            throw Boom.forbidden("not doctor");
         }
         return await strapi.services.doctor.createTreatmentPlan(ctx.request.body);
     },
@@ -90,7 +88,7 @@ module.exports = {
      */
     async createDocument(ctx) {
         if (ctx.state.user?.userType !== "DOCTOR") {
-            return null;
+            throw Boom.forbidden("not doctor");
         }
         return await strapi.services.doctor.createDocument(ctx.request.body);
     },
@@ -109,14 +107,14 @@ module.exports = {
      */
     async createSurveyTemplate(ctx) {
         if (ctx.state.user?.userType !== "DOCTOR") {
-            return null;
+            throw Boom.forbidden("not doctor");
         }
         return await strapi.services.doctor.createSurveyTemplate(ctx.request.body);
     },
 
     async patients(ctx) {
         if (ctx.state.user?.userType !== "DOCTOR") {
-            return null;
+            throw Boom.forbidden("not doctor");
         }
         return await strapi.services.doctor.patients(ctx.state.user.id);
     }
