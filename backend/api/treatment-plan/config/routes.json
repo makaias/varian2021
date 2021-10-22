@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/treatment-plans",
+      "handler": "treatment-plan.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/treatment-plans/count",
+      "handler": "treatment-plan.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/treatment-plans/:id",
+      "handler": "treatment-plan.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/treatment-plans",
+      "handler": "treatment-plan.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/treatment-plans/:id",
+      "handler": "treatment-plan.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/treatment-plans/:id",
+      "handler": "treatment-plan.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
