@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_social_interaction_social_interactions",
+  "info": {
+    "name": "social_interaction",
+    "icon": "users"
+  },
+  "options": {},
+  "attributes": {
+    "value": {
+      "type": "decimal"
+    }
+  }
+}

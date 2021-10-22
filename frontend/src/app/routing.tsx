@@ -13,7 +13,7 @@ export default function Routing({}: Props): ReactElement {
 
     const routesRequiringLogin = [
         <Route exact path="/me" component={() => <p>User profile page</p>}/>,
-        <Route exact path="/exampleNeedsLogin" component={() => <p>exampleNeedsLogin</p>}/>
+        <Route exact path="/exampleNeedsLogin" component={() => <p>exampleNeedsLogin</p>}/>,
         <Route exact path="/ati" component={AtiGrafikontTesztel} />
     ];
     return (

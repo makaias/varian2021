@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_physical_activity_physical_activities",
+  "info": {
+    "name": "physical_activity",
+    "icon": "basketball-ball",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "value": {
+      "type": "decimal"
+    }
+  }
+}

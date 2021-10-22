@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_sleeping_sleepings",
+  "info": {
+    "name": "sleeping",
+    "icon": "bed"
+  },
+  "options": {},
+  "attributes": {
+    "value": {
+      "type": "decimal"
+    }
+  }
+}

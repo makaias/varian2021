@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_eating_behavior_eating_behaviors",
+  "info": {
+    "name": "eating_behavior",
+    "icon": "apple-alt"
+  },
+  "options": {},
+  "attributes": {
+    "eatingBehavior": {
+      "type": "decimal"
+    }
+  }
+}
