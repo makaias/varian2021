@@ -1,12 +1,18 @@
 import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 import Chakra from "./chakra";
 import Layout from "./layout";
+import Routing from "./routing";
 import "./style.css";
 
 function App() {
   return (
     <Chakra>
-      <Layout></Layout>
+      <Router>
+        <Layout>
+          <Routing />
+        </Layout>
+      </Router>
     </Chakra>
   );
 }
