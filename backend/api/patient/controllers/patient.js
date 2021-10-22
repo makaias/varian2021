@@ -50,7 +50,7 @@ module.exports = {
       id,
       user_to_complete: patientId,
     });
-    return sanitizeEntity(entity, { model: strapi.models.survey });
+    return entity;
   },
 
   async getSurvey(ctx) {
