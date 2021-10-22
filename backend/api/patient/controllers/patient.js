@@ -38,6 +38,7 @@ module.exports = {
     );
   },
 
+  // TODO test
   async getSurveys(ctx) {
     if (ctx.state.user?.userType !== "PATIENT") {
       throw Boom.forbidden("not patient");
@@ -50,17 +51,21 @@ module.exports = {
       id,
       user_to_complete: patientId,
     });
-    return sanitizeEntity(entity, { model: strapi.models.survey });
+    return entity;
   },
 
+  // TODO test
   async getSurvey(ctx) {
+    if (ctx.state.user?.userType !== "PATIENT") {
+      throw Boom.forbidden("not patient");
+    }
     const { id, surveyId } = ctx.params;
     const patientId = ctx.state.user?.id;
 
     const entity = await strapi.services.survey.find({
       id,
       user_to_complete: patientId,
-      surveyIds,
+      surveyId,
     });
     return sanitizeEntity(entity, { model: strapi.models.survey });
   },
