@@ -11,7 +11,7 @@ export default function Stomach({}: Props): ReactElement {
   });
   return (
     <>
-      <Text marginTop="1rem" fontWeight="bold">
+      <Text marginTop="1rem" fontWeight="bold" fontSize="xl">
         Nausea and Vomiting
       </Text>
       <Text marginTop="1rem">
@@ -46,7 +46,7 @@ export default function Stomach({}: Props): ReactElement {
           them or use something else without asking your doctor.
         </ListItem>
       </UnorderedList>
-      <Text marginTop="1rem" fontWeight="bold">
+      <Text marginTop="1rem" fontWeight="bold" fontSize="xl">
         Diarrhea
       </Text>
       <Text marginTop="1rem">

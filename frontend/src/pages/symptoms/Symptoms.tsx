@@ -83,7 +83,7 @@ export default function Symptoms(): ReactElement {
               Chest
             </Text>
             <Text align="center" fontSize="lg" fontWeight="normal">
-              e.g. pulmonary fibrosis, cough
+              e.g. cough, dyspnea
             </Text>
           </VStack>
         </SymptomTile>
@@ -103,7 +103,7 @@ export default function Symptoms(): ReactElement {
               Pelvis
             </Text>
             <Text align="center" fontSize="lg" fontWeight="normal">
-              e.g. rectal bleeding, inkontinence
+              e.g. inkontinence, menopausal symptoms
             </Text>
           </VStack>
         </SymptomTile>
