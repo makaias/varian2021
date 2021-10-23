@@ -3,20 +3,28 @@
 const Boom = require("boom");
 
 module.exports = {
+  /**
+   *  example treatment plan in body:
+   *  {
+   *   "username": "",
+   *   "password": "",
+   *   "email": ""
+   *  }
+   */
   async createUser(ctx) {
     if (ctx.state.user?.userType !== "DOCTOR") {
       throw Boom.forbidden("not doctor");
     }
     return await strapi.services.doctor.createUser(
       ctx.request.body,
-      ctx.state.user.id
+      ctx.state.user?.id
     );
   },
 
   /**
    * example treatment plan in body:
-   * {
-   *     "treatmentPlan": [
+   *
+   *     {
    *          "patientName": "name",
    *          "phone": "phone",
    *          "patientDOB": "asdf",
@@ -72,8 +80,8 @@ module.exports = {
    *          "otherComments": "...",
    *          "preparedBy": "name",
    *          "deliveredOn": date
-   *      ]
-   * }
+   *      }
+   *
    */
   async createTreatmentPlan(ctx) {
     if (ctx.state.user?.userType !== "DOCTOR") {

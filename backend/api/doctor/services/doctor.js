@@ -23,8 +23,8 @@ module.exports = {
   },
 
   async createTreatmentPlan(body) {
-    let planId = await strapi.services["treatment-plan"].create(body);
-    return planId;
+    const treatmentPlan = await strapi.services["treatment-plan"].create(body);
+    return treatmentPlan;
   },
 
   async createDocument(body) {
