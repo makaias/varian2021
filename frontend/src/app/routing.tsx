@@ -2,10 +2,12 @@ import React, {ReactElement} from 'react';
 import {Route, Switch, useParams} from 'react-router-dom';
 import LoginWall from '../components/login/LoginWall';
 import {useAuthBackend} from '../context/AuthBackend';
+import {UserType} from '../enum/UserType';
 import ArticleList from '../pages/article/ArticleList';
 import OneArticle from '../pages/article/OneArticle';
 import Contact from '../pages/contact/Contact';
 import Dashboard from '../pages/dashboard';
+import DoctorProfile from '../pages/DoctorProfile';
 import Home from '../pages/Home';
 import Inflammatory from '../pages/sympthoms/sympthom/Inflammatory';
 import Symptoms from '../pages/Symptoms';
@@ -27,11 +29,22 @@ const routesNotRequiringLogin = [
 ];
 
 const routesRequiringLogin = [
-  <Route exact path="/me" component={() => <p>User profile page</p>} />,
-  <Route exact path="/exampleNeedsLogin" component={() => <p>exampleNeedsLogin</p>} />,
   <Route exact path="/user" component={User} />,
   <Route exact path="/dashboard" component={Dashboard} />,
   <Route exact path="/symptoms" component={Symptoms} />,
+  <Route exact path="/me" component={() => <p>User profile page</p>} />,
+  <Route exact path="/exampleNeedsLogin" component={() => <p>exampleNeedsLogin</p>} />,
+  <Route
+    exact
+    path="/profile"
+    component={() => {
+      const authBackend = useAuthBackend();
+      if (authBackend.user?.userType === UserType.DOCTOR) {
+        return <DoctorProfile />;
+      }
+      return <p>User profile page</p>;
+    }}
+  />,
 ];
 
 export default function Routing(): ReactElement {

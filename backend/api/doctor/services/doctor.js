@@ -43,7 +43,7 @@ module.exports = {
   },
 
   async getPatients(doctorId) {
-    let patients = await strapi.services.user.find({ doctor: doctorId });
+    let patients = strapi.query('user', 'users-permissions').find({ doctor: doctorId });
     return patients;
   },
 };
