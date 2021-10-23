@@ -34,15 +34,15 @@ export default function Dashboard({}: Props) {
             {usedEndpoint.data.badges.map((badge) => {
               switch (badge.type) {
                 case 'STARTED':
-                  return <Image w="5rem" src={startLogo} />;
+                  return <Image w="5rem" key={badge.id} src={startLogo} />;
                 case 'FINISHED':
-                  return <Image w="5rem" src={endLogo} />;
+                  return <Image w="5rem" key={badge.id} src={endLogo} />;
                 case 'ONE_MONTH':
-                  return <Image w="5rem" src={firstMonthLogo} />;
+                  return <Image w="5rem" key={badge.id} src={firstMonthLogo} />;
                 case 'TWO_MONTH':
-                  return <Image w="5rem" src={secondMonthLogo} />;
+                  return <Image w="5rem" key={badge.id} src={secondMonthLogo} />;
                 case 'THREE_MONTH':
-                  return <Image w="5rem" src={thirdMonthLogo} />;
+                  return <Image w="5rem" key={badge.id} src={thirdMonthLogo} />;
                 default:
               }
             })}

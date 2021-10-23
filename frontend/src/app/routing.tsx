@@ -3,7 +3,6 @@ import {Route, Switch} from 'react-router-dom';
 import Home from '../pages/Home';
 import {useAuthBackend} from '../context/AuthBackend';
 import LoginWall from '../components/login/LoginWall';
-import AtiGrafikontTesztel from '../pages/dashboard';
 import Dashboard from '../pages/dashboard';
 import Symptoms from '../pages/Symptoms';
 
