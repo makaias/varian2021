@@ -9,8 +9,8 @@ import Contact from '../pages/contact/Contact';
 import Dashboard from '../pages/dashboard';
 import Home from '../pages/Home';
 import Scholar from '../pages/Scholar';
-import OneSymptom from '../pages/sympthoms/sympthom/OneSymptom';
-import Symptoms from '../pages/sympthoms/Symptoms';
+import OneSymptom from '../pages/symptoms/sympthom/OneSymptom';
+import Symptoms from '../pages/symptoms/Symptoms';
 import User from '../pages/User';
 import PhysicalActivity from '../pages/PhysicalActivity';
 import HealthyEating from '../pages/HealthyEating';
@@ -21,6 +21,9 @@ import Chest from '../pages/Chest';
 import Stomach from '../pages/Stomach';
 import Pelvis from '../pages/Pelvis';
 import Other from '../pages/Other';
+import CurrentUserDocuments from '../pages/document/CurrentUserDocuments';
+import DoctorProfile from '../pages/DoctorProfile';
+import {UserType} from '../enum/UserType';
 
 const symptomRoutes = [
   <Route exact path="/symptoms/inflammatory-skin" component={() => <InflammatorySkin />} />,
@@ -41,19 +44,28 @@ const routesNotRequiringLogin = [
 
 const routesRequiringLogin = [
   <Route exact path="/user" component={User} />,
-  <Route exact path="/dashboard" component={Dashboard} />,
   <Route exact path="/symptoms" component={Symptoms} />,
   ...symptomRoutes,
-  <Route exact path="/me" component={() => <p>User profile page</p>} />,
-  <Route exact path="/exampleNeedsLogin" component={() => <p>exampleNeedsLogin</p>} />,
   <Route exact path="/scholar" component={Scholar} />,
   <Route exact path="/articles" component={ArticleList} />,
+  <Route exact path="/myDocuments" component={CurrentUserDocuments} />,
   <Route
     exact
     path="/articles/read/:id"
     component={() => {
       const {id} = useParams<{id}>();
       return <OneArticle id={id} />;
+    }}
+  />,
+  <Route
+    exact
+    path="/profile"
+    component={() => {
+      const authBackend = useAuthBackend();
+      if (authBackend.user?.userType === UserType.DOCTOR) {
+        return <DoctorProfile />;
+      }
+      return <Dashboard patientId={authBackend.user?.id} />;
     }}
   />,
   <Route exact path="/contact" component={Contact} />,

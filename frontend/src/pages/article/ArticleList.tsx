@@ -1,7 +1,5 @@
-import {Box, Flex, HStack, Text, VStack} from '@chakra-ui/layout';
+import {Box, HStack, Text, VStack} from '@chakra-ui/layout';
 import {Spinner} from '@chakra-ui/react';
-import {faBook} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {FC} from 'react';
 import {NavLink} from 'react-router-dom';
 import FailureParagraph from '../../components/FailureParagraph';
@@ -9,12 +7,16 @@ import useEndpoint from '../../hooks/useEndpoint';
 import {Article} from '../../model/Article';
 import {useAuthBackend} from '../../context/AuthBackend';
 import {Button} from '@chakra-ui/button';
+import {BookIcon} from '../../components/icons';
+import {useLayoutConfig} from '../../app/layout';
 
 interface Props {
   id: number;
 }
 
 const ArticleList: FC<Props> = (props) => {
+  useLayoutConfig({title: 'Personalised Reading', bg: 'plain'});
+
   const authBackend = useAuthBackend();
 
   const usedEndpoint = useEndpoint<Article[]>({
@@ -25,7 +27,11 @@ const ArticleList: FC<Props> = (props) => {
   });
 
   return (
-    <VStack w='100%' align='stretch' pt={8} maxWidth='container.xl'>
+    <VStack w='100%' align='stretch' pt={2} maxWidth='container.xl'>
+      <Text color='primary.500' fontSize='3xl'>
+        Medically approved Articles hand-picked by your doctor, based on your individual state
+      </Text>
+
       {authBackend.isDoctor && (
         <NavLink to={'/articles/new'}>
           <Button color='primary.500'>Create new Article</Button>
@@ -57,9 +63,7 @@ function ArticleItem({article}: {article: Article}) {
             </Text>
             <Text>{article.headline}</Text>
           </VStack>
-          <Flex fontSize='4xl' color='primary.500' pr={4}>
-            <FontAwesomeIcon icon={faBook} />
-          </Flex>
+          <BookIcon width='4.5rem' />
         </HStack>
       </Box>
     </NavLink>
