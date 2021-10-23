@@ -4,14 +4,17 @@ module.exports = {
   //body based on patient.create
   async createUser(body, doctor) {
     // NOTE ezeket az adatokat később állítani
+
+    const statistic = await strapi.services.statistics.create();
     const defaultData = {
       userType: "PATIENT",
       provider: "local",
       confirmed: true,
       blocked: false,
       role: 1,
+      statistic
     };
-
+    
     const patient = await strapi.plugins["users-permissions"].services.user.add(
       {
         ...body,
