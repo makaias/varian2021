@@ -9,6 +9,7 @@ import {Button, HStack} from '@chakra-ui/react';
 import {useAuthBackend} from '../../context/AuthBackend';
 import MyEditable from '../../components/MyEditable';
 import callJsonEndpoint from '../../util/api/callJsonEndpoint';
+import UsersArticleIsAdvisedForEditor from './component/UsersArticleIsAdvisedForEditor';
 
 interface Props {
   id: number;
@@ -111,6 +112,12 @@ const OneArticle: FC<Props> = (props) => {
               </HStack>
             </>
           )}
+
+
+          {authBackend.isDoctor && (
+            <UsersArticleIsAdvisedForEditor articleId={props.id} />
+          )}
+
         </VStack>
       )}
 
