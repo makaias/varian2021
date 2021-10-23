@@ -10,26 +10,27 @@ import {Button} from '@chakra-ui/button';
 import {BookIcon} from '../../components/icons';
 import {useLayoutConfig} from '../../app/layout';
 
-interface Props {
-  id: number;
-}
-
-const ArticleList: FC<Props> = (props) => {
+const ArticleList: FC = () => {
   useLayoutConfig({title: 'Personalised Reading', bg: 'plain'});
 
   const authBackend = useAuthBackend();
 
   const usedEndpoint = useEndpoint<Article[]>({
     conf: {
-      url: `/articles`//TODO: IF userType === PATIENT then only list articles that are ADVISED for the user
+      url: authBackend.isDoctor ? '/articles' : '/patients/articles'
     },
-    deps: [props.id]
+    deps: [authBackend.isDoctor]
   });
 
   return (
     <VStack w='100%' align='stretch' pt={2} maxWidth='container.xl'>
       <Text color='primary.500' fontSize='3xl'>
-        Medically approved Articles hand-picked by your doctor, based on your individual state
+        {authBackend.isDoctor ? (
+          <>Edit or create articles, and advise them to patients</>
+        ) : (
+          <>Medically approved Articles hand-picked by your doctor, based on your individual state</>
+        )}
+
       </Text>
 
       {authBackend.isDoctor && (

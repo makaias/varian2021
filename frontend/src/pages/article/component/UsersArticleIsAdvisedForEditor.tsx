@@ -6,6 +6,7 @@ import FailureParagraph from '../../../components/FailureParagraph';
 import {Button, Table, Tbody, Td, Tr} from '@chakra-ui/react';
 import {User} from '../../../context/AuthBackend';
 import UserSelector from '../../../components/UserSelector';
+import callJsonEndpoint from '../../../util/api/callJsonEndpoint';
 
 interface Props {
   articleId: number;
@@ -16,24 +17,9 @@ const UsersArticleIsAdvisedForEditor: FC<Props> = (props) => {
 
   const usedAdvisedUsers = useEndpoint<User[]>({
     conf: {
-      url: `???????/${props.articleId}`
+      url: `/doctors/list-users-article-is-advised-for/${props.articleId}`
     },
-    deps: [props.articleId],
-    mockConfig: {
-      shouldMock: true,
-      mockData: [//TODO: use real data
-        {
-          id: 1,
-          firstname: 'First',
-          surename: 'Sure'
-        } as User,
-        {
-          id: 2,
-          firstname: 'First 2',
-          surename: 'Sure 2'
-        } as User
-      ]
-    }
+    deps: [props.articleId]
   });
 
   const usedAllUsers = useEndpoint<User[]>({
@@ -43,7 +29,12 @@ const UsersArticleIsAdvisedForEditor: FC<Props> = (props) => {
   });
 
   function doAdvise() {
-    new Promise(resolve => resolve(''))//use props.articleId and selectedUserIdToAdviseFor //TODO: call backend
+    callJsonEndpoint({
+      conf: {
+        url: `/doctors/advise-article/${selectedUserIdToAdviseFor}/${props.articleId}`,
+        method: 'post'
+      }
+    })
       .then(() => {
         usedAdvisedUsers.reloadEndpoint();
       })
@@ -53,7 +44,12 @@ const UsersArticleIsAdvisedForEditor: FC<Props> = (props) => {
   }
 
   function doUnadvise(userId: number) {
-    new Promise(resolve => resolve(''))//use props.articleId //TODO: call backend
+    callJsonEndpoint({
+      conf: {
+        url: `/doctors/un-advise-article/${userId}/${props.articleId}`,
+        method: 'post'
+      }
+    })
       .then(() => {
         usedAdvisedUsers.reloadEndpoint();
       })
