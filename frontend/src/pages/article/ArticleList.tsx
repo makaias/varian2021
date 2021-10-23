@@ -55,15 +55,15 @@ const ArticleList: FC = () => {
 function ArticleItem({article}: {article: Article}) {
   return (
     <NavLink to={`/articles/read/${article.id}`}>
-      <Box p={3} bg="white" borderRadius={6} border="2px solid" borderColor="primary.500" cursor="pointer">
+      <Box p={3} bg="white" borderTop="1px" borderColor="primary.500" cursor="pointer">
         <HStack justify="space-between" align="center" spacing={6} height="fit-content" w="100%">
           <VStack spacing={0} align="flex-start">
-            <Text color="primary.500" fontSize="xl">
+            <Text color="primary.500" fontSize="xl" fontWeight="bold">
               {article.title}
             </Text>
             <Text>{article.headline}</Text>
           </VStack>
-          <BookIcon width="4.5rem" />
+          <BookIcon width="3rem" />
         </HStack>
       </Box>
     </NavLink>
