@@ -14,7 +14,7 @@ module.exports = {
       role: 1,
       statistic
     };
-    
+
     const patient = await strapi.plugins["users-permissions"].services.user.add(
       {
         ...body,
@@ -43,7 +43,7 @@ module.exports = {
   async getPatients(doctorId) {
     const patients = await strapi.plugins[
       "users-permissions"
-    ].services.user.fetch({ doctor: doctorId });
+    ].services.user.fetchAll({ doctor: doctorId }, ["statistic", "statistic.badges"]);
     return patients;
   },
 };
