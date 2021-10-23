@@ -23,6 +23,7 @@ import Pelvis from '../pages/Pelvis';
 import PhysicalActivity from '../pages/PhysicalActivity';
 import Scholar from '../pages/Scholar';
 import Stomach from '../pages/Stomach';
+import Survey from '../pages/Survey';
 import Symptoms from '../pages/symptoms/Symptoms';
 import TreatmentPlan from '../pages/TreatmentPlan';
 import User from '../pages/User';
@@ -50,6 +51,7 @@ const routesRequiringLogin = [
   ...symptomRoutes,
   <Route exact path="/scholar" component={Scholar} />,
   <Route exact path="/articles" component={ArticleList} />,
+  <Route exact path="/survey/:id" component={Survey} />,
   <Route
     exact
     path="/myDocuments"
