@@ -25,14 +25,11 @@ export default function ScholarBlock({keyword, itemCount}: Props) {
       {usedEndpoint.failed && <p>Failed</p>}
       {usedEndpoint.succeeded && (
         <>
-          <Text padding="1rem" fontSize="5xl">
-            Look for publications
-          </Text>
-          <HStack flex="start">
+          <HStack justify="center">
             <InputGroup width="md" margin="1rem">
               <Input backgroundColor="white" variant="outline" placeholder="Search..." borderColor="primary.500" color="primary.500" />
               <InputRightElement width="2rem">
-                <Button backgroundColor="primary.500" color="white" size="sm" marginRight="1rem" onClick={handleClick}>
+                <Button backgroundColor="primary.500" color="white" size="md" onClick={handleClick}>
                   GO
                 </Button>
               </InputRightElement>
@@ -42,7 +39,7 @@ export default function ScholarBlock({keyword, itemCount}: Props) {
             <>
               <Box key={index} margin="1rem" padding="1rem" borderTop="1px" borderTopColor="primary.500">
                 <LinkBox>
-                  <Text fontSize="xl" fontWeight="bold">
+                  <Text fontSize="xl" fontWeight="bold" color="primary.500">
                     {x.title}
                   </Text>
                   <Text>{x.snippet}</Text>
