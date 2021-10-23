@@ -1,0 +1,13 @@
+{
+    "routes": [
+      {
+        "method": "GET",
+        "path": "/scholar/:keyword",
+        "handler": "scholar.fetch",
+        "config": {
+          "policies": []
+        }
+      }
+    ]
+  }
+  

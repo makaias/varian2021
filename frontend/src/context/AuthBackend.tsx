@@ -24,7 +24,7 @@ export const AuthBackendContext = createContext<AuthBackend>({
   user: null,
   isLoggedIn: null,
   logout: null,
-  login: null
+  login: null,
 });
 
 interface Props {
@@ -49,9 +49,9 @@ const AuthBackend: FunctionComponent = ({children}: Props): JSX.Element => {
 
     callJsonEndpoint<User>({
       conf: {
-        url: '/users/me'
+        url: '/users/me',
       },
-      bearerTokenSendingCommand: BearerTokenSendingCommand.SEND
+      bearerTokenSendingCommand: BearerTokenSendingCommand.SEND,
     })
       .then((resp) => {
         setUser(resp.data);
@@ -87,31 +87,33 @@ const AuthBackend: FunctionComponent = ({children}: Props): JSX.Element => {
         method: 'post',
         data: {
           identifier: loginCommand.identifier,
-          password: loginCommand.password
-        }
+          password: loginCommand.password,
+        },
       },
-      bearerTokenSendingCommand: BearerTokenSendingCommand.DO_NOT_SEND
-    }).then(resp => {
-      BearerTokenService.setToken(resp.data['jwt']);
-      setUser(resp.data['user']);
-      setLoginInfoState(LoginInfoState.LOGGED_IN);
-    }).catch(() => {
-      setLoginInfoState(LoginInfoState.LOGGED_OUT);
-    });
+      bearerTokenSendingCommand: BearerTokenSendingCommand.DO_NOT_SEND,
+    })
+      .then((resp) => {
+        BearerTokenService.setToken(resp.data['jwt']);
+        setUser(resp.data['user']);
+        setLoginInfoState(LoginInfoState.LOGGED_IN);
+      })
+      .catch(() => {
+        setLoginInfoState(LoginInfoState.LOGGED_OUT);
+      });
   }
 
   const contextValue: AuthBackend = {
     user: user,
     isLoggedIn: isLoggedIn(),
     logout: logout,
-    login: attemptLogin
+    login: attemptLogin,
   };
 
-  return <AuthBackendContext.Provider value={contextValue}>
-    {loginInfoState === LoginInfoState.UNKNOWN ? (
-      <p>Pending login...</p>
-    ) : children}
-  </AuthBackendContext.Provider>;
+  return (
+    <AuthBackendContext.Provider value={contextValue}>
+      {loginInfoState === LoginInfoState.UNKNOWN ? <p>Pending login...</p> : children}
+    </AuthBackendContext.Provider>
+  );
 };
 
 export default AuthBackend;
