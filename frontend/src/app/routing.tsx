@@ -8,6 +8,7 @@ import AtiGrafikontTesztel from '../pages/AtiGrafikontTesztel';
 import OneArticle from '../pages/article/OneArticle';
 import Articles from '../pages/article/Articles';
 import Contact from '../pages/contact/Contact';
+import Inflammatory from '../pages/sympthoms/sympthom/Inflammatory';
 
 const routesNotRequiringLogin = [
   <Route exact path='/' component={Home} />,
@@ -16,6 +17,7 @@ const routesNotRequiringLogin = [
     const {id} = useParams<{id}>();
     return (<OneArticle id={id} />);
   }} />,
+  <Route exact path='/symptoms/inflammatory' component={Inflammatory} />,
   <Route exact path='/contact' component={Contact} />
 ];
 
