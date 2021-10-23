@@ -1,4 +1,19 @@
-import {Box, Container, Flex, HStack, Image, Text, VStack} from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Collapse,
+  Container,
+  Flex,
+  HStack,
+  Image,
+  Stack,
+  Text,
+  useBoolean,
+  useMediaQuery,
+  VStack,
+} from '@chakra-ui/react';
+import {faBars} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import React, {PropsWithChildren, ReactElement, ReactNode, useContext, useEffect, useState} from 'react';
 import {Link, useLocation} from 'react-router-dom';
 import {ExitIcon, UserIcon} from '../components/icons';
@@ -37,8 +52,11 @@ export default function Layout({children}: PropsWithChildren<{}>): ReactElement 
     };
   }, [layoutConfig]);
 
+  const [menuIsOpen, toggleMenu] = useBoolean(false);
+  const [isDesktopWidth] = useMediaQuery('(min-width: 48em)');
+
   return (
-    <VStack align="stretch">
+    <VStack align="stretch" spacing={0}>
       <Box bg="white" p={3}>
         <Container maxWidth="container.lg">
           {!user && (
@@ -47,23 +65,33 @@ export default function Layout({children}: PropsWithChildren<{}>): ReactElement 
             </HStack>
           )}
           {user && (
-            <HStack align="stretch" fontSize="xl" justify="space-between">
-              <NavItem to="/dashboard">
-                <HStack align="center">
-                  <UserIcon width="2em" />
-                  <Text>Profile</Text>
-                </HStack>
-              </NavItem>
-
-              <NavItem to="/results">Results</NavItem>
-              <NavItem to="/survey">Surveys</NavItem>
-              <NavItem to="/symptoms">Symptoms</NavItem>
-              <NavItem to="/publications">Publications</NavItem>
-              <NavItem to="/contact">Contact</NavItem>
-              <NavItem onClick={() => logout()}>
-                <ExitIcon width="2em" />
-              </NavItem>
-            </HStack>
+            <>
+              {!isDesktopWidth && (
+                <Flex justify="flex-end">
+                  <Button onClick={() => toggleMenu.toggle()} variant="unstyled">
+                    <FontAwesomeIcon icon={faBars} />
+                  </Button>
+                </Flex>
+              )}
+              <Collapse in={menuIsOpen || isDesktopWidth}>
+                <Stack direction={isDesktopWidth ? 'row' : 'column'} justify="space-between" align="stretch">
+                  <NavItem to="/dashboard">
+                    <HStack align="center">
+                      <UserIcon width="2em" />
+                      <Text>Profile</Text>
+                    </HStack>
+                  </NavItem>
+                  <NavItem to="/results">Results</NavItem>
+                  <NavItem to="/survey">Surveys</NavItem>
+                  <NavItem to="/symptoms">Symptoms</NavItem>
+                  <NavItem to="/publications">Publications</NavItem>
+                  <NavItem to="/contact">Contact</NavItem>
+                  <NavItem onClick={() => logout()}>
+                    <ExitIcon width="2em" />
+                  </NavItem>
+                </Stack>
+              </Collapse>
+            </>
           )}
         </Container>
       </Box>
