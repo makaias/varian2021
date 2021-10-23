@@ -13,7 +13,7 @@ export interface GridFieldProps {
 
 export function GridContent({children, ...props}: GridItemProps) {
   return (
-    <GridItem textAlign="center" {...props} colspan border="1px solid" p={2} borderColor="gray.200">
+    <GridItem textAlign="center" {...props} border="1px solid" p={2} borderColor="gray.200">
       {children}
     </GridItem>
   );
@@ -31,7 +31,7 @@ export function GridField({name, title, colSpan}: GridFieldProps) {
           </Box>
         )}
         <Box flex={1} p={1}>
-          <FormikEditable name={name} isDisabled={!editable} isPreviewFocusable={!editable} />
+          <FormikEditable name={name} isDisabled={!editable} />
         </Box>
       </HStack>
     </GridItem>
@@ -50,7 +50,7 @@ export function GridFieldCompact({name, title, colSpan}: GridFieldProps) {
           </Box>
         )}
         <Box flex={1} pl={title ? 4 : 0}>
-          <FormikEditable isPreviewFocusable={!editable} name={name} isDisabled={!editable} />
+          <FormikEditable name={name} isDisabled={!editable} />
         </Box>
       </VStack>
     </GridItem>

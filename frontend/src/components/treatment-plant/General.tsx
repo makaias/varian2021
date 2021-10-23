@@ -12,7 +12,7 @@ export default function General({}: Props): ReactElement {
       </GridContent>
 
       <GridFieldCompact name="patientName" title="Patient Name:" />
-      <GridFieldCompact name="patientDob" title="Patient DOB:" />
+      <GridFieldCompact name="patientDOB" title="Patient DOB:" />
       <GridFieldCompact name="phone" title="Patient Phone:" />
       <GridFieldCompact name="email" title="Email:" />
       <GridContent colSpan={2} fontWeight="bold" textAlign="center">
@@ -21,8 +21,8 @@ export default function General({}: Props): ReactElement {
 
       <GridField colSpan={2} name="primaryCareProvider" title="Primary Care Provider:" />
       <GridField colSpan={2} name="surgeon" title="Surgeon:" />
-      <GridField colSpan={2} name="radiantOncologist" title="Radiant Oncologist:" />
-      <GridField colSpan={2} name="medicalOncologist" title="Medical Oncologist:" />
+      <GridField colSpan={2} name="radiationOncologist" title="Radiant Oncologist:" />
+      <GridField colSpan={2} name="medicalOncologyst" title="Medical Oncologist:" />
       <GridField colSpan={2} name="otherProviders" title="Other Providers:" />
     </UniformGrid>
   );

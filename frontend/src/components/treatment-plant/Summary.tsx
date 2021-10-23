@@ -54,7 +54,7 @@ export default function Summary({}: Props): ReactElement {
 
       <GridField
         colSpan={6}
-        name="sympthomsSideEffects"
+        name="symptomsSideEffectsDescription"
         title="Persistent symptoms os side effects of treatment: (enter type(s)):"
       />
 
@@ -79,12 +79,12 @@ export default function Summary({}: Props): ReactElement {
       </GridContent>
 
       {/*TODO fillek */}
-      <GridFieldCompact colSpan={2} name="additionalTreatment[0].name" title="" />
-      <GridFieldCompact colSpan={2} title="" name="additionalTreatment[0].duration" />
-      <GridFieldCompact colSpan={2} title="" name="additionalTreatment[0].possibleEffects" />
-      <GridFieldCompact colSpan={2} name="additionalTreatment[1].name" title="" />
-      <GridFieldCompact colSpan={2} title="" name="additionalTreatment[1].duration" />
-      <GridFieldCompact colSpan={2} title="" name="additionalTreatment[1].possibleEffects" />
+      <GridFieldCompact colSpan={2} name="additionalTreatments[0].name" title="" />
+      <GridFieldCompact colSpan={2} title="" name="additionalTreatments[0].duration" />
+      <GridFieldCompact colSpan={2} title="" name="additionalTreatments[0].possibleEffects" />
+      <GridFieldCompact colSpan={2} name="additionalTreatments[1].name" title="" />
+      <GridFieldCompact colSpan={2} title="" name="additionalTreatments[1].duration" />
+      <GridFieldCompact colSpan={2} title="" name="additionalTreatments[1].possibleEffects" />
     </UniformGrid>
   );
 }

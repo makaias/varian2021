@@ -49,25 +49,25 @@ export default function CarePlan({}: Props): ReactElement {
         How Often
       </GridContent>
 
-      <GridField name="survillenceTests[0].provider" colSpan={5}></GridField>
-      <GridField name="survillenceTests[0].test" colSpan={5}></GridField>
-      <GridField name="survillenceTests[0].howOften" colSpan={5}></GridField>
+      <GridField name="survillanceTests[0].provider" colSpan={5}></GridField>
+      <GridField name="survillanceTests[0].test" colSpan={5}></GridField>
+      <GridField name="survillanceTests[0].howOften" colSpan={5}></GridField>
 
-      <GridField name="survillenceTests[1].provider" colSpan={5}></GridField>
-      <GridField name="survillenceTests[1].test" colSpan={5}></GridField>
-      <GridField name="survillenceTests[1].howOften" colSpan={5}></GridField>
+      <GridField name="survillanceTests[1].provider" colSpan={5}></GridField>
+      <GridField name="survillanceTests[1].test" colSpan={5}></GridField>
+      <GridField name="survillanceTests[1].howOften" colSpan={5}></GridField>
 
-      <GridField name="survillenceTests[2].provider" colSpan={5}></GridField>
-      <GridField name="survillenceTests[2].test" colSpan={5}></GridField>
-      <GridField name="survillenceTests[2].howOften" colSpan={5}></GridField>
+      <GridField name="survillanceTests[2].provider" colSpan={5}></GridField>
+      <GridField name="survillanceTests[2].test" colSpan={5}></GridField>
+      <GridField name="survillanceTests[2].howOften" colSpan={5}></GridField>
 
-      <GridField name="survillenceTests[3].provider" colSpan={5}></GridField>
-      <GridField name="survillenceTests[3].test" colSpan={5}></GridField>
-      <GridField name="survillenceTests[3].howOften" colSpan={5}></GridField>
+      <GridField name="survillanceTests[3].provider" colSpan={5}></GridField>
+      <GridField name="survillanceTests[3].test" colSpan={5}></GridField>
+      <GridField name="survillanceTests[3].howOften" colSpan={5}></GridField>
 
-      <GridField name="survillenceTests[4].provider" colSpan={5}></GridField>
-      <GridField name="survillenceTests[4].test" colSpan={5}></GridField>
-      <GridField name="survillenceTests[4].howOften" colSpan={5}></GridField>
+      <GridField name="survillanceTests[4].provider" colSpan={5}></GridField>
+      <GridField name="survillanceTests[4].test" colSpan={5}></GridField>
+      <GridField name="survillanceTests[4].howOften" colSpan={5}></GridField>
 
       <GridContent fontSize="x1" colSpan={15} textAlign="left">
         <UniformGrid columns={1} gap={2}>
