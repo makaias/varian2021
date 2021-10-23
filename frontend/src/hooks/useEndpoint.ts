@@ -1,4 +1,4 @@
-import {AxiosRequestConfig, AxiosResponse} from 'axios';
+import {AxiosPromise, AxiosRequestConfig, AxiosResponse} from 'axios';
 import React from 'react';
 import callJsonEndpoint from "../util/api/callJsonEndpoint";
 import {useDelayedToggle} from './useDelayedToggle';
@@ -13,6 +13,7 @@ export interface UseEndpointCommand<T, R = T> {
     keepOldDataWhileFetchingNew?: boolean;
     delayPendingState?: boolean;
     mockConfig?: MockResponseConfig<T>
+    callOverriderPromise?: Promise<AxiosResponse<T>>
 }
 
 export interface UsedEndpoint<R> {
@@ -43,6 +44,7 @@ const useEndpoint = <T, R = T>({
     onFailure,
     delayPendingState = true,
     mockConfig = defaultMockConfig,
+    callOverriderPromise ,
 }: UseEndpointCommand<T, R>): UsedEndpoint<R> => {
     const [data, setData] = React.useState<R>(null);
     const [failed, setFailed] = React.useState(false);
@@ -51,7 +53,7 @@ const useEndpoint = <T, R = T>({
     const [error, setError] = React.useState<any>(null);
 
 
-    function getResponsePromiseProvider() {
+    function getResponsePromiseProvider(): Promise<AxiosResponse<T>> {
         if (mockConfig.shouldMock) {
             return new Promise<AxiosResponse<T>>(resolve => {
                 resolve({
@@ -59,6 +61,11 @@ const useEndpoint = <T, R = T>({
                 } as AxiosResponse<T>);
             });
         }
+
+      if (callOverriderPromise) {
+        return callOverriderPromise;
+      }
+
         return callJsonEndpoint<T>({conf: conf});
 
     }
