@@ -62,7 +62,7 @@ export default function TreatmentPlanDocument({id}: Props): ReactElement {
           }
         }}
       >
-        <VStack as={Form} spacing={6} align="stretch">
+        <VStack py={2} as={Form} spacing={6} align="stretch">
           <EditableContext.Provider value={user.userType === 'DOCTOR'}>
             <General />
             <CarePlan />
