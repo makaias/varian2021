@@ -8,23 +8,24 @@ import {UserDocument} from '../../model/UserDocument';
 import UserDocumentList from '../../components/document/UserDocumentList';
 
 const CurrentUserDocuments: FC = () => {
-  useLayoutConfig({title: 'My Documents', bg: 'fancy'});
+  useLayoutConfig({title: 'My Documents', bg: 'plain'});
 
   const usedEndpoint = useEndpoint<UserDocument[]>({
     conf: {
       url: '/documents/me',
-    }
+    },
   });
 
   return (
-    <VStack w='100%' align='stretch' pt={2} maxWidth='container.xl'>
-      {usedEndpoint.pending && <Spinner />}
-      {usedEndpoint.failed && <FailureParagraph onRetry={usedEndpoint.reloadEndpoint} />}
+    <>
+      <VStack w="100%" align="stretch" pt={2} maxWidth="container.xl">
+        {usedEndpoint.pending && <Spinner />}
+        {usedEndpoint.failed && <FailureParagraph onRetry={usedEndpoint.reloadEndpoint} />}
 
-      {usedEndpoint.succeeded && (
-        <UserDocumentList documents={usedEndpoint.data} />
-      )}
-    </VStack>
+        {usedEndpoint.succeeded && <UserDocumentList documents={usedEndpoint.data} />}
+      </VStack>
+      <br />
+    </>
   );
 };
 

@@ -118,6 +118,7 @@ export default function Symptoms(): ReactElement {
           </VStack>
         </SymptomTile>
       </UniformGrid>
+      <br />
     </>
   );
 }

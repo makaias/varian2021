@@ -94,6 +94,7 @@ export default function Survey({}: Props): ReactElement {
           </HStack>
         </VStack>
       )}
+      <br />
     </>
   );
 }

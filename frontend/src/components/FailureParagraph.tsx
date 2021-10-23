@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
 import {VStack} from '@chakra-ui/layout';
+import {Button} from '@chakra-ui/button';
 
 interface Props {
   onRetry?: () => void;
@@ -10,7 +11,9 @@ const FailureParagraph: FC<Props> = (props) => {
     <VStack>
       <p>We couldn't load the data :/</p>
       {props.onRetry && (
-        <button onClick={() => props.onRetry()}>Retry</button>
+        <Button colorScheme="primary" onClick={() => props.onRetry()}>
+          Retry
+        </Button>
       )}
     </VStack>
   );
