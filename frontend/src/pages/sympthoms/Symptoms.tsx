@@ -44,7 +44,7 @@ export default function Symptoms(): ReactElement {
             </Text>
           </VStack>
         </SymptomTile>
-        <SymptomTile link="skin">
+        <SymptomTile link="mental-health">
           <VStack spacing="4">
             <Text align="center" fontSize="3xl">
               Mental health

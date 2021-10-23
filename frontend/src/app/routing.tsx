@@ -14,6 +14,7 @@ import Symptoms from '../pages/sympthoms/Symptoms';
 import User from '../pages/User';
 import PhysicalActivity from '../pages/PhysicalActivity';
 import HealthyEating from '../pages/HealthyEating';
+import MentalHealth from '../pages/MentalHealth';
 
 const symptomRoutes = [
   <Route exact path="/symptoms/skin" component={() => <OneSymptom title="Inflammatory Skin Conditions" />} />,
@@ -24,6 +25,7 @@ const symptomRoutes = [
   <Route exact path="/symptoms/other" component={() => <OneSymptom title="Fatigue" />} />,
   <Route exact path="/symptoms/physical-activity" component={() => <PhysicalActivity />} />,
   <Route exact path="/symptoms/healthy-eating" component={() => <HealthyEating />} />,
+  <Route exact path="/symptoms/mental-health" component={() => <MentalHealth />} />,
 ];
 
 const routesNotRequiringLogin = [
