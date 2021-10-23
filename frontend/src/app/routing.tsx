@@ -9,6 +9,8 @@ import OneArticle from '../pages/article/OneArticle';
 import Articles from '../pages/article/Articles';
 import Contact from '../pages/contact/Contact';
 import Inflammatory from '../pages/sympthoms/sympthom/Inflammatory';
+import {UserType} from '../enum/UserType';
+import DoctorProfile from '../pages/DoctorProfile';
 
 const routesNotRequiringLogin = [
   <Route exact path='/' component={Home} />,
@@ -24,7 +26,14 @@ const routesNotRequiringLogin = [
 const routesRequiringLogin = [
   <Route exact path='/me' component={() => <p>User profile page</p>} />,
   <Route exact path='/exampleNeedsLogin' component={() => <p>exampleNeedsLogin</p>} />,
-  <Route exact path='/ati' component={AtiGrafikontTesztel} />
+  <Route exact path='/ati' component={AtiGrafikontTesztel} />,
+  <Route exact path='/profile' component={() => {
+    const authBackend = useAuthBackend();
+    if (authBackend.user?.userType === UserType.DOCTOR) {
+      return <DoctorProfile />;
+    }
+    return <p>User profile page</p>;
+  }} />,
 ];
 
 export default function Routing(): ReactElement {
