@@ -2,17 +2,16 @@ import React, {ReactElement} from 'react';
 import {Route, Switch, useParams} from 'react-router-dom';
 import LoginWall from '../components/login/LoginWall';
 import {useAuthBackend} from '../context/AuthBackend';
-import Articles from '../pages/article/ArticleList';
+import ArticleList from '../pages/article/ArticleList';
 import OneArticle from '../pages/article/OneArticle';
-import AtiGrafikontTesztel from '../pages/AtiGrafikontTesztel';
+import Contact from '../pages/contact/Contact';
 import Home from '../pages/Home';
-import Login from '../pages/Login';
+import Inflammatory from '../pages/sympthoms/sympthom/Inflammatory';
 import User from '../pages/User';
 
 const routesNotRequiringLogin = [
   <Route exact path="/" component={Home} />,
-  <Route exact path="/articles" component={Articles} />,
-  <Route exact path="/login" component={Login} />,
+  <Route exact path="/articles" component={ArticleList} />,
   <Route
     exact
     path="/articles/:id"
@@ -21,13 +20,15 @@ const routesNotRequiringLogin = [
       return <OneArticle id={id} />;
     }}
   />,
+  <Route exact path="/symptoms/inflammatory" component={Inflammatory} />,
+  <Route exact path="/contact" component={Contact} />,
 ];
 
 const routesRequiringLogin = [
   <Route exact path="/me" component={() => <p>User profile page</p>} />,
   <Route exact path="/exampleNeedsLogin" component={() => <p>exampleNeedsLogin</p>} />,
-  <Route exact path="/ati" component={AtiGrafikontTesztel} />,
   <Route exact path="/user" component={User} />,
+  <Route exact path="/dashboard" component={Dashboard} />,
 ];
 
 export default function Routing(): ReactElement {
