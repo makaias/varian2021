@@ -2,10 +2,14 @@ import React, {createContext, FunctionComponent, ReactNode, useContext, useEffec
 import callJsonEndpoint, {BearerTokenSendingCommand} from '../util/api/callJsonEndpoint';
 import BearerTokenService from '../service/BearerTokenService';
 import {LoginCommand} from '../components/login/LoginForm';
+import {UserType} from '../enum/UserType';
 
 export interface User {
   id: number;
   username: string;
+  userType: UserType;
+  firstname: string;
+  surename: string;
   //all other strapi user stuff here
 }
 
