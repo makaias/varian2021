@@ -12,12 +12,16 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "data": {
-      "type": "json"
-    },
     "owner": {
       "plugin": "users-permissions",
       "model": "user"
+    },
+    "questions": {
+      "type": "dynamiczone",
+      "components": [
+        "survey.yes-no-question",
+        "survey.rating-question"
+      ]
     }
   }
 }
