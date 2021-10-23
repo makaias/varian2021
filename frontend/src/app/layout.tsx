@@ -9,7 +9,7 @@ import {
   Stack,
   useBoolean,
   useMediaQuery,
-  VStack
+  VStack,
 } from '@chakra-ui/react';
 import {faBars} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -75,14 +75,14 @@ export default function Layout({children}: PropsWithChildren<{}>): ReactElement 
               <Collapse in={menuIsOpen || isDesktopWidth}>
                 <Stack direction={isDesktopWidth ? 'row' : 'column'} justify="space-between" align="stretch">
                   <Image height="3rem" src={logo} />
-                  <NavItem to="/dashboard">Profile</NavItem>
+                  <NavItem to="/profile">Profile</NavItem>
 
                   <NavItem to="/results">Results</NavItem>
                   <NavItem to="/survey">Surveys</NavItem>
                   <NavItem to="/symptoms">Symptoms</NavItem>
                   <NavItem to="/articles">Personalised Reading</NavItem>
                   <NavItem to="/myDocuments">My Documents</NavItem>
-                  <NavItem to="/publications">Publications</NavItem>
+                  <NavItem to="/scholar">Publications</NavItem>
                   <NavItem to="/contact">Contact</NavItem>
                   <NavItem onClick={() => logout()}>
                     <ExitIcon width="2em" />
