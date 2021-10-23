@@ -12,7 +12,7 @@ const CurrentUserDocuments: FC = () => {
 
   const usedEndpoint = useEndpoint<UserDocument[]>({
     conf: {
-      url: `/documents`//TODO: only query current user's documents, there is an endpoint for it
+      url: '/documents/me',
     }
   });
 
