@@ -119,10 +119,24 @@ function NavItem({children, to, onClick}: NavItemProps) {
   }
   const active = location?.pathname?.startsWith(to);
 
+  if (to)
+    return (
+      <Flex
+        as={Link}
+        to={to}
+        onClick={onClick}
+        p={2}
+        fontWeight={active ? 'bold' : 'normal'}
+        align="center"
+        justify="center"
+        _hover={{bg: 'gray.100'}}
+      >
+        {children}
+      </Flex>
+    );
   return (
     <Flex
-      as={Link}
-      to={to}
+      as="div"
       onClick={onClick}
       p={2}
       fontWeight={active ? 'bold' : 'normal'}
