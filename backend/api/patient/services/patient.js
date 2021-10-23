@@ -34,11 +34,4 @@ module.exports = {
     }
     throw Boom.notAcceptable("must fill all datafields", data);
   },
-
-  async getPatients(doctorId) {
-    let patients = await strapi.plugins[
-      "users-permissions"
-    ].services.user.fetchAll({ doctor: doctorId }, ["statistic", "statistic.badges"]);
-    return patients;
-  },
 };
