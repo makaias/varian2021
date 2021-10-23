@@ -82,7 +82,8 @@
       "collection": "document"
     },
     "treatment_plans": {
-      "collection": "treatment-plan"
+      "collection": "treatment-plan",
+      "via": "user"
     },
     "doctor": {
       "plugin": "users-permissions",

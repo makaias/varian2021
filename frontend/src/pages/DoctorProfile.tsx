@@ -1,14 +1,18 @@
 import {Text} from '@chakra-ui/layout';
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import useEndpoint from '../hooks/useEndpoint';
 import Spinner from '../components/Spinner';
 import FailureParagraph from '../components/FailureParagraph';
 import {Table, Tbody, Td, Tr, VStack} from '@chakra-ui/react';
 import {User} from '../context/AuthBackend';
 import {FaEnvelope} from 'react-icons/all';
+import SubmitDocumentsModal from '../components/submitDocument/SubmitDocumentsModal';
 
 
 const DoctorProfile: FC = () => {
+  const [patientIdToSubmitDocumentTo, setPatientIdToSubmitDocumentTo] = useState<number>(null);
+  const [patientNameToSubmitDocumentTo, setPatientNameToSubmitDocumentTo] = useState<string>('');
+
   const usedEndpoint = useEndpoint<User[]>({
     conf: {
       url: `/doctors/patients`
@@ -38,7 +42,11 @@ const DoctorProfile: FC = () => {
                   <Td>{patient['statistic']?.badges?.map(b => b.type)?.join(' ')}</Td>
                   <Td>
                     <Text color='primary.500'>
-                      <FaEnvelope size='1.5rem' cursor='pointer' onClick={()=>alert('TODO: Open a modal with a form to submit RTE document')}/>
+                      <FaEnvelope size='1.5rem' cursor='pointer'
+                                  onClick={() => {
+                                    setPatientIdToSubmitDocumentTo(patient.id);
+                                    setPatientNameToSubmitDocumentTo(patient.firstname + ' ' + patient.surename);
+                                  }} />
                     </Text>
                   </Td>
                 </Tr>
@@ -47,6 +55,9 @@ const DoctorProfile: FC = () => {
           </Table>
         )}
       </VStack>
+      <SubmitDocumentsModal patientId={patientIdToSubmitDocumentTo} patientName={patientNameToSubmitDocumentTo}
+                            isOpen={!!patientIdToSubmitDocumentTo}
+                            onClose={() => setPatientIdToSubmitDocumentTo(null)} />
     </>
   );
 };

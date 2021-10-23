@@ -1,13 +1,26 @@
 import React, {ReactElement} from 'react';
 import {Route, Switch, useParams} from 'react-router-dom';
+import CreateTreatmentPlan from '../components/treatment-plant/CreateTreatmentPlan';
 import {useAuthBackend} from '../context/AuthBackend';
+import {UserType} from '../enum/UserType';
 import ArticleList from '../pages/article/ArticleList';
 import OneArticle from '../pages/article/OneArticle';
 import OneArticleCreator from '../pages/article/OneArticleCreator';
+import Chest from '../pages/Chest';
 import Contact from '../pages/contact/Contact';
 import Dashboard from '../pages/dashboard';
+import DoctorProfile from '../pages/DoctorProfile';
+import CurrentUserDocuments from '../pages/document/CurrentUserDocuments';
+import DoctorDocuments from '../pages/document/DoctorDocuments';
+import HeadNeck from '../pages/HeadNeck';
+import HealthyEating from '../pages/HealthyEating';
 import Home from '../pages/Home';
+import InflammatorySkin from '../pages/InflammatorySkin';
 import Login from '../pages/Login';
+import MentalHealth from '../pages/MentalHealth';
+import Other from '../pages/Other';
+import Pelvis from '../pages/Pelvis';
+import PhysicalActivity from '../pages/PhysicalActivity';
 import Scholar from '../pages/Scholar';
 import Symptoms from '../pages/symptoms/Symptoms';
 import TreatmentPlan from '../pages/TreatmentPlan';
@@ -82,7 +95,8 @@ const routesRequiringLogin = [
     }}
   />,
   <Route exact path="/contact" component={Contact} />,
-  <Route exact path="/treatment-plan" component={TreatmentPlan} />,
+  <Route exact path="/treatment-plan/:id" component={TreatmentPlan} />,
+  <Route exact path="/create-treatment-plan" component={CreateTreatmentPlan} />,
 ];
 
 const routesOnlyForDoctors = [<Route exact path="/articles/new" component={OneArticleCreator} />];
