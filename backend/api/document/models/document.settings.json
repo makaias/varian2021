@@ -17,6 +17,10 @@
     },
     "patient": {
       "type": "integer"
+    },
+    "created": {
+      "type": "datetime",
+      "required": true
     }
   }
 }

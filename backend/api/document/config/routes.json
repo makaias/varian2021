@@ -34,7 +34,7 @@
     },
     {
       "method": "POST",
-      "path": "/documents",
+      "path": "/documents/create",
       "handler": "document.create",
       "config": {
         "policies": []
