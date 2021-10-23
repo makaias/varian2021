@@ -11,16 +11,15 @@ const HOTKEYS: {[hotkey: string]: string} = {
   'mod+b': 'bold',
   'mod+i': 'italic',
   'mod+u': 'underline',
-  'mod+`': 'code'
+  'mod+`': 'code',
 };
 
 const emptyEditorValue: Node[] = [
   {
     type: 'paragraph',
-    children: [{text: ''}]
-  }
+    children: [{text: ''}],
+  },
 ];
-
 
 export interface RichTextEditorProps {
   readOnly: boolean;
@@ -61,10 +60,7 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = (props) => {
   const onFocus = React.useCallback(() => {
     setFocused(true);
     if (!editor.selection && editorValue?.length) {
-      Transforms.select(
-        editor,
-        savedSelection.current ?? Editor.end(editor, [])
-      );
+      Transforms.select(editor, savedSelection.current ?? Editor.end(editor, []));
     }
   }, [editor]);
 
@@ -96,15 +92,13 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = (props) => {
   };
 
   return (
-    <Box ref={divRef} onMouseDown={focusEditor} borderWidth={'1px'}>
+    <Box borderColor="primary.500" ref={divRef} onMouseDown={focusEditor} borderWidth={'1px'} borderRadius={6}>
       <Slate
         editor={editor}
         value={editorValue ?? emptyEditorValue}
         onChange={(newValue) => props.setValue?.(newValue)}
       >
-        {!props.readOnly && (
-          <Toolbar />
-        )}
+        {!props.readOnly && <Toolbar />}
         <Box padding={'15px 5px'}>
           <Editable
             onFocus={onFocus}
@@ -112,7 +106,7 @@ export const RichTextEditor: React.FC<RichTextEditorProps> = (props) => {
             onKeyDown={onKeyDown}
             renderElement={renderElement}
             renderLeaf={renderLeaf}
-            placeholder='Enter some rich text…'
+            placeholder="Enter some rich text…"
             spellCheck
             style={{minHeight: '150px', resize: 'vertical', overflow: 'auto'}}
             readOnly={props.readOnly}
