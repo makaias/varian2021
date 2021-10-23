@@ -39,7 +39,7 @@ export function useLayoutConfig(config: LayoutConfig) {
 const defaultLayoutConfig: LayoutConfig = {bg: 'plain'};
 
 export default function Layout({children}: PropsWithChildren<{}>): ReactElement {
-  const {user, logout} = useAuthBackend();
+  const {user, logout, isLoggedIn} = useAuthBackend();
   const [_layoutConfig, setLayoutConfig] = useState(null);
   const layoutConfig = _layoutConfig || defaultLayoutConfig;
 
@@ -75,7 +75,15 @@ export default function Layout({children}: PropsWithChildren<{}>): ReactElement 
               <Collapse in={menuIsOpen || isDesktopWidth}>
                 <Stack direction={isDesktopWidth ? 'row' : 'column'} justify="space-between" align="stretch">
                   <Image height="3rem" src={logo} />
-                  <NavItem to="/profile">Profile</NavItem>
+                  <NavItem to="/profile">
+                    {isLoggedIn ? (
+                      <>
+                        {user.firstname}&nbsp;{user.surename}{' '}
+                      </>
+                    ) : (
+                      'Profile'
+                    )}
+                  </NavItem>
 
                   <NavItem to="/results">Results</NavItem>
                   <NavItem to="/survey">Surveys</NavItem>
