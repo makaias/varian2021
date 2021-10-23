@@ -5,8 +5,9 @@ import Spinner from '../../../components/Spinner';
 import FailureParagraph from '../../../components/FailureParagraph';
 import {Button, Table, Tbody, Td, Tr} from '@chakra-ui/react';
 import {User} from '../../../context/AuthBackend';
-import UserSelector from '../../../components/UserSelector';
+import UserSelector from '../../../components/selector/UserSelector';
 import callJsonEndpoint from '../../../util/api/callJsonEndpoint';
+import AllUserQueryingUserSelector from '../../../components/selector/AllUserQueryingUserSelector';
 
 interface Props {
   articleId: number;
@@ -20,12 +21,6 @@ const UsersArticleIsAdvisedForEditor: FC<Props> = (props) => {
       url: `/doctors/list-users-article-is-advised-for/${props.articleId}`
     },
     deps: [props.articleId]
-  });
-
-  const usedAllUsers = useEndpoint<User[]>({
-    conf: {
-      url: `/users`
-    }
   });
 
   function doAdvise() {
@@ -64,16 +59,13 @@ const UsersArticleIsAdvisedForEditor: FC<Props> = (props) => {
         Users this article is advised for
       </Text>
 
-      {usedAdvisedUsers.pending || usedAllUsers.pending && (
+      {usedAdvisedUsers.pending && (
         <Spinner />
       )}
-      {usedAdvisedUsers.failed || usedAllUsers.failed && (
-        <FailureParagraph onRetry={() => {
-          usedAdvisedUsers.reloadEndpoint();
-          usedAllUsers.reloadEndpoint();
-        }} />
+      {usedAdvisedUsers.failed && (
+        <FailureParagraph onRetry={usedAdvisedUsers.reloadEndpoint} />
       )}
-      {usedAdvisedUsers.succeeded && usedAllUsers.succeeded && (
+      {usedAdvisedUsers.succeeded && (
         <Table variant='simple'>
           <Tbody>
             {usedAdvisedUsers.data.map(patient => (
@@ -86,8 +78,8 @@ const UsersArticleIsAdvisedForEditor: FC<Props> = (props) => {
             ))}
             <Tr>
               <Td>
-                <UserSelector options={usedAllUsers.data} userId={selectedUserIdToAdviseFor}
-                              setUserId={setSelectedUserIdToAdviseFor} />
+                <AllUserQueryingUserSelector userId={selectedUserIdToAdviseFor}
+                                             setUserId={setSelectedUserIdToAdviseFor} />
               </Td>
               <Td>
                 <Button onClick={() => doAdvise()}>Advise</Button>

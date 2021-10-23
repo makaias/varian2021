@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {Select} from '@chakra-ui/react';
-import {User} from '../context/AuthBackend';
+import {User} from '../../context/AuthBackend';
 
 interface Props {
   options: User[];

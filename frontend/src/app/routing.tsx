@@ -15,6 +15,7 @@ import User from '../pages/User';
 import CurrentUserDocuments from '../pages/document/CurrentUserDocuments';
 import DoctorProfile from '../pages/DoctorProfile';
 import {UserType} from '../enum/UserType';
+import DoctorDocuments from '../pages/document/DoctorDocuments';
 
 const symptomRoutes = [
   <Route exact path='/symptoms/skin' component={() => <OneSymptom title='Inflammatory Skin Conditions' />} />,
@@ -36,7 +37,13 @@ const routesRequiringLogin = [
   ...symptomRoutes,
   <Route exact path='/scholar' component={Scholar} />,
   <Route exact path='/articles' component={ArticleList} />,
-  <Route exact path='/myDocuments' component={CurrentUserDocuments} />,
+  <Route exact path='/myDocuments' component={() => {
+    const authBackend = useAuthBackend();
+    if (authBackend.user?.userType === UserType.DOCTOR) {
+      return <DoctorDocuments />;
+    }
+    return <CurrentUserDocuments />;
+  }} />,
   <Route
     exact
     path='/articles/read/:id'
