@@ -1,9 +1,8 @@
-import {Box, Flex, HStack, LinkBox, LinkOverlay, Text, VStack} from '@chakra-ui/layout';
-import React, {ReactElement, useMemo} from 'react';
-import * as scholar from 'google-scholar';
-import useEndpoint from '../../hooks/useEndpoint';
-import {Input, InputGroup, InputRightElement} from '@chakra-ui/input';
 import {Button} from '@chakra-ui/button';
+import {Input, InputGroup, InputRightElement} from '@chakra-ui/input';
+import {Box, Flex, HStack, LinkBox, LinkOverlay, Text} from '@chakra-ui/layout';
+import React from 'react';
+import useEndpoint from '../../hooks/useEndpoint';
 import Spinner from '../Spinner';
 
 interface Props {
@@ -32,7 +31,13 @@ export default function ScholarBlock({keyword, itemCount}: Props) {
         <>
           <HStack justify="center">
             <InputGroup width="md" margin="1rem">
-              <Input backgroundColor="white" variant="outline" placeholder="Search..." borderColor="primary.500" color="primary.500" />
+              <Input
+                backgroundColor="white"
+                variant="outline"
+                placeholder="Search..."
+                borderColor="primary.500"
+                color="primary.500"
+              />
               <InputRightElement width="2rem">
                 <Button backgroundColor="primary.500" color="white" size="md" onClick={handleClick}>
                   GO
