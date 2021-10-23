@@ -63,6 +63,14 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "GET",
+      "path": "/doctors/articles",
+      "handler": "doctor.getArticles",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }

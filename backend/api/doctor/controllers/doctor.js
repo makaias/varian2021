@@ -1,6 +1,7 @@
 "use strict";
 
 const Boom = require("boom");
+const { getArticles } = require("../../patient/controllers/patient");
 
 module.exports = {
   /**
@@ -165,5 +166,11 @@ module.exports = {
       throw Boom.forbidden("not doctor");
     }
     const { articleId, userId } = ctx.params;
+  },
+  async getArticles(ctx) {
+    if (ctx.state.user?.userType !== "DOCTOR") {
+      throw Boom.forbidden("not doctor");
+    }
+    return await strapi.services.articles.find();
   },
 };
