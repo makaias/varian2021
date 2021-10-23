@@ -1,7 +1,9 @@
 import {Flex, Text, VStack} from '@chakra-ui/layout';
 import {HStack, Image} from '@chakra-ui/react';
 import React from 'react';
+import {useLayoutConfig} from '../../app/layout';
 import LineDiagram from '../../components/diagrams/LineDiagram';
+import Spinner from '../../components/Spinner';
 import UniformGrid from '../../components/UniformGrid';
 import useEndpoint from '../../hooks/useEndpoint';
 import {Statistic} from '../../model/Statistic';
@@ -10,10 +12,6 @@ import firstMonthLogo from './firstmonth.svg';
 import secondMonthLogo from './secondmonth.svg';
 import startLogo from './started.svg';
 import thirdMonthLogo from './thirdmonth.svg';
-import {Interface} from 'readline';
-import {Statistic} from '../../model/Statistic';
-import {useLayoutConfig} from '../../app/layout';
-import Spinner from '../../components/Spinner';
 
 interface Props {}
 
@@ -64,7 +62,15 @@ export default function Dashboard({}: Props) {
                 }
               })}
             </HStack>
-            <Text textAlign="center" fontSize="2xl" color="primary.500" fontWeight="bold" borderTop="1px" borderTopColor="primary.500" paddingTop="1rem">
+            <Text
+              textAlign="center"
+              fontSize="2xl"
+              color="primary.500"
+              fontWeight="bold"
+              borderTop="1px"
+              borderTopColor="primary.500"
+              paddingTop="1rem"
+            >
               Your progression
             </Text>
           </>
