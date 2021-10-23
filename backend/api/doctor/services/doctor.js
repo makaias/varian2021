@@ -46,4 +46,21 @@ module.exports = {
     ].services.user.fetchAll({ doctor: doctorId });
     return patients;
   },
+
+  async getUsersOfArticle({ articleId }) {
+    const patientsWithArticles = await strapi.plugins[
+      "users-permissions"
+    ].services.user.fetchAll({ articles_null: false });
+
+    const patientsWithGivenArticle = [];
+    for (const patientWithArticle of patientsWithArticles) {
+      const articlesOfPatient = patientWithArticle.articles;
+      for (const article of articlesOfPatient) {
+        if (article.id === Number(articleId)) {
+          patientsWithGivenArticle.push(patientWithArticle);
+        }
+      }
+    }
+    return patientsWithGivenArticle;
+  },
 };

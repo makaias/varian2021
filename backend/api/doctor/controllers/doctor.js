@@ -136,4 +136,15 @@ module.exports = {
     }
     return await strapi.services.doctor.getPatients(ctx.state.user.id);
   },
+
+  async getUsersOfArticle(ctx) {
+    if (ctx.state.user?.userType !== "DOCTOR") {
+      throw Boom.forbidden("not doctor");
+    }
+    const articleId = ctx.params.articleId;
+    const users = await strapi.services.doctor.getUsersOfArticle({
+      articleId: articleId,
+    });
+    return users;
+  },
 };

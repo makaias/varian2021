@@ -55,6 +55,14 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "GET",
+      "path": "/patients/articles/",
+      "handler": "patient.getArticles",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }

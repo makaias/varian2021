@@ -16,6 +16,7 @@
         "policies": []
       }
     },
+
     {
       "method": "GET",
       "path": "/articles/:id",
@@ -44,6 +45,22 @@
       "method": "DELETE",
       "path": "/articles/:id",
       "handler": "articles.delete",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/articles/users/advise:userId",
+      "handler": "articles.assignUser",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/articles/users/un-advice:userId",
+      "handler": "articles.unAssignUser",
       "config": {
         "policies": []
       }

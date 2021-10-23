@@ -152,4 +152,17 @@ module.exports = {
     });
     return entity;
   },
+
+  // TODO test
+  async getArticles(ctx) {
+    if (ctx.state.user?.userType !== "PATIENT") {
+      throw Boom.forbidden("not patient");
+    }
+
+    const patientName = ctx.state.user?.username;
+    const entity = await strapi.services.articles.find({
+      user_permissions_users: patientName,
+    });
+    return entity;
+  },
 };

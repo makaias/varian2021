@@ -39,6 +39,14 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "GET",
+      "path": "/doctor/articles/:articleId",
+      "handler": "doctor.getUsersOfArticle",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }
