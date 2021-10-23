@@ -80,8 +80,8 @@ export default function Layout({children}: PropsWithChildren<{}>): ReactElement 
                   <NavItem to="/results">Results</NavItem>
                   <NavItem to="/survey">Surveys</NavItem>
                   <NavItem to="/symptoms">Symptoms</NavItem>
-                  <NavItem to="/articles">Personalised Reading</NavItem>
-                  <NavItem to="/myDocuments">My Documents</NavItem>
+                  <NavItem to="/articles">Personalised&nbsp;Reading</NavItem>
+                  <NavItem to="/myDocuments">My&nbsp;Documents</NavItem>
                   <NavItem to="/scholar">Publications</NavItem>
                   <NavItem to="/contact">Contact</NavItem>
                   <NavItem onClick={() => logout()}>

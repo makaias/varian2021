@@ -1,8 +1,8 @@
-import {AspectRatio, Container, Flex, Text, VStack} from '@chakra-ui/layout';
+import {AspectRatio, Flex, Text, VStack} from '@chakra-ui/layout';
 import React, {PropsWithChildren, ReactElement} from 'react';
 import {NavLink} from 'react-router-dom';
-import UniformGrid from '../../components/UniformGrid';
 import {useLayoutConfig} from '../../app/layout';
+import UniformGrid from '../../components/UniformGrid';
 
 function SymptomTile({children, link}: PropsWithChildren<{link: string}>) {
   return (
@@ -26,8 +26,7 @@ export default function Symptoms(): ReactElement {
   return (
     <>
       <Text fontSize="xl" margin="2rem" textAlign="center">
-        Although the symptoms of these treatments may be scary, click on each module to read about them and to reduce
-        the difficulties.
+        You can improve your physical and mental health by some easy steps
       </Text>
       <UniformGrid columns={[1, 2, 3]} gap={4}>
         <SymptomTile link="physical-activity">
