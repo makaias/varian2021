@@ -1,10 +1,15 @@
+import {Container} from '@chakra-ui/layout';
 import React, {ReactElement} from 'react';
 import {useLayoutConfig} from '../app/layout';
-import LoginWall from '../components/login/LoginWall';
+import LoginForm from '../components/login/LoginForm';
 
 interface Props {}
 
 export default function Login({}: Props): ReactElement {
-  useLayoutConfig({bg: 'plain'});
-  return <LoginWall />;
+  useLayoutConfig({bg: 'fancy'});
+  return (
+    <Container pt={16}>
+      <LoginForm />
+    </Container>
+  );
 }

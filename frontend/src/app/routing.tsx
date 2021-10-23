@@ -1,6 +1,5 @@
 import React, {ReactElement} from 'react';
 import {Route, Switch, useParams} from 'react-router-dom';
-import LoginWall from '../components/login/LoginWall';
 import {useAuthBackend} from '../context/AuthBackend';
 import ArticleList from '../pages/article/ArticleList';
 import OneArticle from '../pages/article/OneArticle';
@@ -8,6 +7,7 @@ import OneArticleCreator from '../pages/article/OneArticleCreator';
 import Contact from '../pages/contact/Contact';
 import Dashboard from '../pages/dashboard';
 import Home from '../pages/Home';
+import Login from '../pages/Login';
 import Scholar from '../pages/Scholar';
 import OneSymptom from '../pages/sympthoms/sympthom/OneSymptom';
 import Symptoms from '../pages/sympthoms/Symptoms';
@@ -60,7 +60,7 @@ export default function Routing(): ReactElement {
       {authBackend.isLoggedIn && authBackend.isDoctor && routesOnlyForDoctors}
       {routesNotRequiringLogin}
 
-      {!authBackend.isLoggedIn && <LoginWall />}
+      {!authBackend.isLoggedIn && <Login />}
       <Route component={() => <p>Not found</p>} />
     </Switch>
   );
