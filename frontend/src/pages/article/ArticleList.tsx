@@ -1,14 +1,14 @@
+import {Button} from '@chakra-ui/button';
 import {Box, HStack, Text, VStack} from '@chakra-ui/layout';
 import {Spinner} from '@chakra-ui/react';
 import {FC} from 'react';
 import {NavLink} from 'react-router-dom';
+import {useLayoutConfig} from '../../app/layout';
 import FailureParagraph from '../../components/FailureParagraph';
+import {BookIcon} from '../../components/icons';
+import {useAuthBackend} from '../../context/AuthBackend';
 import useEndpoint from '../../hooks/useEndpoint';
 import {Article} from '../../model/Article';
-import {useAuthBackend} from '../../context/AuthBackend';
-import {Button} from '@chakra-ui/button';
-import {BookIcon} from '../../components/icons';
-import {useLayoutConfig} from '../../app/layout';
 
 const ArticleList: FC = () => {
   useLayoutConfig({title: 'Personalised Reading', bg: 'plain'});
@@ -17,25 +17,24 @@ const ArticleList: FC = () => {
 
   const usedEndpoint = useEndpoint<Article[]>({
     conf: {
-      url: authBackend.isDoctor ? '/articles' : '/patients/articles'
+      url: authBackend.isDoctor ? '/articles' : '/patients/articles',
     },
-    deps: [authBackend.isDoctor]
+    deps: [authBackend.isDoctor],
   });
 
   return (
-    <VStack w='100%' align='stretch' pt={2} maxWidth='container.xl'>
-      <Text color='primary.500' fontSize='3xl'>
+    <VStack w="100%" align="stretch" pt={2} maxWidth="container.xl">
+      <Text color="primary.500" fontSize="3xl" textAlign="center">
         {authBackend.isDoctor ? (
           <>Edit or create articles, and advise them to patients</>
         ) : (
-          <>Medically approved Articles hand-picked by your doctor, based on your individual state</>
+          <>Medically approved Articles hand-picked for you by your doctor</>
         )}
-
       </Text>
 
       {authBackend.isDoctor && (
         <NavLink to={'/articles/new'}>
-          <Button color='primary.500'>Create new Article</Button>
+          <Button color="primary.500">Create new Article</Button>
         </NavLink>
       )}
 
@@ -43,7 +42,7 @@ const ArticleList: FC = () => {
       {usedEndpoint.failed && <FailureParagraph onRetry={usedEndpoint.reloadEndpoint} />}
 
       {usedEndpoint.succeeded && (
-        <VStack align='stretch' spacing={6}>
+        <VStack align="stretch" spacing={6}>
           {usedEndpoint.data.map((article) => (
             <ArticleItem article={article} />
           ))}
@@ -56,15 +55,15 @@ const ArticleList: FC = () => {
 function ArticleItem({article}: {article: Article}) {
   return (
     <NavLink to={`/articles/read/${article.id}`}>
-      <Box p={3} bg='white' borderRadius={6} border='2px solid' borderColor='primary.500' cursor='pointer'>
-        <HStack justify='space-between' align='center' spacing={6} height='fit-content' w='100%'>
-          <VStack spacing={0} align='flex-start'>
-            <Text color='primary.500' fontSize='xl'>
+      <Box p={3} bg="white" borderRadius={6} border="2px solid" borderColor="primary.500" cursor="pointer">
+        <HStack justify="space-between" align="center" spacing={6} height="fit-content" w="100%">
+          <VStack spacing={0} align="flex-start">
+            <Text color="primary.500" fontSize="xl">
               {article.title}
             </Text>
             <Text>{article.headline}</Text>
           </VStack>
-          <BookIcon width='4.5rem' />
+          <BookIcon width="4.5rem" />
         </HStack>
       </Box>
     </NavLink>
