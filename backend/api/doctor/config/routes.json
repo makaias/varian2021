@@ -42,6 +42,38 @@
     },
     {
       "method": "GET",
+      "path": "/doctor/articles/:articleId",
+      "handler": "doctor.getUsersOfArticle",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/doctor/advise-article/:userId/:articleId",
+      "handler": "doctor.assignArticleToUser",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/doctor/un-advise-article/:userId/:articleId",
+      "handler": "doctor.UnAssignArticleToUser",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/doctors/articles",
+      "handler": "doctor.getArticles",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
       "path": "/doctors/schedule",
       "handler": "doctor.schedule",
       "config": {
