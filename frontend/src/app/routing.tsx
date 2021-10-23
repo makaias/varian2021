@@ -1,4 +1,5 @@
 import React, {ReactElement} from 'react';
+
 import {Route, Switch, useParams} from 'react-router-dom';
 import Home from '../pages/Home';
 import {useAuthBackend} from '../context/AuthBackend';
@@ -19,7 +20,7 @@ const routesNotRequiringLogin = [
 const routesRequiringLogin = [
   <Route exact path='/me' component={() => <p>User profile page</p>} />,
   <Route exact path='/exampleNeedsLogin' component={() => <p>exampleNeedsLogin</p>} />,
-  <Route exact path='/ati' component={AtiGrafikontTesztel} />
+  <Route exact path='/ati' component={AtiGrafikontTesztel} /
 ];
 
 export default function Routing(): ReactElement {
@@ -27,7 +28,7 @@ export default function Routing(): ReactElement {
 
   return (
     <Switch>
-      <Route exact path='/' component={Home} />
+      <Route exact path="/" component={Home} />
 
       {authBackend.isLoggedIn && routesRequiringLogin}
       {routesNotRequiringLogin}
