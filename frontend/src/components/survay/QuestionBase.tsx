@@ -1,17 +1,18 @@
 import {Flex, Text, VStack} from '@chakra-ui/layout';
 import React, {PropsWithChildren, ReactElement} from 'react';
-import {QuestionData} from './QuestionData';
+import {SurveyQuestion} from '../../model/SurveyTemplate';
 
 interface Props {
-  question: QuestionData;
+  question: SurveyQuestion;
+  number: number;
 }
 
-export default function QuestionBase({question, children}: PropsWithChildren<Props>): ReactElement {
+export default function QuestionBase({question, children, number}: PropsWithChildren<Props>): ReactElement {
   return (
     <Flex padding={4} borderRadius={12} border="1px solid" borderColor="">
       <VStack align="stretch" width="100%">
         <Text>
-          {question.questionNumber}. {question.text}
+          {number}. {question.text}
         </Text>
         {children}
       </VStack>

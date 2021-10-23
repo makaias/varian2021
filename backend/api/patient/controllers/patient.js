@@ -63,7 +63,7 @@ module.exports = {
     const { surveyId } = ctx.params;
     const patientId = ctx.state.user?.id;
 
-    return await strapi.services.survey.find({
+    return await strapi.services.survey.findOne({
       user_to_complete: patientId,
       id: surveyId,
     });

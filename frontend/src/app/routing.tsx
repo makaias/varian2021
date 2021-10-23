@@ -9,6 +9,7 @@ import Contact from '../pages/contact/Contact';
 import Dashboard from '../pages/dashboard';
 import DoctorProfile from '../pages/DoctorProfile';
 import Home from '../pages/Home';
+import Survey from '../pages/Survey';
 import Inflammatory from '../pages/sympthoms/sympthom/Inflammatory';
 import Symptoms from '../pages/Symptoms';
 import User from '../pages/User';
@@ -34,6 +35,8 @@ const routesRequiringLogin = [
   <Route exact path="/symptoms" component={Symptoms} />,
   <Route exact path="/me" component={() => <p>User profile page</p>} />,
   <Route exact path="/exampleNeedsLogin" component={() => <p>exampleNeedsLogin</p>} />,
+  <Route exact path="/survey/:id" component={Survey} />,
+
   <Route
     exact
     path="/profile"
