@@ -38,7 +38,7 @@ module.exports = {
   async getPatients(doctorId) {
     let patients = await strapi.plugins[
       "users-permissions"
-    ].services.user.fetch({ doctor: doctorId });
+    ].services.user.fetchAll({ doctor: doctorId }, ["statistic", "statistic.badges"]);
     return patients;
   },
 };
