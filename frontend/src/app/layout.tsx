@@ -75,7 +75,7 @@ export default function Layout({children}: PropsWithChildren<{}>): ReactElement 
               <Collapse in={menuIsOpen || isDesktopWidth}>
                 <Stack direction={isDesktopWidth ? 'row' : 'column'} justify="space-between" align="stretch">
                   <Image height="3rem" src={logo} />
-                  <NavItem to="/dashboard">Profile</NavItem>
+                  <NavItem to="/profile">Profile</NavItem>
 
                   <NavItem to="/results">Results</NavItem>
                   <NavItem to="/survey">Surveys</NavItem>

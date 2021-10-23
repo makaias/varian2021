@@ -11,8 +11,6 @@ interface Props {
 export default function FormikApiError({name = '__api__', title = ''}: Props): ReactElement {
   const formik = useFormikContext();
 
-  console.log(formik);
-
   const error = formik.errors && formik.errors[name];
   if (!error) return null;
 
