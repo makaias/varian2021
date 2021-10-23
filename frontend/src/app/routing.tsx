@@ -9,8 +9,8 @@ import Contact from '../pages/contact/Contact';
 import Dashboard from '../pages/dashboard';
 import Home from '../pages/Home';
 import Scholar from '../pages/Scholar';
-import OneSymptom from '../pages/sympthoms/sympthom/OneSymptom';
-import Symptoms from '../pages/sympthoms/Symptoms';
+import OneSymptom from '../pages/symptoms/sympthom/OneSymptom';
+import Symptoms from '../pages/symptoms/Symptoms';
 import User from '../pages/User';
 
 const symptomRoutes = [

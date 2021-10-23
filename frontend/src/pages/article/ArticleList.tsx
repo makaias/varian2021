@@ -9,6 +9,7 @@ import useEndpoint from '../../hooks/useEndpoint';
 import {Article} from '../../model/Article';
 import {useAuthBackend} from '../../context/AuthBackend';
 import {Button} from '@chakra-ui/button';
+import {BookIcon} from '../../components/icons';
 
 interface Props {
   id: number;
@@ -26,6 +27,10 @@ const ArticleList: FC<Props> = (props) => {
 
   return (
     <VStack w='100%' align='stretch' pt={8} maxWidth='container.xl'>
+      <Text color='primary.500' fontSize='3xl'>
+        Medically approved Articles hand-picked by your doctor, based on your individual state
+      </Text>
+
       {authBackend.isDoctor && (
         <NavLink to={'/articles/new'}>
           <Button color='primary.500'>Create new Article</Button>
@@ -57,9 +62,7 @@ function ArticleItem({article}: {article: Article}) {
             </Text>
             <Text>{article.headline}</Text>
           </VStack>
-          <Flex fontSize='4xl' color='primary.500' pr={4}>
-            <FontAwesomeIcon icon={faBook} />
-          </Flex>
+          <BookIcon width='4.5rem' />
         </HStack>
       </Box>
     </NavLink>
