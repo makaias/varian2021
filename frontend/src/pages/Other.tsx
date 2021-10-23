@@ -11,7 +11,7 @@ export default function Other({}: Props): ReactElement {
   });
   return (
     <>
-      <Text fontWeight="bold" marginTop="1rem">
+      <Text fontWeight="bold" marginTop="1rem" fontSize="xl">
         Fatigue
       </Text>
       <Text marginTop="1rem">

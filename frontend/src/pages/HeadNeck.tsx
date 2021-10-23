@@ -105,8 +105,6 @@ export default function HeadNeck({}: Props): ReactElement {
             </ListItem>
             <ListItem>Tooth decay and gum disease.</ListItem>
           </UnorderedList>
-        </VStack>
-        <VStack align="flex-start">
           <Text marginTop="1rem">Good dental hygiene may help prevent or decrease complications.</Text>
           <Text marginTop="1rem">
             It is important to keep a close watch on oral health during cancer treatment. This helps prevent, find, and

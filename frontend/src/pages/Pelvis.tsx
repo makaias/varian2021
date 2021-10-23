@@ -11,7 +11,7 @@ export default function Pelvis({}: Props): ReactElement {
   });
   return (
     <>
-      <Text marginTop="1rem" fontWeight="bold">
+      <Text marginTop="1rem" fontWeight="bold" fontSize="xl">
         Urinary Incontinence
       </Text>
       <Text marginTop="1rem">
@@ -56,7 +56,7 @@ export default function Pelvis({}: Props): ReactElement {
           This can help control leaks.
         </ListItem>
       </UnorderedList>
-      <Text marginTop="1rem" fontWeight="bold">
+      <Text marginTop="1rem" fontWeight="bold" fontSize="xl">
         Menopausal Symptoms
       </Text>
       <Text marginTop="1rem">

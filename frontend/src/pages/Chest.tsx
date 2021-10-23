@@ -12,7 +12,7 @@ export default function Chest({}: Props): ReactElement {
   });
   return (
     <>
-      <Text marginTop="1rem" fontWeight="bold">
+      <Text marginTop="1rem" fontWeight="bold" fontSize="xl">
         Coughing
       </Text>
       <Text marginTop="1rem">
@@ -49,7 +49,7 @@ export default function Chest({}: Props): ReactElement {
         You can also use cough drops, have a warm drink with honey, and use a humidifier if the air in your home is dry.
         Relaxation techniques, such as deep breathing, can also help with a cough.
       </Text>
-      <Text marginTop="1rem" fontWeight="bold">
+      <Text marginTop="1rem" fontWeight="bold" fontSize="xl">
         Shortness of Breath or Dyspnea
       </Text>
       <Text marginTop="1rem">

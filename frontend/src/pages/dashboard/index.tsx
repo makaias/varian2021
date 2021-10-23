@@ -20,58 +20,58 @@ interface Props {
 export default function Dashboard(props: Props) {
   useLayoutConfig({
     bg: 'plain',
-    title: 'Dashboard'
+    title: 'Dashboard',
   });
 
   const usedEndpoint = useEndpoint<Statistic>({
     conf: {
-      url: `/statistics/${props.patientId}`
+      url: `/statistics/${props.patientId}`,
     },
-    deps: [props.patientId]
+    deps: [props.patientId],
   });
 
   return (
     <>
       {usedEndpoint.pending && (
-        <Flex justify='center'>
-          <Spinner/>
+        <Flex justify="center">
+          <Spinner />
         </Flex>
       )}
       {usedEndpoint.failed && <p>Failed</p>}
       {usedEndpoint.succeeded && (
-        <VStack align='stretch'>
+        <VStack align="stretch">
           <>
-            <VStack spacing='1' margin='5'>
-              <Text textAlign='center' fontSize='2xl' color='primary.500' fontWeight='bold'>
+            <VStack spacing="1" margin="5">
+              <Text textAlign="center" fontSize="2xl" color="primary.500" fontWeight="bold">
                 Your achievements
               </Text>
-              <Text textAlign='center'>Congratulations, keep it up!</Text>
+              <Text textAlign="center">Congratulations, keep it up!</Text>
             </VStack>
-            <HStack align='flex-start' justify='center'>
+            <HStack align="flex-start" justify="center">
               {usedEndpoint.data.badges.map((badge) => {
                 switch (badge.type) {
                   case 'STARTED':
-                    return <Image w='5rem' key={badge.id} src={startLogo} />;
+                    return <Image w="5rem" key={badge.id} src={startLogo} />;
                   case 'FINISHED':
-                    return <Image w='5rem' key={badge.id} src={endLogo} />;
+                    return <Image w="5rem" key={badge.id} src={endLogo} />;
                   case 'ONE_MONTH':
-                    return <Image w='5rem' key={badge.id} src={firstMonthLogo} />;
+                    return <Image w="5rem" key={badge.id} src={firstMonthLogo} />;
                   case 'TWO_MONTH':
-                    return <Image w='5rem' key={badge.id} src={secondMonthLogo} />;
+                    return <Image w="5rem" key={badge.id} src={secondMonthLogo} />;
                   case 'THREE_MONTH':
-                    return <Image w='5rem' key={badge.id} src={thirdMonthLogo} />;
+                    return <Image w="5rem" key={badge.id} src={thirdMonthLogo} />;
                   default:
                 }
               })}
             </HStack>
             <Text
-              textAlign='center'
-              fontSize='2xl'
-              color='primary.500'
-              fontWeight='bold'
-              borderTop='1px'
-              borderTopColor='primary.500'
-              paddingTop='1rem'
+              textAlign="center"
+              fontSize="2xl"
+              color="primary.500"
+              fontWeight="bold"
+              borderTop="1px"
+              borderTopColor="primary.500"
+              paddingTop="1rem"
             >
               Your progression
             </Text>
@@ -82,35 +82,35 @@ export default function Dashboard(props: Props) {
               labels={Array(usedEndpoint.data.lifeStatisfaction.length)
                 .fill(0)
                 .map((_, i) => i.toString())}
-              title='Life-satisfaction'
+              title="Life-satisfaction"
             />
             <LineDiagram
               data={usedEndpoint.data.eatingBehavior.map((i) => i.value)}
               labels={Array(usedEndpoint.data.eatingBehavior.length)
                 .fill(0)
                 .map((_, i) => i.toString())}
-              title='Eating behavior'
+              title="Eating behavior"
             />
             <LineDiagram
               data={usedEndpoint.data.sleeping.map((i) => i.value)}
               labels={Array(usedEndpoint.data.sleeping.length)
                 .fill(0)
                 .map((_, i) => i.toString())}
-              title='Sleeping'
+              title="Sleeping"
             />
             <LineDiagram
               data={usedEndpoint.data.socialInteraction.map((i) => i.value)}
               labels={Array(usedEndpoint.data.socialInteraction.length)
                 .fill(0)
                 .map((_, i) => i.toString())}
-              title='Social interaction'
+              title="Social interaction"
             />
             <LineDiagram
               data={usedEndpoint.data.physicalActivity.map((i) => i.value)}
               labels={Array(usedEndpoint.data.physicalActivity.length)
                 .fill(0)
                 .map((_, i) => i.toString())}
-              title='Physical activity'
+              title="Physical activity"
             />
           </UniformGrid>
         </VStack>
