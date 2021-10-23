@@ -5,8 +5,10 @@ import {useAuthBackend} from '../context/AuthBackend';
 import ArticleList from '../pages/article/ArticleList';
 import OneArticle from '../pages/article/OneArticle';
 import Contact from '../pages/contact/Contact';
+import Dashboard from '../pages/dashboard';
 import Home from '../pages/Home';
 import Inflammatory from '../pages/sympthoms/sympthom/Inflammatory';
+import Symptoms from '../pages/Symptoms';
 import User from '../pages/User';
 
 const routesNotRequiringLogin = [
@@ -29,6 +31,7 @@ const routesRequiringLogin = [
   <Route exact path="/exampleNeedsLogin" component={() => <p>exampleNeedsLogin</p>} />,
   <Route exact path="/user" component={User} />,
   <Route exact path="/dashboard" component={Dashboard} />,
+  <Route exact path="/symptoms" component={Symptoms} />,
 ];
 
 export default function Routing(): ReactElement {
