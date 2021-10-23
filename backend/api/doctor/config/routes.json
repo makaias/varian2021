@@ -42,7 +42,7 @@
     },
     {
       "method": "GET",
-      "path": "/doctor/articles/:articleId",
+      "path": "/doctors/list-users-article-is-advised-for/:articleId",
       "handler": "doctor.getUsersOfArticle",
       "config": {
         "policies": []
@@ -50,7 +50,7 @@
     },
     {
       "method": "POST",
-      "path": "/doctor/advise-article/:userId/:articleId",
+      "path": "/doctors/advise-article/:userId/:articleId",
       "handler": "doctor.assignArticleToUser",
       "config": {
         "policies": []
@@ -58,7 +58,7 @@
     },
     {
       "method": "POST",
-      "path": "/doctor/un-advise-article/:userId/:articleId",
+      "path": "/doctors/un-advise-article/:userId/:articleId",
       "handler": "doctor.UnAssignArticleToUser",
       "config": {
         "policies": []
