@@ -1,6 +1,6 @@
 import {Flex, HStack, Text, VStack} from '@chakra-ui/layout';
 import {Radio, RadioGroup} from '@chakra-ui/radio';
-import React, {ReactElement, useState} from 'react';
+import React, {ReactElement, useEffect, useState} from 'react';
 import QuestionBase from './QuestionBase';
 import {QuestionData} from './QuestionData';
 
@@ -13,10 +13,15 @@ interface RatingQuestionData extends QuestionData {
 
 interface Props {
   question: RatingQuestionData;
+  onChange?: (value: number) => void;
 }
 
-export default function QuestionRating({question}: Props): ReactElement {
+export default function QuestionRating({question, onChange}: Props): ReactElement {
   const [option, setOption] = useState('');
+
+  useEffect(() => {
+    if (onChange) onChange(question.values[option]);
+  }, [option]);
 
   return (
     <QuestionBase question={question}>
