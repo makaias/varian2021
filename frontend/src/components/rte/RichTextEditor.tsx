@@ -22,7 +22,7 @@ const emptyEditorValue: Node[] = [
 ];
 
 
-export interface Props {
+export interface RichTextEditorProps {
   readOnly: boolean;
   /**
    * use Node[] for speed if you are editing the content
@@ -47,7 +47,7 @@ function getEditorValue(input: Node[] | string) {
   return emptyEditorValue;
 }
 
-export const RichTextEditor: React.FC<Props> = (props) => {
+export const RichTextEditor: React.FC<RichTextEditorProps> = (props) => {
   const renderElement = useCallback((props) => <Element {...props} />, []);
   const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
