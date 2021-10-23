@@ -90,6 +90,10 @@
     },
     "complete": {
       "type": "boolean"
+    },
+    "statistic": {
+      "via": "user",
+      "model": "statistics"
     }
   }
 }

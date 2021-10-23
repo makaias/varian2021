@@ -13,7 +13,9 @@
   "pluginOptions": {},
   "attributes": {
     "daysGone": {
-      "type": "integer"
+      "type": "integer",
+      "default": 0,
+      "min": 0
     },
     "badges": {
       "type": "component",
@@ -23,22 +25,32 @@
     "lifeStatisfaction": {
       "type": "component",
       "repeatable": true,
-      "component": "life-statisfaction.life-statisfaction"
+      "component": "statistics.life-statisfaction"
     },
     "eatingBehavior": {
       "type": "component",
       "repeatable": true,
-      "component": "eating-behavior.eating-behavior"
+      "component": "statistics.eating-behavior"
     },
     "sleeping": {
       "type": "component",
       "repeatable": true,
-      "component": "sleeping.sleeping"
+      "component": "statistics.sleeping"
     },
     "socialInteraction": {
       "type": "component",
       "repeatable": true,
-      "component": "social-interaction.social-interaction"
+      "component": "statistics.social-interaction"
+    },
+    "user": {
+      "via": "statistic",
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "physicalActivity": {
+      "type": "component",
+      "repeatable": true,
+      "component": "statistics.physical-activity"
     }
   }
 }

@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_survey_rating_question_options",
+  "info": {
+    "name": "RatingQuestionOption",
+    "icon": "bone"
+  },
+  "options": {},
+  "attributes": {
+    "value": {
+      "type": "decimal"
+    }
+  }
+}

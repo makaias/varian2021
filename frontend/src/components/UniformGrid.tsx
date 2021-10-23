@@ -21,7 +21,6 @@ export default function UniformGrid({
     <Grid
       {...props}
       templateColumns={createRepeatString(columns)}
-      columns={columns}
     ></Grid>
   );
 }
