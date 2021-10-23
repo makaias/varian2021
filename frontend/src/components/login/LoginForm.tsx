@@ -1,7 +1,7 @@
 import {FormControl} from '@chakra-ui/form-control';
 import {Container, Heading, VStack} from '@chakra-ui/layout';
 import {Form, Formik} from 'formik';
-import React, {FC, useState} from 'react';
+import React, {FC} from 'react';
 import {useAuthBackend} from '../../context/AuthBackend';
 import FormikApiError from '../formik/FormikApiError';
 import FormikButton from '../formik/FormikButton';
@@ -14,7 +14,6 @@ export interface LoginCommand {
 
 const LoginForm: FC<{}> = () => {
   const {login} = useAuthBackend();
-  const [error, setError] = useState<Error>(null);
 
   return (
     <Formik
