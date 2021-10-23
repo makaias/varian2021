@@ -13,6 +13,7 @@ import OneSymptom from '../pages/sympthoms/sympthom/OneSymptom';
 import Symptoms from '../pages/sympthoms/Symptoms';
 import User from '../pages/User';
 import PhysicalActivity from '../pages/PhysicalActivity';
+import HealthyEating from '../pages/HealthyEating';
 
 const symptomRoutes = [
   <Route exact path="/symptoms/skin" component={() => <OneSymptom title="Inflammatory Skin Conditions" />} />,
@@ -22,6 +23,7 @@ const symptomRoutes = [
   <Route exact path="/symptoms/pelvis" component={() => <OneSymptom title="Rectal bleeding, Incontinence" />} />,
   <Route exact path="/symptoms/other" component={() => <OneSymptom title="Fatigue" />} />,
   <Route exact path="/symptoms/physical-activity" component={() => <PhysicalActivity />} />,
+  <Route exact path="/symptoms/healthy-eating" component={() => <HealthyEating />} />,
 ];
 
 const routesNotRequiringLogin = [

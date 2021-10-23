@@ -1,4 +1,4 @@
-import {Flex, List, ListItem, Text, UnorderedList, VStack} from '@chakra-ui/layout';
+import {ListItem, Text, UnorderedList, VStack} from '@chakra-ui/layout';
 import React, {ReactElement} from 'react';
 import {useLayoutConfig} from '../app/layout';
 import UniformGrid from '../components/UniformGrid';
