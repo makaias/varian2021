@@ -1,5 +1,13 @@
-html, body {
-  background-color: #defcff;
+html, body{
+  background-color: white;
   font-family: Gilroy;
+}
+
+html.layout-plain, .layout-plain body {
+  background-color: white;
+}
+
+html.layout-fancy, .layout-fancy body {
+  background-color: #defcff;
 }
 
