@@ -38,7 +38,6 @@ module.exports = {
     );
   },
 
-  // TODO test
   /**
    * @returns only uncompleted surveys
    */
@@ -55,7 +54,6 @@ module.exports = {
     return entity;
   },
 
-  // TODO test
   async getSurvey(ctx) {
     if (ctx.state.user?.userType !== "PATIENT") {
       throw Boom.forbidden("not patient");
@@ -89,6 +87,21 @@ module.exports = {
     if (surveyToFill.completed) {
       throw Boom.forbidden("already filled survey");
     }
+
+    const templateTargets = surveyToFill.survey_template.questions.target;
+
+    if (surveyResult.count !== templateTargets.count) {
+      throw Boom.forbidden("answers doesn't match question count");
+    }
+
+    // NOTE megyen, de még nincs felhasználva
+    const values = surveyResult.reduce(
+      (p, c, index) => ({
+        ...p,
+        [templateTargets[index]]: (p[templateTargets[index]] || 0) + c,
+      }),
+      {}
+    );
 
     const entity = await strapi.services.survey.update(
       {
