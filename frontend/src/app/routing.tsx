@@ -15,9 +15,10 @@ import User from '../pages/User';
 import PhysicalActivity from '../pages/PhysicalActivity';
 import HealthyEating from '../pages/HealthyEating';
 import MentalHealth from '../pages/MentalHealth';
+import InflammatorySkin from '../pages/InflammatorySkin';
 
 const symptomRoutes = [
-  <Route exact path="/symptoms/skin" component={() => <OneSymptom title="Inflammatory Skin Conditions" />} />,
+  <Route exact path="/symptoms/inflammatory-skin" component={() => <InflammatorySkin />} />,
   <Route exact path="/symptoms/face-neck" component={() => <OneSymptom title="Hair loss, Tooth decay" />} />,
   <Route exact path="/symptoms/chest" component={() => <OneSymptom title="Pulmonary fibrosis, Cough" />} />,
   <Route exact path="/symptoms/stomach" component={() => <OneSymptom title="Vomiting, Diarrhea" />} />,

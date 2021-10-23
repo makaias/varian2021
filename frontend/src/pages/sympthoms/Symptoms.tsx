@@ -57,7 +57,7 @@ export default function Symptoms(): ReactElement {
         the difficulties.
       </Text>
       <UniformGrid columns={[1, 2, 3]} gap={4}>
-        <SymptomTile link="skin">
+        <SymptomTile link="inflammatory-skin">
           <VStack spacing="4">
             <Text align="center" fontSize="3xl">
               Skin
