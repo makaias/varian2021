@@ -1,8 +1,8 @@
 import React, {createContext, FunctionComponent, ReactNode, useContext, useEffect, useState} from 'react';
-import callJsonEndpoint, {BearerTokenSendingCommand} from '../util/api/callJsonEndpoint';
-import BearerTokenService from '../service/BearerTokenService';
 import {LoginCommand} from '../components/login/LoginForm';
 import {UserType} from '../enum/UserType';
+import BearerTokenService from '../service/BearerTokenService';
+import callJsonEndpoint, {BearerTokenSendingCommand} from '../util/api/callJsonEndpoint';
 
 export interface User {
   id: number;
@@ -26,7 +26,7 @@ export const AuthBackendContext = createContext<AuthBackend>({
   isLoggedIn: null,
   logout: null,
   login: null,
-  isDoctor: null
+  isDoctor: null,
 });
 
 interface Props {
@@ -51,9 +51,9 @@ const AuthBackend: FunctionComponent = ({children}: Props): JSX.Element => {
 
     callJsonEndpoint<User>({
       conf: {
-        url: '/users/me'
+        url: '/users/me',
       },
-      bearerTokenSendingCommand: BearerTokenSendingCommand.SEND
+      bearerTokenSendingCommand: BearerTokenSendingCommand.SEND,
     })
       .then((resp) => {
         setUser(resp.data);
@@ -89,18 +89,19 @@ const AuthBackend: FunctionComponent = ({children}: Props): JSX.Element => {
         method: 'post',
         data: {
           identifier: loginCommand.identifier,
-          password: loginCommand.password
-        }
+          password: loginCommand.password,
+        },
       },
-      bearerTokenSendingCommand: BearerTokenSendingCommand.DO_NOT_SEND
+      bearerTokenSendingCommand: BearerTokenSendingCommand.DO_NOT_SEND,
     })
       .then((resp) => {
         BearerTokenService.setToken(resp.data['jwt']);
         setUser(resp.data['user']);
         setLoginInfoState(LoginInfoState.LOGGED_IN);
       })
-      .catch(() => {
+      .catch((err) => {
         setLoginInfoState(LoginInfoState.LOGGED_OUT);
+        throw err;
       });
   }
 
@@ -109,7 +110,7 @@ const AuthBackend: FunctionComponent = ({children}: Props): JSX.Element => {
     isLoggedIn: isLoggedIn(),
     logout: logout,
     login: attemptLogin,
-    isDoctor: user?.userType === UserType.DOCTOR
+    isDoctor: user?.userType === UserType.DOCTOR,
   };
 
   return (

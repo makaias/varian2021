@@ -7,7 +7,6 @@ import {
   HStack,
   Image,
   Stack,
-  Text,
   useBoolean,
   useMediaQuery,
   VStack
@@ -16,7 +15,7 @@ import {faBars} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import React, {PropsWithChildren, ReactElement, ReactNode, useContext, useEffect, useState} from 'react';
 import {Link, useLocation} from 'react-router-dom';
-import {ExitIcon, UserIcon} from '../components/icons';
+import {ExitIcon} from '../components/icons';
 import {useAuthBackend} from '../context/AuthBackend';
 import logo from './logo.svg';
 
@@ -75,12 +74,9 @@ export default function Layout({children}: PropsWithChildren<{}>): ReactElement 
               )}
               <Collapse in={menuIsOpen || isDesktopWidth}>
                 <Stack direction={isDesktopWidth ? 'row' : 'column'} justify="space-between" align="stretch">
-                  <NavItem to="/profile">
-                    <HStack align="center">
-                      <UserIcon width="2em" />
-                      <Text>{user ? (user.firstname + ' ' + user.surename) : 'Profile'}</Text>
-                    </HStack>
-                  </NavItem>
+                  <Image height="3rem" src={logo} />
+                  <NavItem to="/dashboard">Profile</NavItem>
+
                   <NavItem to="/results">Results</NavItem>
                   <NavItem to="/survey">Surveys</NavItem>
                   <NavItem to="/symptoms">Symptoms</NavItem>
@@ -118,13 +114,32 @@ interface NavItemProps {
 }
 
 function NavItem({children, to, onClick}: NavItemProps) {
-  const location = useLocation();
+  let location = null;
+  try {
+    location = useLocation();
+  } catch {
+    // ignore
+  }
   const active = location?.pathname?.startsWith(to);
 
+  if (to)
+    return (
+      <Flex
+        as={Link}
+        to={to}
+        onClick={onClick}
+        p={2}
+        fontWeight={active ? 'bold' : 'normal'}
+        align="center"
+        justify="center"
+        _hover={{bg: 'gray.100'}}
+      >
+        {children}
+      </Flex>
+    );
   return (
     <Flex
-      as={Link}
-      to={to}
+      as="div"
       onClick={onClick}
       p={2}
       fontWeight={active ? 'bold' : 'normal'}
