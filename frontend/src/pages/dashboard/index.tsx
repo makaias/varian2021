@@ -1,4 +1,4 @@
-import {Text, VStack} from '@chakra-ui/layout';
+import {Flex, Text, VStack} from '@chakra-ui/layout';
 import {HStack, Image} from '@chakra-ui/react';
 import React from 'react';
 import LineDiagram from '../../components/diagrams/LineDiagram';
@@ -13,6 +13,8 @@ import thirdMonthLogo from './thirdmonth.svg';
 import {Interface} from 'readline';
 import {Statistic} from '../../model/Statistic';
 import {useLayoutConfig} from '../../app/layout';
+import Spinner from '../../components/Spinner';
+
 interface Props {}
 
 export default function Dashboard({}: Props) {
@@ -30,7 +32,11 @@ export default function Dashboard({}: Props) {
 
   return (
     <>
-      {usedEndpoint.pending && <p>Pending...</p>}
+      {usedEndpoint.pending && (
+        <Flex justify="center">
+          <Spinner></Spinner>
+        </Flex>
+      )}
       {usedEndpoint.failed && <p>Failed</p>}
       {usedEndpoint.succeeded && (
         <VStack align="stretch">

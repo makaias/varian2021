@@ -1,9 +1,10 @@
-import {Box, HStack, LinkBox, LinkOverlay, Text, VStack} from '@chakra-ui/layout';
+import {Box, Flex, HStack, LinkBox, LinkOverlay, Text, VStack} from '@chakra-ui/layout';
 import React, {ReactElement, useMemo} from 'react';
 import * as scholar from 'google-scholar';
 import useEndpoint from '../../hooks/useEndpoint';
 import {Input, InputGroup, InputRightElement} from '@chakra-ui/input';
 import {Button} from '@chakra-ui/button';
+import Spinner from '../Spinner';
 
 interface Props {
   keyword: string;
@@ -21,7 +22,11 @@ export default function ScholarBlock({keyword, itemCount}: Props) {
   const handleClick = () => usedEndpoint.reloadEndpoint();
   return (
     <>
-      {usedEndpoint.pending && <p>Pending...</p>}
+      {usedEndpoint.pending && (
+        <Flex justify="center">
+          <Spinner></Spinner>
+        </Flex>
+      )}
       {usedEndpoint.failed && <p>Failed</p>}
       {usedEndpoint.succeeded && (
         <>

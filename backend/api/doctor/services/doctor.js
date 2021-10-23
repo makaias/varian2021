@@ -46,4 +46,14 @@ module.exports = {
     ].services.user.fetchAll({ doctor: doctorId });
     return patients;
   },
+
+  async getSchedule(doctorId) {
+    const patients = await strapi.plugins[
+      "users-permissions"
+    ].services.user.fetchAll({ doctor: doctorId }, [
+      "treatment_plans",
+      "treatment_plans.clinicVisits",
+    ]);
+    return patients;
+  },
 };

@@ -39,6 +39,14 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "GET",
+      "path": "/doctors/schedule",
+      "handler": "doctor.schedule",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }
