@@ -88,20 +88,29 @@ module.exports = {
       throw Boom.forbidden("already filled survey");
     }
 
-    const templateTargets = surveyToFill.survey_template.questions.target;
+    const templateQuestions = surveyToFill.survey_template.questions;
+    const templateTargets = [];
+    for (const question of templateQuestions) {
+      templateTargets.push(question.target);
+    }
 
     if (surveyResult.count !== templateTargets.count) {
       throw Boom.forbidden("answers doesn't match question count");
     }
 
     // NOTE megyen, de még nincs felhasználva
-    const values = surveyResult.reduce(
+    const newStatistic = surveyResult.reduce(
       (p, c, index) => ({
         ...p,
         [templateTargets[index]]: (p[templateTargets[index]] || 0) + c,
       }),
       {}
     );
+
+    await strapi.services.statistics.addStatistic({
+      userId: patientId,
+      statistic: newStatistic,
+    });
 
     const entity = await strapi.services.survey.update(
       {
