@@ -1,5 +1,6 @@
 "use strict";
 const Boom = require("boom");
+const { update } = require("../../patient/services/patient");
 
 module.exports = {
   //body based on patient.create
@@ -101,6 +102,20 @@ module.exports = {
     const entity = await strapi
       .query("user", "users-permissions")
       .update({ id: userId }, updatedValues);
+    return entity;
+  },
+
+  async deleteAssignment({ articleId, userId }) {
+    const userEntity = await strapi.plugins[
+      "users-permissions"
+    ].services.user.fetch({ id: userId });
+    const articlesOfUser = userEntity.articles;
+    const updatedArticles = articlesOfUser.filter(
+      (article) => article.id !== Number(articleId)
+    );
+    const entity = await strapi
+      .query("user", "users-permissions")
+      .update({ id: userId }, { articles: updatedArticles });
     return entity;
   },
 };
