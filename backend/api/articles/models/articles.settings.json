@@ -18,11 +18,17 @@
     "description": {
       "type": "text"
     },
-    "headline_image_url": {
+    "headlineImageUrl": {
       "type": "string"
     },
     "headline": {
       "type": "string"
+    },
+    "users_permissions_users": {
+      "plugin": "users-permissions",
+      "collection": "user",
+      "via": "articles",
+      "dominant": true
     }
   }
 }

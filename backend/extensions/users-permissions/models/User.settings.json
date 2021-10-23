@@ -94,6 +94,10 @@
     "statistic": {
       "via": "user",
       "model": "statistics"
+    },
+    "articles": {
+      "via": "users_permissions_users",
+      "collection": "articles"
     }
   }
 }
