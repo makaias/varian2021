@@ -16,10 +16,11 @@ import PhysicalActivity from '../pages/PhysicalActivity';
 import HealthyEating from '../pages/HealthyEating';
 import MentalHealth from '../pages/MentalHealth';
 import InflammatorySkin from '../pages/InflammatorySkin';
+import HeadNeck from '../pages/HeadNeck';
 
 const symptomRoutes = [
   <Route exact path="/symptoms/inflammatory-skin" component={() => <InflammatorySkin />} />,
-  <Route exact path="/symptoms/face-neck" component={() => <OneSymptom title="Hair loss, Tooth decay" />} />,
+  <Route exact path="/symptoms/head-neck" component={() => <HeadNeck />} />,
   <Route exact path="/symptoms/chest" component={() => <OneSymptom title="Pulmonary fibrosis, Cough" />} />,
   <Route exact path="/symptoms/stomach" component={() => <OneSymptom title="Vomiting, Diarrhea" />} />,
   <Route exact path="/symptoms/pelvis" component={() => <OneSymptom title="Rectal bleeding, Incontinence" />} />,

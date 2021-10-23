@@ -67,7 +67,7 @@ export default function Symptoms(): ReactElement {
             </Text>
           </VStack>
         </SymptomTile>
-        <SymptomTile link="face-neck">
+        <SymptomTile link="head-neck">
           <VStack spacing="4">
             <Text align="center" fontSize="3xl">
               Head, neck
