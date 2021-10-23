@@ -6,58 +6,37 @@ import {FC} from 'react';
 import {NavLink} from 'react-router-dom';
 import FailureParagraph from '../../components/FailureParagraph';
 import useEndpoint from '../../hooks/useEndpoint';
-import {rteExampleValue} from '../../mocking/rte';
 import {Article} from '../../model/Article';
+import {useAuthBackend} from '../../context/AuthBackend';
+import {Button} from '@chakra-ui/button';
 
 interface Props {
   id: number;
 }
 
 const ArticleList: FC<Props> = (props) => {
+  const authBackend = useAuthBackend();
+
   const usedEndpoint = useEndpoint<Article[]>({
     conf: {
-      url: `/articles`,
+      url: `/articles`//TODO: IF userType === PATIENT then only list articles that are ADVISED for the user
     },
-    deps: [props.id],
-    mockConfig: {
-      shouldMock: true,
-      mockData: [
-        //TODO: use actual data
-        {
-          id: 1,
-          title: 'Article title 1',
-          headline: 'Article headline 1',
-          headlineImageUrl:
-            'https://images.ctfassets.net/hrltx12pl8hq/61DiwECVps74bWazF88Cy9/2cc9411d050b8ca50530cf97b3e51c96/Image_Cover.jpg?fit=fill&w=480&h=270',
-          description: JSON.stringify(rteExampleValue),
-        },
-        {
-          id: 2,
-          title: 'Article title 2',
-          headline: 'Article headline interesting stuff to get your attention 2',
-          headlineImageUrl:
-            'https://images.ctfassets.net/hrltx12pl8hq/61DiwECVps74bWazF88Cy9/2cc9411d050b8ca50530cf97b3e51c96/Image_Cover.jpg?fit=fill&w=480&h=270',
-          description: JSON.stringify(rteExampleValue),
-        },
-        {
-          id: 3,
-          title: 'Article title 3',
-          headline: 'Article headline 3',
-          headlineImageUrl:
-            'https://images.ctfassets.net/hrltx12pl8hq/61DiwECVps74bWazF88Cy9/2cc9411d050b8ca50530cf97b3e51c96/Image_Cover.jpg?fit=fill&w=480&h=270',
-          description: JSON.stringify(rteExampleValue),
-        },
-      ],
-    },
+    deps: [props.id]
   });
 
   return (
-    <VStack w="100%" align="stretch" pt={8} maxWidth="container.xl">
+    <VStack w='100%' align='stretch' pt={8} maxWidth='container.xl'>
+      {authBackend.isDoctor && (
+        <NavLink to={'/articles/new'}>
+          <Button color='primary.500'>Create new Article</Button>
+        </NavLink>
+      )}
+
       {usedEndpoint.pending && <Spinner />}
       {usedEndpoint.failed && <FailureParagraph onRetry={usedEndpoint.reloadEndpoint} />}
 
       {usedEndpoint.succeeded && (
-        <VStack align="stretch" spacing={6}>
+        <VStack align='stretch' spacing={6}>
           {usedEndpoint.data.map((article) => (
             <ArticleItem article={article} />
           ))}
@@ -69,16 +48,16 @@ const ArticleList: FC<Props> = (props) => {
 
 function ArticleItem({article}: {article: Article}) {
   return (
-    <NavLink to={`/articles/${article.id}`}>
-      <Box p={3} bg="white" borderRadius={6} border="2px solid" borderColor="primary.500" cursor="pointer">
-        <HStack justify="space-between" align="center" spacing={6} height="fit-content" w="100%">
-          <VStack spacing={0} align="flex-start">
-            <Text color="primary.500" fontSize="xl">
+    <NavLink to={`/articles/read/${article.id}`}>
+      <Box p={3} bg='white' borderRadius={6} border='2px solid' borderColor='primary.500' cursor='pointer'>
+        <HStack justify='space-between' align='center' spacing={6} height='fit-content' w='100%'>
+          <VStack spacing={0} align='flex-start'>
+            <Text color='primary.500' fontSize='xl'>
               {article.title}
             </Text>
             <Text>{article.headline}</Text>
           </VStack>
-          <Flex fontSize="4xl" color="primary.500" pr={4}>
+          <Flex fontSize='4xl' color='primary.500' pr={4}>
             <FontAwesomeIcon icon={faBook} />
           </Flex>
         </HStack>

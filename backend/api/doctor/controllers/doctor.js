@@ -178,4 +178,11 @@ module.exports = {
     }
     return await strapi.services.articles.find();
   },
+
+  async schedule(ctx) {
+    if (ctx.state.user?.userType !== "DOCTOR") {
+      throw Boom.forbidden("not doctor");
+    }
+    return await strapi.services.doctor.getSchedule(ctx.state.user.id);
+  },
 };

@@ -1,13 +1,18 @@
-html, body{
+html,
+body {
   background-color: white;
   font-family: Gilroy;
 }
 
-html.layout-plain, .layout-plain body {
+html.layout-plain,
+.layout-plain body {
   background-color: white;
 }
 
-html.layout-fancy, .layout-fancy body {
-  background-color: #defcff;
+html.layout-fancy,
+.layout-fancy body {
+  background-image: url('wallpaper.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
-

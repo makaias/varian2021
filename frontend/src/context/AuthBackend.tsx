@@ -18,6 +18,7 @@ export interface AuthBackend {
   isLoggedIn: boolean;
   logout: () => Promise<void>;
   login: (loginCommand: LoginCommand) => Promise<void>;
+  isDoctor: boolean;
 }
 
 export const AuthBackendContext = createContext<AuthBackend>({
@@ -25,6 +26,7 @@ export const AuthBackendContext = createContext<AuthBackend>({
   isLoggedIn: null,
   logout: null,
   login: null,
+  isDoctor: null
 });
 
 interface Props {
@@ -49,9 +51,9 @@ const AuthBackend: FunctionComponent = ({children}: Props): JSX.Element => {
 
     callJsonEndpoint<User>({
       conf: {
-        url: '/users/me',
+        url: '/users/me'
       },
-      bearerTokenSendingCommand: BearerTokenSendingCommand.SEND,
+      bearerTokenSendingCommand: BearerTokenSendingCommand.SEND
     })
       .then((resp) => {
         setUser(resp.data);
@@ -87,10 +89,10 @@ const AuthBackend: FunctionComponent = ({children}: Props): JSX.Element => {
         method: 'post',
         data: {
           identifier: loginCommand.identifier,
-          password: loginCommand.password,
-        },
+          password: loginCommand.password
+        }
       },
-      bearerTokenSendingCommand: BearerTokenSendingCommand.DO_NOT_SEND,
+      bearerTokenSendingCommand: BearerTokenSendingCommand.DO_NOT_SEND
     })
       .then((resp) => {
         BearerTokenService.setToken(resp.data['jwt']);
@@ -107,6 +109,7 @@ const AuthBackend: FunctionComponent = ({children}: Props): JSX.Element => {
     isLoggedIn: isLoggedIn(),
     logout: logout,
     login: attemptLogin,
+    isDoctor: user?.userType === UserType.DOCTOR
   };
 
   return (
