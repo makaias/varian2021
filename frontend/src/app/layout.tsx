@@ -13,11 +13,13 @@ export interface LayoutConfig {
 const LayoutContext = React.createContext<(config: LayoutConfig) => void | null>(null);
 
 export function useLayoutConfig(config: LayoutConfig) {
+  const [configState] = useState(config);
+
   const callback = useContext(LayoutContext);
   useEffect(() => {
-    callback(config);
+    callback(configState);
     return () => callback(null);
-  }, [config]);
+  }, [configState]);
 }
 
 const defaultLayoutConfig: LayoutConfig = {bg: 'plain'};
