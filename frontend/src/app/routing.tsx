@@ -22,23 +22,11 @@ import Other from '../pages/Other';
 import Pelvis from '../pages/Pelvis';
 import PhysicalActivity from '../pages/PhysicalActivity';
 import Scholar from '../pages/Scholar';
+import Stomach from '../pages/Stomach';
+import Survey from '../pages/Survey';
 import Symptoms from '../pages/symptoms/Symptoms';
 import TreatmentPlan from '../pages/TreatmentPlan';
 import User from '../pages/User';
-import PhysicalActivity from '../pages/PhysicalActivity';
-import HealthyEating from '../pages/HealthyEating';
-import MentalHealth from '../pages/MentalHealth';
-import InflammatorySkin from '../pages/InflammatorySkin';
-import HeadNeck from '../pages/HeadNeck';
-import Chest from '../pages/Chest';
-import Stomach from '../pages/Stomach';
-import Pelvis from '../pages/Pelvis';
-import Other from '../pages/Other';
-import CurrentUserDocuments from '../pages/document/CurrentUserDocuments';
-import DoctorProfile from '../pages/DoctorProfile';
-import {UserType} from '../enum/UserType';
-import DoctorDocuments from '../pages/document/DoctorDocuments';
-import Survey from '../pages/Survey';
 
 const symptomRoutes = [
   <Route exact path="/symptoms/inflammatory-skin" component={() => <InflammatorySkin />} />,
