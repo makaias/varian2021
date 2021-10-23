@@ -13,7 +13,7 @@
   "pluginOptions": {},
   "attributes": {
     "content": {
-      "type": "json"
+      "type": "text"
     },
     "patient": {
       "type": "integer"
