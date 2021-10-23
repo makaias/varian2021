@@ -10,7 +10,7 @@ import {
   Text,
   useBoolean,
   useMediaQuery,
-  VStack,
+  VStack
 } from '@chakra-ui/react';
 import {faBars} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -75,16 +75,17 @@ export default function Layout({children}: PropsWithChildren<{}>): ReactElement 
               )}
               <Collapse in={menuIsOpen || isDesktopWidth}>
                 <Stack direction={isDesktopWidth ? 'row' : 'column'} justify="space-between" align="stretch">
-                  <NavItem to="/dashboard">
+                  <NavItem to="/profile">
                     <HStack align="center">
                       <UserIcon width="2em" />
-                      <Text>Profile</Text>
+                      <Text>{user ? (user.firstname + ' ' + user.surename) : 'Profile'}</Text>
                     </HStack>
                   </NavItem>
                   <NavItem to="/results">Results</NavItem>
                   <NavItem to="/survey">Surveys</NavItem>
                   <NavItem to="/symptoms">Symptoms</NavItem>
                   <NavItem to="/articles">Personalised Reading</NavItem>
+                  <NavItem to="/myDocuments">My Documents</NavItem>
                   <NavItem to="/publications">Publications</NavItem>
                   <NavItem to="/contact">Contact</NavItem>
                   <NavItem onClick={() => logout()}>
