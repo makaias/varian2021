@@ -4,11 +4,11 @@ import React from 'react';
 import LineDiagram from '../../components/diagrams/LineDiagram';
 import UniformGrid from '../../components/UniformGrid';
 import useEndpoint from '../../hooks/useEndpoint';
-
-import startLogo from './started.svg';
+import {Statistic} from '../../model/Statistic';
 import endLogo from './finished.svg';
 import firstMonthLogo from './firstmonth.svg';
 import secondMonthLogo from './secondmonth.svg';
+import startLogo from './started.svg';
 import thirdMonthLogo from './thirdmonth.svg';
 import {Interface} from 'readline';
 import {Statistic} from '../../model/Statistic';
