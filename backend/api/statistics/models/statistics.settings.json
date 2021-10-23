@@ -46,6 +46,11 @@
       "via": "statistic",
       "plugin": "users-permissions",
       "model": "user"
+    },
+    "physicalActivity": {
+      "type": "component",
+      "repeatable": true,
+      "component": "physical-activity.physical-activity"
     }
   }
 }
