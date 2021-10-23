@@ -12,28 +12,40 @@ import Scholar from '../pages/Scholar';
 import OneSymptom from '../pages/symptoms/sympthom/OneSymptom';
 import Symptoms from '../pages/symptoms/Symptoms';
 import User from '../pages/User';
+import PhysicalActivity from '../pages/PhysicalActivity';
+import HealthyEating from '../pages/HealthyEating';
+import MentalHealth from '../pages/MentalHealth';
+import InflammatorySkin from '../pages/InflammatorySkin';
+import HeadNeck from '../pages/HeadNeck';
+import Chest from '../pages/Chest';
+import Stomach from '../pages/Stomach';
+import Pelvis from '../pages/Pelvis';
+import Other from '../pages/Other';
 import CurrentUserDocuments from '../pages/document/CurrentUserDocuments';
 import DoctorProfile from '../pages/DoctorProfile';
 import {UserType} from '../enum/UserType';
 import DoctorDocuments from '../pages/document/DoctorDocuments';
 
 const symptomRoutes = [
-  <Route exact path='/symptoms/skin' component={() => <OneSymptom title='Inflammatory Skin Conditions' />} />,
-  <Route exact path='/symptoms/face-neck' component={() => <OneSymptom title='Hair loss, Tooth decay' />} />,
-  <Route exact path='/symptoms/chest' component={() => <OneSymptom title='Pulmonary fibrosis, Cough' />} />,
-  <Route exact path='/symptoms/stomach' component={() => <OneSymptom title='Vomiting, Diarrhea' />} />,
-  <Route exact path='/symptoms/pelvis' component={() => <OneSymptom title='Rectal bleeding, Incontinence' />} />,
-  <Route exact path='/symptoms/other' component={() => <OneSymptom title='Fatigue' />} />
+  <Route exact path="/symptoms/inflammatory-skin" component={() => <InflammatorySkin />} />,
+  <Route exact path="/symptoms/head-neck" component={() => <HeadNeck />} />,
+  <Route exact path="/symptoms/chest" component={() => <Chest />} />,
+  <Route exact path="/symptoms/stomach" component={() => <Stomach />} />,
+  <Route exact path="/symptoms/pelvis" component={() => <Pelvis />} />,
+  <Route exact path="/symptoms/other" component={() => <Other />} />,
+  <Route exact path="/symptoms/physical-activity" component={() => <PhysicalActivity />} />,
+  <Route exact path="/symptoms/healthy-eating" component={() => <HealthyEating />} />,
+  <Route exact path="/symptoms/mental-health" component={() => <MentalHealth />} />,
 ];
 
 const routesNotRequiringLogin = [
-  <Route exact path='/' component={Home} />,
-  <Route exact path='/contact' component={Contact} />
+  <Route exact path="/" component={Home} />,
+  <Route exact path="/contact" component={Contact} />,
 ];
 
 const routesRequiringLogin = [
-  <Route exact path='/user' component={User} />,
-  <Route exact path='/symptoms' component={Symptoms} />,
+  <Route exact path="/user" component={User} />,
+  <Route exact path="/symptoms" component={Symptoms} />,
   ...symptomRoutes,
   <Route exact path='/scholar' component={Scholar} />,
   <Route exact path='/articles' component={ArticleList} />,
@@ -46,7 +58,7 @@ const routesRequiringLogin = [
   }} />,
   <Route
     exact
-    path='/articles/read/:id'
+    path="/articles/read/:id"
     component={() => {
       const {id} = useParams<{id}>();
       return <OneArticle id={id} />;
@@ -54,7 +66,7 @@ const routesRequiringLogin = [
   />,
   <Route
     exact
-    path='/profile'
+    path="/profile"
     component={() => {
       const authBackend = useAuthBackend();
       if (authBackend.user?.userType === UserType.DOCTOR) {
@@ -63,17 +75,17 @@ const routesRequiringLogin = [
       return <Dashboard patientId={authBackend.user?.id} />;
     }}
   />,
-  <Route exact path='/contact' component={Contact} />
+  <Route exact path="/contact" component={Contact} />,
 ];
 
-const routesOnlyForDoctors = [<Route exact path='/articles/new' component={OneArticleCreator} />];
+const routesOnlyForDoctors = [<Route exact path="/articles/new" component={OneArticleCreator} />];
 
 export default function Routing(): ReactElement {
   const authBackend = useAuthBackend();
 
   return (
     <Switch>
-      <Route exact path='/' component={Home} />
+      <Route exact path="/" component={Home} />
 
       {authBackend.isLoggedIn && routesRequiringLogin}
       {authBackend.isLoggedIn && authBackend.isDoctor && routesOnlyForDoctors}
