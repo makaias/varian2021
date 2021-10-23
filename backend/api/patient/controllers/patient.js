@@ -39,14 +39,18 @@ module.exports = {
   },
 
   // TODO test
+  /**
+   * @returns only uncompleted surveys
+   */
   async getSurveys(ctx) {
     if (ctx.state.user?.userType !== "PATIENT") {
       throw Boom.forbidden("not patient");
     }
-    const patientId = ctx.state.user?.id;
+    const userId = ctx.state.user?.id;
 
     const entity = await strapi.services.survey.find({
-      user_to_complete: patientId,
+      user_to_complete: userId,
+      complete: false,
     });
     return entity;
   },
@@ -65,20 +69,37 @@ module.exports = {
     });
   },
 
-  // TODO specify survey
   async fillSurvey(ctx) {
     if (ctx.state.user?.userType !== "PATIENT") {
       throw Boom.forbidden("not patient");
     }
+
     const { surveyId } = ctx.params;
     const patientId = ctx.state.user?.id;
     const surveyResult = ctx.request.body;
 
-    const entity = await strapi.services.survey.update({
-      patientId: patientId,
-      surveyId: surveyId,
-      surveyResult: surveyResult,
+    const surveyToFill = await strapi.services.survey.findOne({
+      user_to_complete: patientId,
+      id: surveyId,
     });
+
+    if (!surveyToFill) {
+      throw Boom.notFound("survey not found for patient");
+    }
+    if (surveyToFill.completed) {
+      throw Boom.forbidden("already filled survey");
+    }
+
+    const entity = await strapi.services.survey.update(
+      {
+        id: surveyId,
+        user_to_complete: patientId,
+      },
+      {
+        answers: surveyResult,
+        complete: true,
+      }
+    );
     return entity;
   },
 
