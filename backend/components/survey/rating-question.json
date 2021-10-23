@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_survey_rating_questions",
+  "info": {
+    "name": "RatingQuestion",
+    "icon": "ad",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "minLabel": {
+      "type": "string"
+    },
+    "maxLabel": {
+      "type": "string"
+    },
+    "options": {
+      "type": "component",
+      "repeatable": true,
+      "component": "survey.rating-question-option"
+    },
+    "target": {
+      "type": "enumeration",
+      "enum": [
+        "SOCIAL",
+        "SLEEPING",
+        "LIFE",
+        "EATING",
+        "PHYSICAL"
+      ]
+    }
+  }
+}
