@@ -101,6 +101,11 @@
     },
     "deliveredOn": {
       "type": "date"
+    },
+    "user": {
+      "via": "treatment_plans",
+      "plugin": "users-permissions",
+      "model": "user"
     }
   }
 }

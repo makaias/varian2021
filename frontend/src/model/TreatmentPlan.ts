@@ -12,6 +12,8 @@ export interface SurvillenceTest {
 }
 
 export interface TreatmentPlan {
+  id: number; // constant
+  user: number; // constant
   patientName: string;
   phone: string;
   patientDOB: string;

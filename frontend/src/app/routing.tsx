@@ -1,31 +1,31 @@
 import React, {ReactElement} from 'react';
 import {Route, Switch, useParams} from 'react-router-dom';
+import CreateTreatmentPlan from '../components/treatment-plant/CreateTreatmentPlan';
 import {useAuthBackend} from '../context/AuthBackend';
+import {UserType} from '../enum/UserType';
 import ArticleList from '../pages/article/ArticleList';
 import OneArticle from '../pages/article/OneArticle';
 import OneArticleCreator from '../pages/article/OneArticleCreator';
+import Chest from '../pages/Chest';
 import Contact from '../pages/contact/Contact';
 import Dashboard from '../pages/dashboard';
+import DoctorProfile from '../pages/DoctorProfile';
+import CurrentUserDocuments from '../pages/document/CurrentUserDocuments';
+import DoctorDocuments from '../pages/document/DoctorDocuments';
+import HeadNeck from '../pages/HeadNeck';
+import HealthyEating from '../pages/HealthyEating';
 import Home from '../pages/Home';
+import InflammatorySkin from '../pages/InflammatorySkin';
 import Login from '../pages/Login';
+import MentalHealth from '../pages/MentalHealth';
+import Other from '../pages/Other';
+import Pelvis from '../pages/Pelvis';
+import PhysicalActivity from '../pages/PhysicalActivity';
 import Scholar from '../pages/Scholar';
-import OneSymptom from '../pages/sympthoms/sympthom/OneSymptom';
-import Symptoms from '../pages/sympthoms/Symptoms';
+import Stomach from '../pages/Stomach';
+import Symptoms from '../pages/symptoms/Symptoms';
 import TreatmentPlan from '../pages/TreatmentPlan';
 import User from '../pages/User';
-import PhysicalActivity from '../pages/PhysicalActivity';
-import HealthyEating from '../pages/HealthyEating';
-import MentalHealth from '../pages/MentalHealth';
-import InflammatorySkin from '../pages/InflammatorySkin';
-import HeadNeck from '../pages/HeadNeck';
-import Chest from '../pages/Chest';
-import Stomach from '../pages/Stomach';
-import Pelvis from '../pages/Pelvis';
-import Other from '../pages/Other';
-import CurrentUserDocuments from '../pages/document/CurrentUserDocuments';
-import DoctorProfile from '../pages/DoctorProfile';
-import {UserType} from '../enum/UserType';
-import DoctorDocuments from '../pages/document/DoctorDocuments';
 
 const symptomRoutes = [
   <Route exact path="/symptoms/inflammatory-skin" component={() => <InflammatorySkin />} />,
@@ -48,15 +48,19 @@ const routesRequiringLogin = [
   <Route exact path="/user" component={User} />,
   <Route exact path="/symptoms" component={Symptoms} />,
   ...symptomRoutes,
-  <Route exact path='/scholar' component={Scholar} />,
-  <Route exact path='/articles' component={ArticleList} />,
-  <Route exact path='/myDocuments' component={() => {
-    const authBackend = useAuthBackend();
-    if (authBackend.user?.userType === UserType.DOCTOR) {
-      return <DoctorDocuments />;
-    }
-    return <CurrentUserDocuments />;
-  }} />,
+  <Route exact path="/scholar" component={Scholar} />,
+  <Route exact path="/articles" component={ArticleList} />,
+  <Route
+    exact
+    path="/myDocuments"
+    component={() => {
+      const authBackend = useAuthBackend();
+      if (authBackend.user?.userType === UserType.DOCTOR) {
+        return <DoctorDocuments />;
+      }
+      return <CurrentUserDocuments />;
+    }}
+  />,
   <Route
     exact
     path="/articles/read/:id"
@@ -77,7 +81,8 @@ const routesRequiringLogin = [
     }}
   />,
   <Route exact path="/contact" component={Contact} />,
-  <Route exact path="/treatment-plan" component={TreatmentPlan} />,
+  <Route exact path="/treatment-plan/:id" component={TreatmentPlan} />,
+  <Route exact path="/create-treatment-plan" component={CreateTreatmentPlan} />,
 ];
 
 const routesOnlyForDoctors = [<Route exact path="/articles/new" component={OneArticleCreator} />];
