@@ -13,8 +13,8 @@ const UserDocumentList: FC<Props> = (props) => {
       <VStack align='stretch' spacing={6}>
         {props.documents.map((document) => (
           <div key={document.id}>
-            <hr />
             <DocumentItem document={document} />
+            <br/>
           </div>
         ))}
       </VStack>
