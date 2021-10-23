@@ -10,7 +10,6 @@ interface Props {
 }
 
 export default function QuestionRouter({question, number, onChange}: Props): ReactElement {
-  console.log(question);
   if (question.__component == 'survey.rating-question')
     return <QuestionRating question={question} onChange={onChange} number={number} />;
   if (question.__component == 'survey.yes-no-question')
