@@ -22,6 +22,10 @@
         "survey.yes-no-question",
         "survey.rating-question"
       ]
+    },
+    "cronTargets": {
+      "plugin": "users-permissions",
+      "collection": "user"
     }
   }
 }
