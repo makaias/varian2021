@@ -23,7 +23,7 @@ export default function PhysicalActivity({}: Props): ReactElement {
         motion. Many cancer care teams are urging their patients to be as physically active as possible before, during
         and after cancer treatment.
       </Text>
-      <UniformGrid columns={[1, 1, 2]} gap={4}>
+      <UniformGrid columns={[1, 1, 2]} gap={4} columnGap={7}>
         <VStack align="flex-start">
           <Text marginTop="1rem" marginBottom="1rem" fontWeight="bold">
             How exercise may help you
