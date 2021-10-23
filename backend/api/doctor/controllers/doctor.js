@@ -87,7 +87,9 @@ module.exports = {
     if (ctx.state.user?.userType !== "DOCTOR") {
       throw Boom.forbidden("not doctor");
     }
-    return await strapi.services.doctor.createTreatmentPlan(ctx.request.body);
+    return await strapi.services.doctor.createTreatmentPlan({
+      body: ctx.request.body,
+    });
   },
 
   /**
@@ -101,7 +103,10 @@ module.exports = {
     if (ctx.state.user?.userType !== "DOCTOR") {
       throw Boom.forbidden("not doctor");
     }
-    return await strapi.services.doctor.createDocument(ctx.request.body);
+    const body = ctx.request.body;
+    return await strapi.services.doctor.createDocument({
+      body: body,
+    });
   },
 
   /**
@@ -120,7 +125,9 @@ module.exports = {
     if (ctx.state.user?.userType !== "DOCTOR") {
       throw Boom.forbidden("not doctor");
     }
-    return await strapi.services.doctor.createSurveyTemplate(ctx.request.body);
+    return await strapi.services.doctor.createSurveyTemplate({
+      body: ctx.request.body,
+    });
   },
 
   async patients(ctx) {

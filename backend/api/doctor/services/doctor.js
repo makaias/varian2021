@@ -22,25 +22,25 @@ module.exports = {
     return patient;
   },
 
-  async createTreatmentPlan(body) {
-    const treatmentPlan = await strapi.services["treatment-plan"].create(body);
-    return treatmentPlan;
+  async createTreatmentPlan({ body }) {
+    return await strapi.services["treatment-plan"].create(body);
   },
 
-  async createDocument(body) {
-    let documentId = await strapi.services.document.create(body);
-    return documentId;
+  async createDocument({ body }) {
+    return await strapi.services.document.create(body);
   },
 
-  async createSurveyTemplate(body) {
-    let surveyTemplateId = await strapi.services["survey-template"].create(
+  async createSurveyTemplate({ body }) {
+    const surveyTemplateId = await strapi.services["survey-template"].create(
       body
     );
     return surveyTemplateId;
   },
 
   async getPatients(doctorId) {
-    let patients = await strapi.services.user.find({ doctor: doctorId });
+    const patients = await strapi.plugins[
+      "users-permissions"
+    ].services.user.fetch({ doctor: doctorId });
     return patients;
   },
 };
