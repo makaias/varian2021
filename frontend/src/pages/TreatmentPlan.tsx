@@ -1,13 +1,11 @@
-import {Formik} from 'formik';
 import React, {ReactElement} from 'react';
-import {General} from '../components/treatment-plant';
+import {useParams} from 'react-router';
+import TreatmentPlanDocument from '../components/treatment-plant/TreatmentPlanDocument';
 
 interface Props {}
 
 export default function TreatmentPlan({}: Props): ReactElement {
-  return (
-    <Formik initialValues={{patientName: 'asd'}} onSubmit={() => {}}>
-      <General />
-    </Formik>
-  );
+  const {id} = useParams<{id}>();
+
+  return <TreatmentPlanDocument id={id} />;
 }
