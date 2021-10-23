@@ -23,6 +23,23 @@ const targetCodeMap = {
   PHYSICAL: "physicalActivity",
 };
 
+function getLast(array, inverseIndex) {
+  const realIndex = array.length - inverseIndex - 1;
+  if (realIndex < 0) {
+    return null;
+  }
+  return array[realIndex];
+}
+
+function calculateDifference(array) {
+  const currentValue = getLast(array, 0);
+  const previousValue = getLast(array, 1);
+  if (currentValue === null || previousValue === null) {
+    return null;
+  }
+  return currentValue - previousValue;
+}
+
 module.exports = {
   async addStatistic({ userId, statistic }) {
     let entity = await strapi.services.statistics.findOne({ user: userId });
@@ -49,6 +66,11 @@ module.exports = {
       }
     }
 
+    const diff = existingTargets
+      .map((key) => calculateDifference(entity[key]))
+      .filter((a) => a !== null)
+      .reduce((prev, next) => next + prev, 0);
+    updatedValues.improvement = diff;
     const updatedStatisticEntity = await strapi.services.statistics.update(
       { id: entity.id },
       updatedValues
