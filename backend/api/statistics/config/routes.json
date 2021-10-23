@@ -17,14 +17,6 @@
       }
     },
     {
-      "method": "GET",
-      "path": "/statistics/:id",
-      "handler": "statistics.findOne",
-      "config": {
-        "policies": []
-      }
-    },
-    {
       "method": "POST",
       "path": "/statistics",
       "handler": "statistics.create",
@@ -50,7 +42,7 @@
     },
     {
       "method": "GET",
-      "path": "/statistics/:doctorId/:patientId",
+      "path": "/statistics/:patientId",
       "handler": "statistics.getPatientData",
       "config": {
         "policies": []

@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 const Boom = require("boom");
 
@@ -8,8 +8,10 @@ const Boom = require("boom");
  */
 
 module.exports = {
-    async getPatientData(patientId) {
-        let patient = strapi.plugins["users-permissions"].services.user.fetch({id: patientId}, ["statistics"]);
-        return patient?.statistics;
-    }
+  async getPatientData(ctx) {
+    let statistic = await strapi.services.statistics.findOne({
+      user: ctx.params.patientId,
+    });
+    return statistic;
+  },
 };

@@ -13,7 +13,9 @@
   "pluginOptions": {},
   "attributes": {
     "daysGone": {
-      "type": "integer"
+      "type": "integer",
+      "default": 0,
+      "min": 0
     },
     "badges": {
       "type": "component",
@@ -39,6 +41,11 @@
       "type": "component",
       "repeatable": true,
       "component": "social-interaction.social-interaction"
+    },
+    "user": {
+      "via": "statistic",
+      "plugin": "users-permissions",
+      "model": "user"
     }
   }
 }
