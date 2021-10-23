@@ -47,7 +47,7 @@ async function prepareRequestConfig(axiosRequestConfig: AxiosRequestConfig,
     if (!axiosRequestConfig.headers) {
         axiosRequestConfig.headers = {};
     }
-
+    
     if (insertJsonContentType) {
         axiosRequestConfig.headers["Content-type"] = "application/json";
         axiosRequestConfig.headers["accept"] = "application/json";
