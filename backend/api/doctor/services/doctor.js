@@ -1,4 +1,5 @@
 "use strict";
+const Boom = require("boom");
 
 module.exports = {
   //body based on patient.create
@@ -62,5 +63,44 @@ module.exports = {
       }
     }
     return patientsWithGivenArticle;
+  },
+
+  async createAssignment({ articleId, userId }) {
+    const articleEntity = await strapi.services.articles.findOne({
+      id: articleId,
+    });
+
+    const userEntity = await strapi.plugins[
+      "users-permissions"
+    ].services.user.fetch({ id: userId });
+
+    if (!articleEntity || !userEntity) {
+      throw Boom.notFound(
+        "can't find article or user for advising",
+        articleId,
+        userId
+      );
+    }
+
+    const updatedValues = {};
+
+    updatedValues.articles = userEntity.articles;
+
+    // TODO normális ellenőrzés, hogy benne van-e
+    if (updatedValues.articles.includes(articleEntity)) {
+      throw Boom.forbidden("already assigned article to user");
+    }
+
+    updatedValues.articles.push(articleEntity);
+
+    // const updatedUserEntity = await strapi.services.articles.update(
+    //   { id: userId },
+    //   updatedValues
+    // );
+
+    const entity = await strapi
+      .query("user", "users-permissions")
+      .update({ id: userId }, updatedValues);
+    return entity;
   },
 };

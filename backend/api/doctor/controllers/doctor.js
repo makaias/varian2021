@@ -147,4 +147,23 @@ module.exports = {
     });
     return users;
   },
+
+  async assignArticleToUser(ctx) {
+    if (ctx.state.user?.userType !== "DOCTOR") {
+      throw Boom.forbidden("not doctor");
+    }
+    const { articleId, userId } = ctx.params;
+    const entity = await strapi.services.doctor.createAssignment({
+      articleId: articleId,
+      userId: userId,
+    });
+    return entity;
+  },
+
+  async UnAssignArticleToUser(ctx) {
+    if (ctx.state.user?.userType !== "DOCTOR") {
+      throw Boom.forbidden("not doctor");
+    }
+    const { articleId, userId } = ctx.params;
+  },
 };

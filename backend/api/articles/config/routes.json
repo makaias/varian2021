@@ -48,22 +48,6 @@
       "config": {
         "policies": []
       }
-    },
-    {
-      "method": "POST",
-      "path": "/articles/users/advise:userId",
-      "handler": "articles.assignUser",
-      "config": {
-        "policies": []
-      }
-    },
-    {
-      "method": "POST",
-      "path": "/articles/users/un-advice:userId",
-      "handler": "articles.unAssignUser",
-      "config": {
-        "policies": []
-      }
     }
   ]
 }

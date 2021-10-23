@@ -47,6 +47,22 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "POST",
+      "path": "/doctor/advise-article/:userId/:articleId",
+      "handler": "doctor.assignArticleToUser",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/doctor/un-advise-article/:userId/:articleId",
+      "handler": "doctor.UnAssignArticleToUser",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }
