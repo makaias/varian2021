@@ -159,9 +159,9 @@ module.exports = {
       throw Boom.forbidden("not patient");
     }
 
-    const patientName = ctx.state.user?.username;
+    const patientId = ctx.state.user?.id;
     const entity = await strapi.services.articles.find({
-      user_permissions_users: patientName,
+      users_permissions_users: patientId,
     });
     return entity;
   },

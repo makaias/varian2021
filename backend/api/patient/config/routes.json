@@ -58,7 +58,7 @@
     },
     {
       "method": "GET",
-      "path": "/patients/articles/",
+      "path": "/patients/articles",
       "handler": "patient.getArticles",
       "config": {
         "policies": []
