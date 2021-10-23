@@ -24,15 +24,14 @@ export default function CarePlan({}: Props): ReactElement {
         When/How often
       </GridContent>
 
-      {/* TODO FOR BENDE */}
-      <GridField name="ph" colSpan={6}></GridField>
-      <GridField name="ph" colSpan={9}></GridField>
-      <GridField name="ph" colSpan={6}></GridField>
-      <GridField name="ph" colSpan={9}></GridField>
-      <GridField name="ph" colSpan={6}></GridField>
-      <GridField name="ph" colSpan={9}></GridField>
-      <GridField name="ph" colSpan={6}></GridField>
-      <GridField name="ph" colSpan={9}></GridField>
+      <GridField name="clinicVisits[0].provider" colSpan={6}></GridField>
+      <GridField name="clinicVisits[0].howOften" colSpan={9}></GridField>
+      <GridField name="clinicVisits[1].provider" colSpan={6}></GridField>
+      <GridField name="clinicVisits[1].howOften" colSpan={9}></GridField>
+      <GridField name="clinicVisits[2].provider" colSpan={6}></GridField>
+      <GridField name="clinicVisits[2].howOften" colSpan={9}></GridField>
+      <GridField name="clinicVisits[3].provider" colSpan={6}></GridField>
+      <GridField name="clinicVisits[3].howOften" colSpan={9}></GridField>
 
       <GridContent fontWeight="bold" fontSize="x1" colSpan={15}>
         Cancer Surveillance or other Recommended Tests
@@ -50,28 +49,26 @@ export default function CarePlan({}: Props): ReactElement {
         How Often
       </GridContent>
 
-      {/* TODO FOR BENDE */}
-      <GridField name="ph" colSpan={5}></GridField>
-      <GridField name="ph" colSpan={5}></GridField>
-      <GridField name="ph" colSpan={5}></GridField>
+      <GridField name="survillenceTests[0].provider" colSpan={5}></GridField>
+      <GridField name="survillenceTests[0].test" colSpan={5}></GridField>
+      <GridField name="survillenceTests[0].howOften" colSpan={5}></GridField>
 
-      <GridField name="ph" colSpan={5}></GridField>
-      <GridField name="ph" colSpan={5}></GridField>
-      <GridField name="ph" colSpan={5}></GridField>
+      <GridField name="survillenceTests[1].provider" colSpan={5}></GridField>
+      <GridField name="survillenceTests[1].test" colSpan={5}></GridField>
+      <GridField name="survillenceTests[1].howOften" colSpan={5}></GridField>
 
-      <GridField name="ph" colSpan={5}></GridField>
-      <GridField name="ph" colSpan={5}></GridField>
-      <GridField name="ph" colSpan={5}></GridField>
+      <GridField name="survillenceTests[2].provider" colSpan={5}></GridField>
+      <GridField name="survillenceTests[2].test" colSpan={5}></GridField>
+      <GridField name="survillenceTests[2].howOften" colSpan={5}></GridField>
 
-      <GridField name="ph" colSpan={5}></GridField>
-      <GridField name="ph" colSpan={5}></GridField>
-      <GridField name="ph" colSpan={5}></GridField>
+      <GridField name="survillenceTests[3].provider" colSpan={5}></GridField>
+      <GridField name="survillenceTests[3].test" colSpan={5}></GridField>
+      <GridField name="survillenceTests[3].howOften" colSpan={5}></GridField>
 
-      <GridField name="ph" colSpan={5}></GridField>
-      <GridField name="ph" colSpan={5}></GridField>
-      <GridField name="ph" colSpan={5}></GridField>
+      <GridField name="survillenceTests[4].provider" colSpan={5}></GridField>
+      <GridField name="survillenceTests[4].test" colSpan={5}></GridField>
+      <GridField name="survillenceTests[4].howOften" colSpan={5}></GridField>
 
-      {/*itt is valami TODO i guess*/}
       <GridContent fontSize="x1" colSpan={15} textAlign="left">
         <UniformGrid columns={1} gap={2}>
           Please continue ro see your primary care provider for all general heath cal recommended for a man/woman your

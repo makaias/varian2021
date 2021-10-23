@@ -1,6 +1,6 @@
 import React, {ReactElement} from 'react';
 import UniformGrid from '../UniformGrid';
-import {GridContent, GridField, GridFieldCompact} from './Fields';
+import {GridCheckBox, GridContent, GridField, GridFieldCompact} from './Fields';
 
 interface Props {}
 
@@ -22,19 +22,15 @@ export default function Summary({}: Props): ReactElement {
         Treatment Completed
       </GridContent>
 
-      <GridFieldCompact colSpan={3} name="surgery" title="Surgery TODO Checkbox" />
+      <GridCheckBox colSpan={3} name="surgery" title="Surgery" />
       <GridFieldCompact colSpan={3} name="surgeryDate" title="Surgery Date(s) (year):" />
       <GridFieldCompact colSpan={6} name="surgicalProcedure" title="Surgical procedure/location/findings:" />
 
-      <GridFieldCompact colSpan={2} name="radiation" title="Radiation TODO Checkbox" />
+      <GridCheckBox colSpan={2} name="radiation" title="Radiation" />
       <GridFieldCompact colSpan={2} name="bodyAreaTreated" title="Body area treated:" />
       <GridFieldCompact colSpan={2} name="endYear" title="End Date (year):" />
 
-      <GridFieldCompact
-        colSpan={6}
-        name="systemicTherapy"
-        title="System Therapy (chemotherapy, hormonal therapy, other): TODO Checkbox"
-      />
+      <GridCheckBox colSpan={6} name="systemicTherapy" title="System Therapy (chemotherapy, hormonal therapy, other)" />
 
       <GridContent fontSize="xl" colSpan={4}>
         Names of Agents Used
@@ -43,34 +39,33 @@ export default function Summary({}: Props): ReactElement {
         End Dates (year)
       </GridContent>
 
-      <GridFieldCompact colSpan={4} name="agentsUsed" title="TODO checkbox Carboplatin" />
-      <GridFieldCompact colSpan={2} name="" title="" />
-      <GridFieldCompact colSpan={4} name="agentsUsed" title="TODO checkbox Cisplatin" />
-      <GridFieldCompact colSpan={2} name="" title="" />
-      <GridFieldCompact colSpan={4} name="agentsUsed" title="TODO checkbox Etoposide" />
-      <GridFieldCompact colSpan={2} name="" title="" />
-      <GridFieldCompact colSpan={4} name="agentsUsed" title="TODO checkbox Paclitaxel" />
-      <GridFieldCompact colSpan={2} name="" title="" />
-      <GridFieldCompact colSpan={4} name="agentsUsed" title="TODO checkbox Vincristine" />
-      <GridFieldCompact colSpan={2} name="" title="" />
-      <GridFieldCompact colSpan={4} name="agentsUsed" title="TODO checkbox Other" />
-      <GridFieldCompact colSpan={2} name="" title="" />
+      <GridCheckBox colSpan={4} name="agentsUsed[0].used" title="Carboplatin" />
+      <GridFieldCompact colSpan={2} name="agentsUsed[0].endYear" title="" />
+      <GridCheckBox colSpan={4} name="agentsUsed[1].used" title="Cisplatin" />
+      <GridFieldCompact colSpan={2} name="agentsUsed[1].endYear" title="" />
+      <GridCheckBox colSpan={4} name="agentsUsed[2].used" title="Etoposide" />
+      <GridFieldCompact colSpan={2} name="agentsUsed[2].endYear" title="" />
+      <GridCheckBox colSpan={4} name="agentsUsed[3].used" title="Paclitaxel" />
+      <GridFieldCompact colSpan={2} name="agentsUsed[3].endYear" title="" />
+      <GridCheckBox colSpan={4} name="agentsUsed[4].used" title="Vincristine" />
+      <GridFieldCompact colSpan={2} name="agentsUsed[4].endYear" title="" />
+      <GridCheckBox colSpan={4} name="agentsUsed[5].used" title="Other" />
+      <GridFieldCompact colSpan={2} name="agentsUsed[5].endYear" title="" />
 
       <GridField
         colSpan={6}
         name="sympthomsSideEffects"
-        title="Persistent symptoms os side effects of treatment: TODO checkbox (enter type(s)):"
+        title="Persistent symptoms os side effects of treatment: (enter type(s)):"
       />
-      {/* TODO box for name="symptomsSideEffectsDescription" */}
 
       <GridContent fontWeight="bold" fontSize="xl" colSpan={6}>
         Treatment Ongoing
       </GridContent>
 
-      <GridFieldCompact
+      <GridCheckBox
         colSpan={6}
         name="needOngoingTreatment"
-        title="Need for ongoing (adjuvant) treatment for cancer: TODO Checkbox"
+        title="Need for ongoing (adjuvant) treatment for cancer: "
       />
 
       <GridContent fontSize="xl" colSpan={2}>
@@ -84,12 +79,12 @@ export default function Summary({}: Props): ReactElement {
       </GridContent>
 
       {/*TODO fillek */}
-      <GridFieldCompact colSpan={2} name="" title="" />
-      <GridFieldCompact colSpan={2} name="" title="" />
-      <GridFieldCompact colSpan={2} name="" title="" />
-      <GridFieldCompact colSpan={2} name="" title="" />
-      <GridFieldCompact colSpan={2} name="" title="" />
-      <GridFieldCompact colSpan={2} name="" title="" />
+      <GridFieldCompact colSpan={2} name="additionalTreatment[0].name" title="" />
+      <GridFieldCompact colSpan={2} title="" name="additionalTreatment[0].duration" />
+      <GridFieldCompact colSpan={2} title="" name="additionalTreatment[0].possibleEffects" />
+      <GridFieldCompact colSpan={2} name="additionalTreatment[1].name" title="" />
+      <GridFieldCompact colSpan={2} title="" name="additionalTreatment[1].duration" />
+      <GridFieldCompact colSpan={2} title="" name="additionalTreatment[1].possibleEffects" />
     </UniformGrid>
   );
 }

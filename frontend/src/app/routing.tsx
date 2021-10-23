@@ -46,7 +46,7 @@ const routesRequiringLogin = [
     }}
   />,
   <Route exact path="/contact" component={Contact} />,
-  <Route exact path="/treatment-plan" component={TreatmentPlan} />,
+  <Route exact path="/treatment-plan/:id" component={TreatmentPlan} />,
 ];
 
 const routesOnlyForDoctors = [<Route exact path="/articles/new" component={OneArticleCreator} />];
