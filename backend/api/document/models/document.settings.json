@@ -13,10 +13,14 @@
   "pluginOptions": {},
   "attributes": {
     "content": {
-      "type": "json"
+      "type": "text"
     },
     "patient": {
       "type": "integer"
+    },
+    "created": {
+      "type": "datetime",
+      "required": true
     }
   }
 }

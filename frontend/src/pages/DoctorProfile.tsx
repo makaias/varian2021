@@ -38,7 +38,7 @@ const DoctorProfile: FC = () => {
                   <Td>{patient['statistic']?.badges?.map(b => b.type)?.join(' ')}</Td>
                   <Td>
                     <Text color='primary.500'>
-                      <FaEnvelope size='1.5rem' cursor='pointer' />
+                      <FaEnvelope size='1.5rem' cursor='pointer' onClick={()=>alert('TODO: Open a modal with a form to submit RTE document')}/>
                     </Text>
                   </Td>
                 </Tr>

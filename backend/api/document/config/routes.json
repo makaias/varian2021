@@ -10,6 +10,14 @@
     },
     {
       "method": "GET",
+      "path": "/documents/me",
+      "handler": "document.getMe",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
       "path": "/documents/count",
       "handler": "document.count",
       "config": {
@@ -26,7 +34,7 @@
     },
     {
       "method": "POST",
-      "path": "/documents",
+      "path": "/documents/create",
       "handler": "document.create",
       "config": {
         "policies": []

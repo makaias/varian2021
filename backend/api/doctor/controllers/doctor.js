@@ -1,6 +1,7 @@
 "use strict";
 
 const Boom = require("boom");
+const { getArticles } = require("../../patient/controllers/patient");
 
 module.exports = {
   /**
@@ -135,6 +136,47 @@ module.exports = {
       throw Boom.forbidden("not doctor");
     }
     return await strapi.services.doctor.getPatients(ctx.state.user.id);
+  },
+
+  async getUsersOfArticle(ctx) {
+    if (ctx.state.user?.userType !== "DOCTOR") {
+      throw Boom.forbidden("not doctor");
+    }
+    const articleId = ctx.params.articleId;
+    const users = await strapi.services.doctor.getUsersOfArticle({
+      articleId: articleId,
+    });
+    return users;
+  },
+
+  async assignArticleToUser(ctx) {
+    if (ctx.state.user?.userType !== "DOCTOR") {
+      throw Boom.forbidden("not doctor");
+    }
+    const { articleId, userId } = ctx.params;
+    const entity = await strapi.services.doctor.createAssignment({
+      articleId: articleId,
+      userId: userId,
+    });
+    return entity;
+  },
+
+  async UnAssignArticleToUser(ctx) {
+    if (ctx.state.user?.userType !== "DOCTOR") {
+      throw Boom.forbidden("not doctor");
+    }
+    const { articleId, userId } = ctx.params;
+    const entity = await strapi.services.doctor.deleteAssignment({
+      articleId: articleId,
+      userId: userId,
+    });
+    return entity;
+  },
+  async getArticles(ctx) {
+    if (ctx.state.user?.userType !== "DOCTOR") {
+      throw Boom.forbidden("not doctor");
+    }
+    return await strapi.services.articles.find();
   },
 
   async schedule(ctx) {
