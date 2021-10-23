@@ -16,10 +16,13 @@
       "event",
       "fdescribe"
     ],
-    "no-empty-pattern": ["off"],
+    "no-empty-pattern": [
+      "off"
+    ],
     "@typescript-eslint/ban-types": "off",
     "prefer-const": "off",
     "@typescript-eslint/no-empty-function": "off",
-    "@typescript-eslint/no-empty-interface": "off"
+    "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/ban-ts-comment": "off"
   }
 }

@@ -18,13 +18,15 @@ export interface AuthBackend {
   isLoggedIn: boolean;
   logout: () => Promise<void>;
   login: (loginCommand: LoginCommand) => Promise<void>;
+  isDoctor: boolean;
 }
 
 export const AuthBackendContext = createContext<AuthBackend>({
   user: null,
   isLoggedIn: null,
   logout: null,
-  login: null
+  login: null,
+  isDoctor: null
 });
 
 interface Props {
@@ -91,27 +93,30 @@ const AuthBackend: FunctionComponent = ({children}: Props): JSX.Element => {
         }
       },
       bearerTokenSendingCommand: BearerTokenSendingCommand.DO_NOT_SEND
-    }).then(resp => {
-      BearerTokenService.setToken(resp.data['jwt']);
-      setUser(resp.data['user']);
-      setLoginInfoState(LoginInfoState.LOGGED_IN);
-    }).catch(() => {
-      setLoginInfoState(LoginInfoState.LOGGED_OUT);
-    });
+    })
+      .then((resp) => {
+        BearerTokenService.setToken(resp.data['jwt']);
+        setUser(resp.data['user']);
+        setLoginInfoState(LoginInfoState.LOGGED_IN);
+      })
+      .catch(() => {
+        setLoginInfoState(LoginInfoState.LOGGED_OUT);
+      });
   }
 
   const contextValue: AuthBackend = {
     user: user,
     isLoggedIn: isLoggedIn(),
     logout: logout,
-    login: attemptLogin
+    login: attemptLogin,
+    isDoctor: user?.userType === UserType.DOCTOR
   };
 
-  return <AuthBackendContext.Provider value={contextValue}>
-    {loginInfoState === LoginInfoState.UNKNOWN ? (
-      <p>Pending login...</p>
-    ) : children}
-  </AuthBackendContext.Provider>;
+  return (
+    <AuthBackendContext.Provider value={contextValue}>
+      {loginInfoState === LoginInfoState.UNKNOWN ? <p>Pending login...</p> : children}
+    </AuthBackendContext.Provider>
+  );
 };
 
 export default AuthBackend;

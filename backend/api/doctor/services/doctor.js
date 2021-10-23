@@ -12,9 +12,9 @@ module.exports = {
       confirmed: true,
       blocked: false,
       role: 1,
-      statistic
+      statistic,
     };
-    
+
     const patient = await strapi.plugins["users-permissions"].services.user.add(
       {
         ...body,
@@ -43,7 +43,7 @@ module.exports = {
   async getPatients(doctorId) {
     const patients = await strapi.plugins[
       "users-permissions"
-    ].services.user.fetch({ doctor: doctorId });
+    ].services.user.fetchAll({ doctor: doctorId });
     return patients;
   },
 };

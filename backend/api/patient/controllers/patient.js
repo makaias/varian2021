@@ -38,7 +38,6 @@ module.exports = {
     );
   },
 
-  // TODO test
   /**
    * @returns only uncompleted surveys
    */
@@ -55,7 +54,6 @@ module.exports = {
     return entity;
   },
 
-  // TODO test
   async getSurvey(ctx) {
     if (ctx.state.user?.userType !== "PATIENT") {
       throw Boom.forbidden("not patient");
@@ -89,6 +87,30 @@ module.exports = {
     if (surveyToFill.completed) {
       throw Boom.forbidden("already filled survey");
     }
+
+    const templateQuestions = surveyToFill.survey_template.questions;
+    const templateTargets = [];
+    for (const question of templateQuestions) {
+      templateTargets.push(question.target);
+    }
+
+    if (surveyResult.count !== templateTargets.count) {
+      throw Boom.forbidden("answers doesn't match question count");
+    }
+
+    // NOTE megyen, de még nincs felhasználva
+    const newStatistic = surveyResult.reduce(
+      (p, c, index) => ({
+        ...p,
+        [templateTargets[index]]: (p[templateTargets[index]] || 0) + c,
+      }),
+      {}
+    );
+
+    await strapi.services.statistics.addStatistic({
+      userId: patientId,
+      statistic: newStatistic,
+    });
 
     const entity = await strapi.services.survey.update(
       {
