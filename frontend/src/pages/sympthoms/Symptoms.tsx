@@ -26,17 +26,18 @@ export default function Symptoms(): ReactElement {
   return (
     <>
       <Text fontSize="xl" margin="2rem" textAlign="center">
-        Although the symptoms of these treatments may be scary, click on each module to read about them and to reduce the difficulties.
+        Although the symptoms of these treatments may be scary, click on each module to read about them and to reduce
+        the difficulties.
       </Text>
       <UniformGrid columns={[1, 2, 3]} gap={4}>
-        <SymptomTile link="skin">
+        <SymptomTile link="physical-activity">
           <VStack spacing="4">
             <Text align="center" fontSize="3xl">
               Physical activity
             </Text>
           </VStack>
         </SymptomTile>
-        <SymptomTile link="skin">
+        <SymptomTile link="healthy-eating">
           <VStack spacing="4">
             <Text align="center" fontSize="3xl">
               Healthy eating
@@ -52,7 +53,8 @@ export default function Symptoms(): ReactElement {
         </SymptomTile>
       </UniformGrid>
       <Text fontSize="xl" margin="2rem" textAlign="center">
-        Although the symptoms of these treatments may be scary, click on each module to read about them and to reduce the difficulties.
+        Although the symptoms of these treatments may be scary, click on each module to read about them and to reduce
+        the difficulties.
       </Text>
       <UniformGrid columns={[1, 2, 3]} gap={4}>
         <SymptomTile link="skin">
