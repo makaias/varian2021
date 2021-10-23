@@ -18,12 +18,13 @@ import MentalHealth from '../pages/MentalHealth';
 import InflammatorySkin from '../pages/InflammatorySkin';
 import HeadNeck from '../pages/HeadNeck';
 import Chest from '../pages/Chest';
+import Stomach from '../pages/Stomach';
 
 const symptomRoutes = [
   <Route exact path="/symptoms/inflammatory-skin" component={() => <InflammatorySkin />} />,
   <Route exact path="/symptoms/head-neck" component={() => <HeadNeck />} />,
   <Route exact path="/symptoms/chest" component={() => <Chest />} />,
-  <Route exact path="/symptoms/stomach" component={() => <OneSymptom title="Vomiting, Diarrhea" />} />,
+  <Route exact path="/symptoms/stomach" component={() => <Stomach />} />,
   <Route exact path="/symptoms/pelvis" component={() => <OneSymptom title="Rectal bleeding, Incontinence" />} />,
   <Route exact path="/symptoms/other" component={() => <OneSymptom title="Fatigue" />} />,
   <Route exact path="/symptoms/physical-activity" component={() => <PhysicalActivity />} />,
