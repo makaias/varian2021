@@ -11,6 +11,7 @@ import Login from '../pages/Login';
 import Scholar from '../pages/Scholar';
 import OneSymptom from '../pages/sympthoms/sympthom/OneSymptom';
 import Symptoms from '../pages/sympthoms/Symptoms';
+import TreatmentPlan from '../pages/TreatmentPlan';
 import User from '../pages/User';
 
 const symptomRoutes = [
@@ -45,6 +46,7 @@ const routesRequiringLogin = [
     }}
   />,
   <Route exact path="/contact" component={Contact} />,
+  <Route exact path="/treatment-plan" component={TreatmentPlan} />,
 ];
 
 const routesOnlyForDoctors = [<Route exact path="/articles/new" component={OneArticleCreator} />];
