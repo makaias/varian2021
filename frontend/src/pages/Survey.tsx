@@ -3,6 +3,7 @@ import {HStack, Text, VStack} from '@chakra-ui/layout';
 import {useToast} from '@chakra-ui/toast';
 import React, {ReactElement, useEffect, useState} from 'react';
 import {useHistory, useParams} from 'react-router';
+import {useLayoutConfig} from '../app/layout';
 import QuestionRouter from '../components/survay/QuestionRouter';
 import useEndpoint from '../hooks/useEndpoint';
 import {Survey as SurveyModel} from '../model/Survey';
@@ -11,6 +12,10 @@ import callJsonEndpoint from '../util/api/callJsonEndpoint';
 interface Props {}
 
 export default function Survey({}: Props): ReactElement {
+  useLayoutConfig({
+    bg: 'fancy',
+    title: 'Survey',
+  });
   const step = 1;
   const [responses, setResponses] = useState([]);
   const [begin, setBegin] = useState(0);
@@ -67,7 +72,7 @@ export default function Survey({}: Props): ReactElement {
   return (
     <>
       {usedEndpoint.succeeded && (
-        <VStack align="stretch">
+        <VStack align="stretch" marginTop="1rem">
           <Text textAlign="center">
             This questionnaire will help us understand your current condition. Please click on the circle that best
             describes your condition in the past fiew days.

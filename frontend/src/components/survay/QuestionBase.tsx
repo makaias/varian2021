@@ -9,7 +9,7 @@ interface Props {
 
 export default function QuestionBase({question, children, number}: PropsWithChildren<Props>): ReactElement {
   return (
-    <Flex padding={4} borderRadius={12} border="1px solid" bg="primary.50" borderColor="primary.500">
+    <Flex padding={4} borderRadius={12} border="1px solid" bg="white" borderColor="primary.500">
       <VStack align="stretch" width="100%">
         <Text>
           {number}. {question.text}

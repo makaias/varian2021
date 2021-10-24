@@ -1,5 +1,5 @@
 import {Button} from '@chakra-ui/button';
-import {Flex, Heading, HStack, Text, VStack} from '@chakra-ui/layout';
+import {Box, Divider, Flex, Heading, HStack, Text, VStack} from '@chakra-ui/layout';
 import React, {ReactElement} from 'react';
 import {Link} from 'react-router-dom';
 import {useLayoutConfig} from '../app/layout';
@@ -26,17 +26,18 @@ function SurveyTemplates() {
   if (usedEndpoint.succeeded)
     return (
       <>
-        <HStack justify="space-between">
-          <Heading>Survey Templates</Heading>
-          <Button as={Link} to="/survey-template">
-            Create
+        <HStack marginTop="1rem" justify="space-between">
+          <Button colorScheme="primary" as={Link} to="/survey-template">
+            Create new survey
           </Button>
         </HStack>
         <VStack align="stretch">
           {templates?.map((x) => (
-            <Link to={`/survey-template/${x.id}`}>
-              <Flex>{x.name}</Flex>
-            </Link>
+            <Box borderTop="1px" borderColor="primary.500" padding="1rem">
+              <Link to={`/survey-template/${x.id}`}>
+                <Flex>{x.name}</Flex>
+              </Link>
+            </Box>
           ))}
         </VStack>
       </>
@@ -62,9 +63,11 @@ function UnconfirmedSurveys() {
       <>
         <VStack align="stretch" py={6}>
           {templates?.map((x) => (
-            <Link to={`/survey/${x.id}`}>
-              <Flex>{x.survey_template.name}</Flex>
-            </Link>
+            <Box borderTop="1px" borderColor="primary.500" padding="1rem">
+              <Link to={`/survey/${x.id}`}>
+                <Flex>{x.survey_template.name}</Flex>
+              </Link>
+            </Box>
           ))}
           {!templates?.length && <Text textAlign="center">All survey filled</Text>}
         </VStack>
@@ -75,8 +78,11 @@ function UnconfirmedSurveys() {
 }
 
 export default function SurveyList({}: Props): ReactElement {
-  useLayoutConfig({title: 'Surveys', bg: 'plain'});
   const {user} = useAuthBackend();
+  {
+    user?.userType === 'DOCTOR' && useLayoutConfig({title: 'Survey templates', bg: 'plain'});
+    user?.userType === 'PATIENT' && useLayoutConfig({title: 'Surveys', bg: 'plain'});
+  }
 
   return (
     <VStack align="stretch">
