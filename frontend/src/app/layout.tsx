@@ -96,7 +96,6 @@ export default function Layout({children}: PropsWithChildren<{}>): ReactElement 
                   <NavItem to="/myDocuments">Documents</NavItem>
                   <NavItem to="/scholar">Publications</NavItem>
                   {!isDoctor && <NavItem to="/contact">Contact</NavItem>}
-                  {isDoctor && <NavItem to="/patients">Patients</NavItem>}
                   <NavItem onClick={() => logout()}>
                     <ExitIcon width="2em" />
                   </NavItem>
