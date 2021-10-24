@@ -197,10 +197,11 @@ interface Props {
 const UserCronEditor: FC<Props> = ({id}: Props) => {
   useLayoutConfig({title: 'Edit article', bg: 'plain'});
   const [selectedUserIdToAdviseFor, setSelectedUserIdToAdviseFor] = useState(null);
+  const toast = useToast();
 
   const usedAdvisedUsers = useEndpoint<User[]>({
     conf: {
-      url: '/survey-template/cron-users/' + id,
+      url: '/survey-template/cron-targets/' + id,
       method: 'GET',
     },
     enableRequest: true,
@@ -211,10 +212,32 @@ const UserCronEditor: FC<Props> = ({id}: Props) => {
       conf: {
         url: `/survey-template/insert-cron-user/${id}`,
         method: 'post',
+        data: {userId: selectedUserIdToAdviseFor},
       },
     })
       .then(() => {
         usedAdvisedUsers.reloadEndpoint();
+      })
+      .catch((err) => {
+        alert('Error while advising article :/');
+      });
+  }
+
+  function sendSurvey() {
+    callJsonEndpoint({
+      conf: {
+        url: `/doctors/send-survey/${id}`,
+        method: 'post',
+        data: {userId: selectedUserIdToAdviseFor},
+      },
+    })
+      .then(() => {
+        toast({
+          title: 'Survay sent',
+          status: 'success',
+          duration: 9000,
+          isClosable: true,
+        });
       })
       .catch((err) => {
         alert('Error while advising article :/');
@@ -226,6 +249,7 @@ const UserCronEditor: FC<Props> = ({id}: Props) => {
       conf: {
         url: '/survey-template/remove-cron-user/' + id,
         method: 'post',
+        data: {userId: userId},
       },
     })
       .then(() => {
@@ -254,7 +278,7 @@ const UserCronEditor: FC<Props> = ({id}: Props) => {
                     <Td>{patient.firstname + ' ' + patient.surename}</Td>
                     <Td>
                       <Button colorScheme="primary" onClick={() => doUnadvise(patient.id)}>
-                        Unadvise
+                        Remove from cron
                       </Button>
                     </Td>
                   </Tr>
@@ -269,7 +293,10 @@ const UserCronEditor: FC<Props> = ({id}: Props) => {
                 />
               </Box>
               <Button colorScheme="primary" onClick={() => doAdvise()}>
-                Advise
+                Add to cron
+              </Button>
+              <Button colorScheme="primary" onClick={() => sendSurvey()}>
+                Send survey
               </Button>
             </HStack>
           </>

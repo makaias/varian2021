@@ -12,6 +12,21 @@ module.exports = {
    *   "email": ""
    *  }
    */
+
+  async sendSurvey(ctx) {
+    if (ctx.state.user?.userType !== "DOCTOR") {
+      throw Boom.forbidden("not doctor");
+    }
+    const { surveyTemplateId } = ctx.params;
+    const { userId } = ctx.request.body;
+
+    if (!userId || !surveyTemplateId) {
+      throw Boom.badRequest("user and template is necessary");
+    }
+
+    return strapi.services.doctor.sendSurvey(surveyTemplateId, userId);
+  },
+
   async createUser(ctx) {
     if (ctx.state.user?.userType !== "DOCTOR") {
       throw Boom.forbidden("not doctor");
