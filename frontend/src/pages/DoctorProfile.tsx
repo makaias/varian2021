@@ -87,6 +87,7 @@ const DoctorProfile: FC = () => {
         isOpen={!!patientIdToSubmitDocumentTo}
         onClose={() => setPatientIdToSubmitDocumentTo(null)}
       />
+      <br />
     </>
   );
 };

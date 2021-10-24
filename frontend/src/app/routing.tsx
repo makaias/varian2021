@@ -26,7 +26,6 @@ import Stomach from '../pages/Stomach';
 import Survey from '../pages/Survey';
 import Symptoms from '../pages/symptoms/Symptoms';
 import TreatmentPlan from '../pages/TreatmentPlan';
-import User from '../pages/User';
 
 const symptomRoutes = [
   <Route exact path="/symptoms/inflammatory-skin" component={() => <InflammatorySkin />} />,
@@ -46,7 +45,6 @@ const routesNotRequiringLogin = [
 ];
 
 const routesRequiringLogin = [
-  <Route exact path="/user" component={User} />,
   <Route exact path="/symptoms" component={Symptoms} />,
   ...symptomRoutes,
   <Route exact path="/scholar" component={Scholar} />,

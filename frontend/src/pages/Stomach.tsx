@@ -101,6 +101,7 @@ export default function Stomach({}: Props): ReactElement {
           <ListItem>Change the schedule or dose of therapy</ListItem>
         </UnorderedList>
       </UnorderedList>
+      <br />
     </>
   );
 }

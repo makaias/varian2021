@@ -10,30 +10,31 @@ import AllUserQueryingUserSelector from '../../components/selector/AllUserQueryi
 import {isValidNonNegativeNumber} from '../../util/CommonValidators';
 
 const DoctorDocuments: FC = () => {
-  useLayoutConfig({title: 'My Documents', bg: 'fancy'});
+  useLayoutConfig({title: 'Document history', bg: 'plain'});
 
   const [selectedUserId, setSelectedUserId] = useState(null);
 
   const usedEndpoint = useEndpoint<UserDocument[]>({
     conf: {
-      url: `/documents?patient=${selectedUserId}&_sort=created:DESC`
+      url: `/documents?patient=${selectedUserId}&_sort=created:DESC`,
     },
     enableRequest: isValidNonNegativeNumber(selectedUserId),
-    deps: [selectedUserId]
+    deps: [selectedUserId],
   });
 
   return (
-    <VStack w='100%' align='stretch' pt={2} maxWidth='container.xl'>
+    <>
+      <VStack w="100%" align="stretch" pt={2} maxWidth="container.xl">
+        <AllUserQueryingUserSelector userId={selectedUserId} setUserId={setSelectedUserId} />
 
-      <AllUserQueryingUserSelector userId={selectedUserId} setUserId={setSelectedUserId} />
+        {usedEndpoint.pending && <Spinner />}
+        {usedEndpoint.failed && <FailureParagraph onRetry={usedEndpoint.reloadEndpoint} />}
 
-      {usedEndpoint.pending && <Spinner />}
-      {usedEndpoint.failed && <FailureParagraph onRetry={usedEndpoint.reloadEndpoint} />}
+        {usedEndpoint.succeeded && <UserDocumentList documents={usedEndpoint.data} />}
+      </VStack>
 
-      {usedEndpoint.succeeded && (
-        <UserDocumentList documents={usedEndpoint.data} />
-      )}
-    </VStack>
+      <br />
+    </>
   );
 };
 

@@ -118,6 +118,7 @@ export default function HealthyEating({}: Props): ReactElement {
           </Text>
         </VStack>
       </UniformGrid>
+      <br />
     </>
   );
 }

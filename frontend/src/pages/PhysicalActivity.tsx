@@ -151,6 +151,7 @@ export default function PhysicalActivity({}: Props): ReactElement {
           </UnorderedList>
         </VStack>
       </UniformGrid>
+      <br />
     </>
   );
 }

@@ -106,6 +106,7 @@ export default function Pelvis({}: Props): ReactElement {
           and vagina. These treatments can also help with bladder problems such as urinary frequency and urgency.
         </ListItem>
       </UnorderedList>
+      <br />
     </>
   );
 }
