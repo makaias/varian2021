@@ -19,6 +19,7 @@ import InflammatorySkin from '../pages/InflammatorySkin';
 import Login from '../pages/Login';
 import MentalHealth from '../pages/MentalHealth';
 import Other from '../pages/Other';
+import Patients from '../pages/Patients';
 import Pelvis from '../pages/Pelvis';
 import PhysicalActivity from '../pages/PhysicalActivity';
 import Scholar from '../pages/Scholar';
@@ -59,8 +60,6 @@ const routesRequiringLogin = [
   <Route exact path="/articles" component={ArticleList} />,
   <Route exact path="/survey/:id" component={Survey} />,
   <Route exact path="/surveys" component={SurveyList} />,
-  <Route exact path="/survey-template" component={CreateSurveyTemplate} />,
-  <Route exact path="/survey-template/:id" component={CreateSurveyTemplate} />,
   <Route
     exact
     path="/myDocuments"
@@ -81,14 +80,18 @@ const routesRequiringLogin = [
     }}
   />,
   <Route exact path="/profile" component={ProfilePageSwitcher} />,
-
   <Route exact path="/contact" component={Contact} />,
   <Route exact path="/treatments" component={Treatments} />,
   <Route exact path="/treatment-plan/:id" component={TreatmentPlan} />,
-  <Route exact path="/create-treatment-plan" component={CreateTreatmentPlan} />,
 ];
 
-const routesOnlyForDoctors = [<Route exact path="/articles/new" component={OneArticleCreator} />];
+const routesOnlyForDoctors = [
+  <Route exact path="/articles/new" component={OneArticleCreator} />,
+  <Route exact path="/create-treatment-plan" component={CreateTreatmentPlan} />,
+  <Route exact path="/survey-template" component={CreateSurveyTemplate} />,
+  <Route exact path="/survey-template/:id" component={CreateSurveyTemplate} />,
+  <Route exact path="/patients" component={Patients} />,
+];
 
 export default function Routing(): ReactElement {
   const authBackend = useAuthBackend();
