@@ -89,7 +89,7 @@ module.exports = {
       throw Boom.forbidden("not doctor");
     }
     return await strapi.services.doctor.createTreatmentPlan({
-      body: ctx.request.body,
+      body: { ...ctx.request.body, doctor: ctx.state.user.id },
     });
   },
 

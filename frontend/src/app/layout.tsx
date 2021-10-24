@@ -39,7 +39,7 @@ export function useLayoutConfig(config: LayoutConfig) {
 const defaultLayoutConfig: LayoutConfig = {bg: 'plain'};
 
 export default function Layout({children}: PropsWithChildren<{}>): ReactElement {
-  const {user, logout, isLoggedIn} = useAuthBackend();
+  const {user, logout, isLoggedIn, isDoctor} = useAuthBackend();
   const [_layoutConfig, setLayoutConfig] = useState(null);
   const layoutConfig = _layoutConfig || defaultLayoutConfig;
 
@@ -88,8 +88,8 @@ export default function Layout({children}: PropsWithChildren<{}>): ReactElement 
                       'Profile'
                     )}
                   </NavItem>
-
-                  <NavItem to="/results">Results</NavItem>
+                  {!isDoctor && <NavItem to="/results">Results</NavItem>}
+                  {isDoctor && <NavItem to="/treatments">Treatments</NavItem>}
                   <NavItem to="/survey">Surveys</NavItem>
                   <NavItem to="/symptoms">Symptoms</NavItem>
                   <NavItem to="/articles">Articles</NavItem>
