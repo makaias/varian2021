@@ -2,7 +2,7 @@ export interface SurgicalProcedure {}
 
 export interface ClinicVisit {
   provider: string;
-  when: Date;
+  howOften: Date;
 }
 
 export interface SurvillenceTest {
