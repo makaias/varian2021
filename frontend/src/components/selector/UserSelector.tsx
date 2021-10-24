@@ -12,6 +12,7 @@ interface Props {
 const UserSelector: FC<Props> = (props) => {
   return (
     <Select
+      borderColor="primary.500"
       placeholder="Select user"
       value={props.userId}
       onChange={(e) => {

@@ -1,4 +1,5 @@
-import {Container, Text, VStack} from '@chakra-ui/layout';
+import {Box, Container, Text, VStack} from '@chakra-ui/layout';
+import {Image} from '@chakra-ui/image';
 import React, {FC, useState} from 'react';
 import {RichTextEditor} from '../../components/rte/RichTextEditor';
 import useEndpoint from '../../hooks/useEndpoint';
@@ -10,6 +11,7 @@ import {useAuthBackend} from '../../context/AuthBackend';
 import MyEditable from '../../components/MyEditable';
 import callJsonEndpoint from '../../util/api/callJsonEndpoint';
 import UsersArticleIsAdvisedForEditor from './component/UsersArticleIsAdvisedForEditor';
+import {isValidNonEmptyString} from '../../util/CommonValidators';
 
 interface Props {
   id: number;
@@ -33,13 +35,13 @@ const OneArticle: FC<Props> = (props) => {
 
   const usedEndpoint = useEndpoint<Article>({
     conf: {
-      url: `/articles/${props.id}`
+      url: `/articles/${props.id}`,
     },
     deps: [props.id],
     onSuccess: (resp) => {
       const article = resp.data;
       setStateFromArticle(article);
-    }
+    },
   });
 
   function doSaveArticle() {
@@ -48,21 +50,21 @@ const OneArticle: FC<Props> = (props) => {
         url: `/articles/${usedEndpoint.data.id}`,
         method: 'PUT',
         params: {
-          id: usedEndpoint.data.id
+          id: usedEndpoint.data.id,
         },
         data: {
           title: title,
           headline: headline,
           headlineImageUrl: headlineImageUrl,
-          description: description
-        }
-      }
+          description: description,
+        },
+      },
     })
       .then(() => {
         setIsEdited(false);
         usedEndpoint.reloadEndpoint();
       })
-      .catch(err => {
+      .catch((err) => {
         alert('Error while saving article :/');
       });
   }
@@ -73,55 +75,59 @@ const OneArticle: FC<Props> = (props) => {
   }
 
   return (
-    <Container pt={8} maxWidth='container.xl'>
-      {usedEndpoint.pending && (
-        <Spinner />
-      )}
-      {usedEndpoint.failed && (
-        <FailureParagraph onRetry={usedEndpoint.reloadEndpoint} />
-      )}
-
+    <Container pt={8} maxWidth="container.xl">
+      {usedEndpoint.pending && <Spinner />}
+      {usedEndpoint.failed && <FailureParagraph onRetry={usedEndpoint.reloadEndpoint} />}
       {usedEndpoint.succeeded && (
-        <VStack align='stretch' spacing={6}>
-          <Text fontSize='4xl'>
-            <MyEditable value={title} onChange={setTitle} isEditable={isEdited} />
-          </Text>
-          <HStack align='stretch' justify={'space-between'} spacing={6}>
-            <Text fontWeight={'bold'}>
-              <MyEditable value={headline} onChange={setHeadline} isEditable={isEdited} />
-            </Text>
-            <Container maxHeight='container.sm' textAlign={'right'}>
-              <img src={headlineImageUrl} alt={title} style={{height: 100}} />
-            </Container>
-          </HStack>
+        <>
+          <VStack align="stretch" paddingBottom="1rem">
+            <HStack justify="space-between">
+              <Text fontSize="4xl">
+                <MyEditable value={title} onChange={setTitle} isEditable={isEdited} />
+              </Text>
+              {authBackend.isDoctor && !isEdited && (
+                <>
+                  <Button colorScheme="primary" onClick={() => setIsEdited(true)}>
+                    Edit article
+                  </Button>
+                </>
+              )}
+            </HStack>
+            <HStack justify="space-between">
+              <Text fontWeight={'bold'}>
+                <MyEditable value={headline} onChange={setHeadline} isEditable={isEdited} />
+              </Text>
 
-          {authBackend.isDoctor && !isEdited && (
-            <>
-              <Button onClick={() => setIsEdited(true)}>Edit article</Button>
-            </>
-          )}
+              {isValidNonEmptyString(headlineImageUrl) && (
+                <Box boxSize="5rem">
+                  <Image src={headlineImageUrl} alt={title} />
+                </Box>
+              )}
+            </HStack>
+          </VStack>
 
-          <RichTextEditor value={description} setValue={(newValue => setDescription(JSON.stringify(newValue)))}
-                          readOnly={!isEdited} />
+          <RichTextEditor
+            value={description}
+            setValue={(newValue) => setDescription(JSON.stringify(newValue))}
+            readOnly={!isEdited}
+          />
 
           {isEdited && (
             <>
               <HStack>
-                <Button onClick={() => doSaveArticle()}>Save article</Button>
-                <Button onClick={() => doCancelEdit()}>Cancel edit</Button>
+                <Button colorScheme="primary" onClick={() => doSaveArticle()}>
+                  Save article
+                </Button>
+                <Button colorScheme="primary" onClick={() => doCancelEdit()}>
+                  Cancel edit
+                </Button>
               </HStack>
             </>
           )}
 
-
-          {authBackend.isDoctor && (
-            <UsersArticleIsAdvisedForEditor articleId={props.id} />
-          )}
-
-        </VStack>
+          {authBackend.isDoctor && <UsersArticleIsAdvisedForEditor articleId={props.id} />}
+        </>
       )}
-
-
     </Container>
   );
 };

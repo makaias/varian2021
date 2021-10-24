@@ -9,8 +9,16 @@ interface Props {
 
 const MyEditable: FC<Props> = (props) => {
   return (
-    <Editable value={props.value} onChange={props.onChange} isDisabled={!props.isEditable}>
-      <EditablePreview />
+    <Editable
+      padding="5px"
+      border="1px"
+      borderColor="primary.500"
+      borderRadius={6}
+      value={props.value}
+      onChange={props.onChange}
+      isDisabled={!props.isEditable}
+    >
+      <EditablePreview width="15rem" maxWidth="100%" />
       <EditableInput />
     </Editable>
   );
