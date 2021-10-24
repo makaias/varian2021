@@ -12,6 +12,7 @@ import Dashboard from '../pages/dashboard';
 import DoctorProfile from '../pages/DoctorProfile';
 import CurrentUserDocuments from '../pages/document/CurrentUserDocuments';
 import DoctorDocuments from '../pages/document/DoctorDocuments';
+import CreateSurveyTemplate from '../pages/EditSurveyTemplate';
 import HeadNeck from '../pages/HeadNeck';
 import HealthyEating from '../pages/HealthyEating';
 import InflammatorySkin from '../pages/InflammatorySkin';
@@ -23,6 +24,7 @@ import PhysicalActivity from '../pages/PhysicalActivity';
 import Scholar from '../pages/Scholar';
 import Stomach from '../pages/Stomach';
 import Survey from '../pages/Survey';
+import SurveyList from '../pages/SurveyList';
 import Symptoms from '../pages/symptoms/Symptoms';
 import TreatmentPlan from '../pages/TreatmentPlan';
 import Treatments from '../pages/Treatments';
@@ -56,6 +58,9 @@ const routesRequiringLogin = [
   <Route exact path="/scholar" component={Scholar} />,
   <Route exact path="/articles" component={ArticleList} />,
   <Route exact path="/survey/:id" component={Survey} />,
+  <Route exact path="/surveys" component={SurveyList} />,
+  <Route exact path="/survey-template" component={CreateSurveyTemplate} />,
+  <Route exact path="/survey-template/:id" component={CreateSurveyTemplate} />,
   <Route
     exact
     path="/myDocuments"

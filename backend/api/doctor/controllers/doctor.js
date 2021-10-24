@@ -12,6 +12,21 @@ module.exports = {
    *   "email": ""
    *  }
    */
+
+  async sendSurvey(ctx) {
+    if (ctx.state.user?.userType !== "DOCTOR") {
+      throw Boom.forbidden("not doctor");
+    }
+    const { surveyTemplateId } = ctx.params;
+    const { userId } = ctx.request.body;
+
+    if (!userId || !surveyTemplateId) {
+      throw Boom.badRequest("user and template is necessary");
+    }
+
+    return strapi.services.doctor.sendSurvey(surveyTemplateId, userId);
+  },
+
   async createUser(ctx) {
     if (ctx.state.user?.userType !== "DOCTOR") {
       throw Boom.forbidden("not doctor");
@@ -126,9 +141,21 @@ module.exports = {
     if (ctx.state.user?.userType !== "DOCTOR") {
       throw Boom.forbidden("not doctor");
     }
-    return await strapi.services.doctor.createSurveyTemplate({
-      body: ctx.request.body,
+    const doctorId = ctx.state.user?.id;
+    const body = ctx.request.body;
+    const entity = await strapi.services.doctor.createSurveyTemplate({
+      ...body,
+      owner: doctorId,
     });
+    return entity;
+  },
+
+  async GetSurveyTemplates(ctx) {
+    if (ctx.state.user?.userType !== "DOCTOR") {
+      throw Boom.forbidden("not doctor");
+    }
+    const doctorId = ctx.state.user?.id;
+    return await strapi.services["survey-template"].find({ owner: doctorId });
   },
 
   async patients(ctx) {

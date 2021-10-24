@@ -34,10 +34,10 @@ function getLast(array, inverseIndex) {
 function calculateDifference(array) {
   const currentValue = getLast(array, 0);
   const previousValue = getLast(array, 1);
-  if (currentValue === null || previousValue === null) {
+  if (currentValue?.value == null || previousValue?.value == null) {
     return null;
   }
-  return currentValue - previousValue;
+  return currentValue.value - previousValue.value;
 }
 
 module.exports = {

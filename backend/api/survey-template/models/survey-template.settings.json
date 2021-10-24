@@ -26,6 +26,9 @@
     "cronTargets": {
       "plugin": "users-permissions",
       "collection": "user"
+    },
+    "name": {
+      "type": "string"
     }
   }
 }

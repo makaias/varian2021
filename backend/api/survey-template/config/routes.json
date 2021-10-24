@@ -47,6 +47,30 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "POST",
+      "path": "/survey-template/insert-cron-user/:id",
+      "handler": "survey-template.insertCronUser",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/survey-template/remove-cron-user/:id",
+      "handler": "survey-template.removeCronUser",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/survey-template/cron-targets/:id",
+      "handler": "survey-template.getCronTargets",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }

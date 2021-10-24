@@ -10,6 +10,14 @@
     },
     {
       "method": "POST",
+      "path": "/doctors/send-survey/:surveyTemplateId",
+      "handler": "doctor.sendSurvey",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
       "path": "/doctors/create-treatment-plan",
       "handler": "doctor.createTreatmentPlan",
       "config": {
@@ -36,6 +44,14 @@
       "method": "GET",
       "path": "/doctors/patients",
       "handler": "doctor.patients",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/doctors/survey-templates",
+      "handler": "doctor.GetSurveyTemplates",
       "config": {
         "policies": []
       }

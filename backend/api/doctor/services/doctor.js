@@ -3,6 +3,14 @@ const Boom = require("boom");
 const { update } = require("../../patient/services/patient");
 
 module.exports = {
+  async sendSurvey(surveyTemplateId, userId) {
+    return strapi.services.survey.create({
+      complete: false,
+      survey_template: surveyTemplateId,
+      user_to_complete: userId,
+    });
+  },
+
   //body based on patient.create
   async createUser(body, doctor) {
     // NOTE ezeket az adatokat később állítani
@@ -35,7 +43,7 @@ module.exports = {
     return await strapi.services.document.create(body);
   },
 
-  async createSurveyTemplate({ body }) {
+  async createSurveyTemplate(body) {
     const surveyTemplateId = await strapi.services["survey-template"].create(
       body
     );

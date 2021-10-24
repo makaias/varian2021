@@ -88,6 +88,8 @@ export default function Layout({children}: PropsWithChildren<{}>): ReactElement 
                       'Profile'
                     )}
                   </NavItem>
+                  <NavItem to="/results">Results</NavItem>
+                  <NavItem to="/surveys">Surveys</NavItem>
                   {!isDoctor && <NavItem to="/results">Results</NavItem>}
                   {isDoctor && <NavItem to="/treatments">Treatments</NavItem>}
                   <NavItem to="/survey">Surveys</NavItem>
