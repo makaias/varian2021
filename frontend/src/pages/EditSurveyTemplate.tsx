@@ -218,7 +218,7 @@ interface Props {
 }
 
 const UserCronEditor: FC<Props> = ({id}: Props) => {
-  useLayoutConfig({title: 'Edit article', bg: 'plain'});
+  useLayoutConfig({title: 'Edit survey', bg: 'plain'});
   const [selectedUserIdToAdviseFor, setSelectedUserIdToAdviseFor] = useState(null);
   const toast = useToast();
 
