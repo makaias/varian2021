@@ -7,7 +7,7 @@
   },
   "options": {},
   "attributes": {
-    "eatingBehavior": {
+    "value": {
       "type": "decimal"
     }
   }
