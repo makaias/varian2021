@@ -1,14 +1,14 @@
+import {Button} from '@chakra-ui/button';
 import {Box, HStack, Text, VStack} from '@chakra-ui/layout';
 import {Spinner} from '@chakra-ui/react';
 import {FC} from 'react';
 import {NavLink} from 'react-router-dom';
+import {useLayoutConfig} from '../../app/layout';
 import FailureParagraph from '../../components/FailureParagraph';
+import {BookIcon} from '../../components/icons';
+import {useAuthBackend} from '../../context/AuthBackend';
 import useEndpoint from '../../hooks/useEndpoint';
 import {Article} from '../../model/Article';
-import {useAuthBackend} from '../../context/AuthBackend';
-import {Button} from '@chakra-ui/button';
-import {BookIcon} from '../../components/icons';
-import {useLayoutConfig} from '../../app/layout';
 
 const ArticleList: FC = () => {
   useLayoutConfig({title: 'Reading', bg: 'plain'});
@@ -28,7 +28,7 @@ const ArticleList: FC = () => {
         {authBackend.isDoctor ? (
           <></>
         ) : (
-          <>Medically approved Articles hand-picked by your doctor, based on your individual state</>
+          <>Medically approved Articles hand-picked for you by your doctor</>
         )}
       </Text>
 

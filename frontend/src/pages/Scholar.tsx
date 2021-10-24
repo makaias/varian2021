@@ -1,4 +1,4 @@
-import React, {PropsWithChildren, ReactElement} from 'react';
+import React, {ReactElement} from 'react';
 import {useLayoutConfig} from '../app/layout';
 import ScholarBlock from '../components/scholar/ScholarBlock';
 
@@ -9,7 +9,7 @@ export default function Scholar({}: Props): ReactElement {
     bg: 'plain',
     title: 'Look for publications',
   });
-
+  
   return (
     <>
       <ScholarBlock keyword="cancer" itemCount={5}></ScholarBlock>

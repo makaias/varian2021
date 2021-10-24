@@ -1,4 +1,4 @@
-import React, {ReactElement} from 'react';
+import React, {FC, ReactElement} from 'react';
 import {Route, Switch, useParams} from 'react-router-dom';
 import CreateTreatmentPlan from '../components/treatment-plant/CreateTreatmentPlan';
 import {useAuthBackend} from '../context/AuthBackend';
@@ -14,7 +14,6 @@ import CurrentUserDocuments from '../pages/document/CurrentUserDocuments';
 import DoctorDocuments from '../pages/document/DoctorDocuments';
 import HeadNeck from '../pages/HeadNeck';
 import HealthyEating from '../pages/HealthyEating';
-import Home from '../pages/Home';
 import InflammatorySkin from '../pages/InflammatorySkin';
 import Login from '../pages/Login';
 import MentalHealth from '../pages/MentalHealth';
@@ -39,12 +38,19 @@ const symptomRoutes = [
   <Route exact path="/symptoms/mental-health" component={() => <MentalHealth />} />,
 ];
 
-const routesNotRequiringLogin = [
-  <Route exact path="/" component={Home} />,
-  <Route exact path="/contact" component={Contact} />,
-];
+const ProfilePageSwitcher: FC = () => {
+  const authBackend = useAuthBackend();
+  if (authBackend.user?.userType === UserType.DOCTOR) {
+    return <DoctorProfile />;
+  }
+  return <Dashboard patientId={authBackend.user?.id} />;
+};
+
+const routesNotRequiringLogin = [<Route exact path="/contact" component={Contact} />];
 
 const routesRequiringLogin = [
+  <Route exact path="/user" component={User} />,
+  <Route exact path="/" component={ProfilePageSwitcher} />,
   <Route exact path="/symptoms" component={Symptoms} />,
   ...symptomRoutes,
   <Route exact path="/scholar" component={Scholar} />,
@@ -69,17 +75,8 @@ const routesRequiringLogin = [
       return <OneArticle id={id} />;
     }}
   />,
-  <Route
-    exact
-    path="/profile"
-    component={() => {
-      const authBackend = useAuthBackend();
-      if (authBackend.user?.userType === UserType.DOCTOR) {
-        return <DoctorProfile />;
-      }
-      return <Dashboard patientId={authBackend.user?.id} />;
-    }}
-  />,
+  <Route exact path="/profile" component={ProfilePageSwitcher} />,
+
   <Route exact path="/contact" component={Contact} />,
   <Route exact path="/treatment-plan/:id" component={TreatmentPlan} />,
   <Route exact path="/create-treatment-plan" component={CreateTreatmentPlan} />,
@@ -92,8 +89,6 @@ export default function Routing(): ReactElement {
 
   return (
     <Switch>
-      <Route exact path="/" component={Home} />
-
       {authBackend.isLoggedIn && routesRequiringLogin}
       {authBackend.isLoggedIn && authBackend.isDoctor && routesOnlyForDoctors}
       {routesNotRequiringLogin}

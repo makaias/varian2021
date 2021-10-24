@@ -1,22 +1,25 @@
 import {Button} from '@chakra-ui/button';
 import {Input, InputGroup, InputRightElement} from '@chakra-ui/input';
 import {Box, Flex, HStack, LinkBox, LinkOverlay, Text} from '@chakra-ui/layout';
-import React from 'react';
+import React, {useState} from 'react';
 import useEndpoint from '../../hooks/useEndpoint';
 import Spinner from '../Spinner';
 
 interface Props {
-  keyword: string;
+  defaultKeyword: string;
   itemCount: number;
 }
 
-export default function ScholarBlock({keyword, itemCount}: Props) {
+export default function ScholarBlock({defaultKeyword: defaultKeyword, itemCount}: Props) {
+  const [keyword, setKeyword] = useState<string>(defaultKeyword);
+
   const usedEndpoint = useEndpoint({
     conf: {
       url: `/scholar/${keyword}?num=${itemCount}`,
     },
-    deps: [keyword, itemCount],
+    deps: [itemCount],
   });
+
   const results = usedEndpoint.data;
   const handleClick = () => usedEndpoint.reloadEndpoint();
   return (
@@ -32,6 +35,8 @@ export default function ScholarBlock({keyword, itemCount}: Props) {
           <HStack justify="center">
             <InputGroup width="md" margin="1rem">
               <Input
+                value={keyword}
+                onChange={(e) => setKeyword(e.target.value)}
                 backgroundColor="white"
                 variant="outline"
                 placeholder="Search..."

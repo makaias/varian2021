@@ -14,7 +14,7 @@ import {
 import {faBars} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import React, {PropsWithChildren, ReactElement, ReactNode, useContext, useEffect, useState} from 'react';
-import {Link, useLocation} from 'react-router-dom';
+import {Link, NavLink, useLocation} from 'react-router-dom';
 import {ExitIcon} from '../components/icons';
 import {useAuthBackend} from '../context/AuthBackend';
 import logo from './logo.svg';
@@ -39,7 +39,7 @@ export function useLayoutConfig(config: LayoutConfig) {
 const defaultLayoutConfig: LayoutConfig = {bg: 'plain'};
 
 export default function Layout({children}: PropsWithChildren<{}>): ReactElement {
-  const {user, logout} = useAuthBackend();
+  const {user, logout, isLoggedIn} = useAuthBackend();
   const [_layoutConfig, setLayoutConfig] = useState(null);
   const layoutConfig = _layoutConfig || defaultLayoutConfig;
 
@@ -59,9 +59,11 @@ export default function Layout({children}: PropsWithChildren<{}>): ReactElement 
       <Box bg="white" p={3}>
         <Container maxWidth="container.lg">
           {!user && (
-            <HStack justify="center">
-              <Image height="5rem" src={logo} />
-            </HStack>
+            <NavLink to="/profile">
+              <HStack justify="center">
+                <Image height="5rem" src={logo} />
+              </HStack>
+            </NavLink>
           )}
           {user && (
             <>
@@ -74,14 +76,24 @@ export default function Layout({children}: PropsWithChildren<{}>): ReactElement 
               )}
               <Collapse in={menuIsOpen || isDesktopWidth}>
                 <Stack direction={isDesktopWidth ? 'row' : 'column'} justify="space-between" align="stretch">
-                  <Image height="3rem" src={logo} />
-                  <NavItem to="/profile">Profile</NavItem>
+                  <NavLink to="/profile">
+                    <Image height="3rem" src={logo} />
+                  </NavLink>
+                  <NavItem to="/profile">
+                    {isLoggedIn ? (
+                      <>
+                        {user.firstname}&nbsp;{user.surename}{' '}
+                      </>
+                    ) : (
+                      'Profile'
+                    )}
+                  </NavItem>
 
                   <NavItem to="/results">Results</NavItem>
                   <NavItem to="/survey">Surveys</NavItem>
                   <NavItem to="/symptoms">Symptoms</NavItem>
-                  <NavItem to="/articles">Personalised Reading</NavItem>
-                  <NavItem to="/myDocuments">My Documents</NavItem>
+                  <NavItem to="/articles">Articles</NavItem>
+                  <NavItem to="/myDocuments">Documents</NavItem>
                   <NavItem to="/scholar">Publications</NavItem>
                   <NavItem to="/contact">Contact</NavItem>
                   <NavItem onClick={() => logout()}>
@@ -111,9 +123,10 @@ interface NavItemProps {
   to?: string;
   children: ReactNode;
   onClick?: () => void;
+  p?: number;
 }
 
-function NavItem({children, to, onClick}: NavItemProps) {
+function NavItem({children, to, onClick, p = 2}: NavItemProps) {
   let location = null;
   try {
     location = useLocation();
@@ -128,7 +141,7 @@ function NavItem({children, to, onClick}: NavItemProps) {
         as={Link}
         to={to}
         onClick={onClick}
-        p={2}
+        p={p}
         fontWeight={active ? 'bold' : 'normal'}
         align="center"
         justify="center"
@@ -141,7 +154,7 @@ function NavItem({children, to, onClick}: NavItemProps) {
     <Flex
       as="div"
       onClick={onClick}
-      p={2}
+      p={p}
       fontWeight={active ? 'bold' : 'normal'}
       align="center"
       justify="center"
