@@ -58,8 +58,6 @@ const routesRequiringLogin = [
   <Route exact path="/articles" component={ArticleList} />,
   <Route exact path="/survey/:id" component={Survey} />,
   <Route exact path="/surveys" component={SurveyList} />,
-  <Route exact path="/survey-template" component={CreateSurveyTemplate} />,
-  <Route exact path="/survey-template/:id" component={CreateSurveyTemplate} />,
   <Route
     exact
     path="/myDocuments"
@@ -80,13 +78,16 @@ const routesRequiringLogin = [
     }}
   />,
   <Route exact path="/profile" component={ProfilePageSwitcher} />,
-
   <Route exact path="/contact" component={Contact} />,
   <Route exact path="/treatment-plan/:id" component={TreatmentPlan} />,
-  <Route exact path="/create-treatment-plan" component={CreateTreatmentPlan} />,
 ];
 
-const routesOnlyForDoctors = [<Route exact path="/articles/new" component={OneArticleCreator} />];
+const routesOnlyForDoctors = [
+  <Route exact path="/articles/new" component={OneArticleCreator} />,
+  <Route exact path="/create-treatment-plan" component={CreateTreatmentPlan} />,
+  <Route exact path="/survey-template" component={CreateSurveyTemplate} />,
+  <Route exact path="/survey-template/:id" component={CreateSurveyTemplate} />,
+];
 
 export default function Routing(): ReactElement {
   const authBackend = useAuthBackend();
