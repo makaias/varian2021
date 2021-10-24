@@ -1,15 +1,18 @@
 import {Button} from '@chakra-ui/button';
 import {FormControl, FormLabel} from '@chakra-ui/form-control';
-import {Text, VStack} from '@chakra-ui/layout';
-import {CloseButton, HStack, useToast} from '@chakra-ui/react';
+import {Box, Container, Text, VStack} from '@chakra-ui/layout';
+import {CloseButton, HStack, Table, Tbody, Td, Tr, useToast} from '@chakra-ui/react';
 import {FieldArray, Form, Formik} from 'formik';
-import React, {ReactElement} from 'react';
+import React, {FC, ReactElement, useState} from 'react';
 import {useHistory, useParams} from 'react-router';
 import {Link} from 'react-router-dom';
 import {useLayoutConfig} from '../app/layout';
+import FailureParagraph from '../components/FailureParagraph';
 import FormikInput from '../components/formik/FormikInput';
+import AllUserQueryingUserSelector from '../components/selector/AllUserQueryingUserSelector';
 import Spinner from '../components/Spinner';
 import UniformGrid from '../components/UniformGrid';
+import {User} from '../context/AuthBackend';
 import useEndpoint from '../hooks/useEndpoint';
 import {SurveyQuestion, SurveyTemplate} from '../model/SurveyTemplate';
 import callJsonEndpoint from '../util/api/callJsonEndpoint';
@@ -116,13 +119,9 @@ export default function EditSurveyTemplate({}: Props): ReactElement {
           <Button type="submit">Save</Button>
         </VStack>
       </Formik>
-      {id && <UserAssignPanel id={id} />}
+      {id && <UserCronEditor id={id} />}
     </>
   );
-}
-
-function UserAssignPanel({id}: {id: number}) {
-  return null;
 }
 
 interface QuestionEditorProps {
@@ -190,3 +189,93 @@ function QuestionEditor({question, index, remove}: QuestionEditorProps) {
     </VStack>
   );
 }
+
+interface Props {
+  id: number;
+}
+
+const UserCronEditor: FC<Props> = ({id}: Props) => {
+  useLayoutConfig({title: 'Edit article', bg: 'plain'});
+  const [selectedUserIdToAdviseFor, setSelectedUserIdToAdviseFor] = useState(null);
+
+  const usedAdvisedUsers = useEndpoint<User[]>({
+    conf: {
+      url: '/survey-template/cron-users/' + id,
+      method: 'GET',
+    },
+    enableRequest: true,
+  });
+
+  function doAdvise() {
+    callJsonEndpoint({
+      conf: {
+        url: `/survey-template/insert-cron-user/${id}`,
+        method: 'post',
+      },
+    })
+      .then(() => {
+        usedAdvisedUsers.reloadEndpoint();
+      })
+      .catch((err) => {
+        alert('Error while advising article :/');
+      });
+  }
+
+  function doUnadvise(userId: number) {
+    callJsonEndpoint({
+      conf: {
+        url: '/survey-template/remove-cron-user/' + id,
+        method: 'post',
+      },
+    })
+      .then(() => {
+        usedAdvisedUsers.reloadEndpoint();
+      })
+      .catch((err) => {
+        alert('Error while unadvising article :/');
+      });
+  }
+
+  return (
+    <>
+      <Container pt={8} maxWidth="container.xl">
+        <Text fontSize="xl" align="center">
+          Users this survey is auto assigned
+        </Text>
+
+        {usedAdvisedUsers.pending && <Spinner />}
+        {usedAdvisedUsers.failed && <FailureParagraph onRetry={usedAdvisedUsers.reloadEndpoint} />}
+        {usedAdvisedUsers.succeeded && (
+          <>
+            <Table variant="simple">
+              <Tbody>
+                {usedAdvisedUsers.data.map((patient) => (
+                  <Tr key={patient.id} borderTop="1px" borderColor="primary.500">
+                    <Td>{patient.firstname + ' ' + patient.surename}</Td>
+                    <Td>
+                      <Button colorScheme="primary" onClick={() => doUnadvise(patient.id)}>
+                        Unadvise
+                      </Button>
+                    </Td>
+                  </Tr>
+                ))}
+              </Tbody>
+            </Table>
+            <HStack justify="center">
+              <Box maxWidth="100%" width="25rem">
+                <AllUserQueryingUserSelector
+                  userId={selectedUserIdToAdviseFor}
+                  setUserId={setSelectedUserIdToAdviseFor}
+                />
+              </Box>
+              <Button colorScheme="primary" onClick={() => doAdvise()}>
+                Advise
+              </Button>
+            </HStack>
+          </>
+        )}
+      </Container>
+      <br />
+    </>
+  );
+};
