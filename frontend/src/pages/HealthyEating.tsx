@@ -1,7 +1,9 @@
-import {ListItem, Text, UnorderedList, VStack} from '@chakra-ui/layout';
+import {Image} from '@chakra-ui/image';
+import {Flex, ListItem, Text, UnorderedList, VStack} from '@chakra-ui/layout';
 import React, {ReactElement} from 'react';
 import {useLayoutConfig} from '../app/layout';
 import UniformGrid from '../components/UniformGrid';
+import HealthyImage from './healthy_eating.jpg';
 
 interface Props {}
 
@@ -43,6 +45,9 @@ export default function HealthyEating({}: Props): ReactElement {
             </ListItem>
           </UnorderedList>
         </VStack>
+        <Flex boxSize="md" align="center">
+          <Image src={HealthyImage} alt="physical activity women" />
+        </Flex>
         <VStack align="flex-start">
           <Text marginTop="1rem" marginBottom="1rem" fontWeight="bold">
             During Treatment

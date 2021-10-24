@@ -1,6 +1,5 @@
 import {
   Button,
-  Flex,
   FormControl,
   FormLabel,
   HStack,
@@ -124,23 +123,25 @@ const DoctorProfile: FC = () => {
                     <Td>{patient.firstname + ' ' + patient.surename}</Td>
                     <Td>{patient['statistic']?.badges?.map((b) => b.type)?.join(' ')}</Td>
                     <Td>
-                      <Flex color="primary.500" justify="flex-end">
-                        <FaEnvelope
-                          size="1.5rem"
-                          cursor="pointer"
+                      <HStack color="primary.500" justify="flex-end">
+                        <Button
+                          variant="outline"
                           onClick={() => {
                             setPatientIdToSubmitDocumentTo(patient.id);
                             setPatientNameToSubmitDocumentTo(patient.firstname + ' ' + patient.surename);
                           }}
-                        />
-                        <FaFile
-                          size="1.5rem"
-                          cursor="pointer"
+                        >
+                          <FaEnvelope size="1.5rem" />
+                        </Button>
+                        <Button
+                          variant="outline"
                           onClick={() => {
                             createTreatment(patient.id);
                           }}
-                        />
-                      </Flex>
+                        >
+                          <FaFile size="1.5rem" />
+                        </Button>
+                      </HStack>
                     </Td>
                   </Tr>
                 ))}
@@ -215,7 +216,7 @@ function CreatePatientModal({onCreated, onClose}: CreatePatientModalProps) {
               </FormControl>
               <FormControl>
                 <FormLabel>Surname</FormLabel>
-                <FormikInput type="text" name="surname" required />
+                <FormikInput type="text" name="surename" required />
               </FormControl>
               <FormControl>
                 <FormLabel>Date of birth</FormLabel>

@@ -1,7 +1,9 @@
-import {ListItem, Text, UnorderedList, VStack} from '@chakra-ui/layout';
+import {Flex, ListItem, Text, UnorderedList, VStack} from '@chakra-ui/layout';
+import {Image} from '@chakra-ui/react';
 import React, {ReactElement} from 'react';
 import {useLayoutConfig} from '../app/layout';
 import UniformGrid from '../components/UniformGrid';
+import PhysicalImage from './physical_activity.jpeg';
 
 interface Props {}
 
@@ -43,6 +45,9 @@ export default function PhysicalActivity({}: Props): ReactElement {
             <ListItem>Reduce treatment side effects</ListItem>
           </UnorderedList>
         </VStack>
+        <Flex boxSize="md" align="center">
+          <Image src={PhysicalImage} alt="physical activity women" />
+        </Flex>
         <VStack align="flex-start">
           <Text marginTop="1rem" marginBottom="1rem" fontWeight="bold">
             General physical activity recommendations
