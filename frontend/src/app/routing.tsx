@@ -27,6 +27,7 @@ import Survey from '../pages/Survey';
 import SurveyList from '../pages/SurveyList';
 import Symptoms from '../pages/symptoms/Symptoms';
 import TreatmentPlan from '../pages/TreatmentPlan';
+import Treatments from '../pages/Treatments';
 
 const symptomRoutes = [
   <Route exact path="/symptoms/inflammatory-skin" component={() => <InflammatorySkin />} />,
@@ -79,6 +80,7 @@ const routesRequiringLogin = [
   />,
   <Route exact path="/profile" component={ProfilePageSwitcher} />,
   <Route exact path="/contact" component={Contact} />,
+  <Route exact path="/treatments" component={Treatments} />,
   <Route exact path="/treatment-plan/:id" component={TreatmentPlan} />,
 ];
 
