@@ -89,7 +89,6 @@ export default function Layout({children}: PropsWithChildren<{}>): ReactElement 
                     )}
                   </NavItem>
                   <NavItem to="/surveys">Surveys</NavItem>
-                  {!isDoctor && <NavItem to="/results">Results</NavItem>}
                   {isDoctor && <NavItem to="/treatments">Treatments</NavItem>}
                   <NavItem to="/symptoms">Symptoms</NavItem>
                   <NavItem to="/articles">Articles</NavItem>
