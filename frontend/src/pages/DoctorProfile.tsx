@@ -1,13 +1,12 @@
-import {Text} from '@chakra-ui/layout';
+import {Flex, Table, Tbody, Td, Tr, VStack} from '@chakra-ui/react';
 import React, {FC, useState} from 'react';
-import useEndpoint from '../hooks/useEndpoint';
-import Spinner from '../components/Spinner';
-import FailureParagraph from '../components/FailureParagraph';
-import {Table, Tbody, Td, Tr, VStack} from '@chakra-ui/react';
-import {User} from '../context/AuthBackend';
 import {FaEnvelope} from 'react-icons/all';
-import SubmitDocumentsModal from '../components/submitDocument/SubmitDocumentsModal';
 import {useLayoutConfig} from '../app/layout';
+import FailureParagraph from '../components/FailureParagraph';
+import Spinner from '../components/Spinner';
+import SubmitDocumentsModal from '../components/submitDocument/SubmitDocumentsModal';
+import {User} from '../context/AuthBackend';
+import useEndpoint from '../hooks/useEndpoint';
 
 const getColor = (value) => {
   if (value < -3) {
@@ -64,7 +63,7 @@ const DoctorProfile: FC = () => {
                   <Td>{patient.firstname + ' ' + patient.surename}</Td>
                   <Td>{patient['statistic']?.badges?.map((b) => b.type)?.join(' ')}</Td>
                   <Td>
-                    <Text color="primary.500">
+                    <Flex color="primary.500" justify="flex-end">
                       <FaEnvelope
                         size="1.5rem"
                         cursor="pointer"
@@ -73,7 +72,7 @@ const DoctorProfile: FC = () => {
                           setPatientNameToSubmitDocumentTo(patient.firstname + ' ' + patient.surename);
                         }}
                       />
-                    </Text>
+                    </Flex>
                   </Td>
                 </Tr>
               ))}

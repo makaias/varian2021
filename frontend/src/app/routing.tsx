@@ -49,7 +49,6 @@ const ProfilePageSwitcher: FC = () => {
 const routesNotRequiringLogin = [<Route exact path="/contact" component={Contact} />];
 
 const routesRequiringLogin = [
-  <Route exact path="/user" component={User} />,
   <Route exact path="/" component={ProfilePageSwitcher} />,
   <Route exact path="/symptoms" component={Symptoms} />,
   ...symptomRoutes,
