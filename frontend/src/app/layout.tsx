@@ -88,16 +88,15 @@ export default function Layout({children}: PropsWithChildren<{}>): ReactElement 
                       'Profile'
                     )}
                   </NavItem>
-                  <NavItem to="/results">Results</NavItem>
                   <NavItem to="/surveys">Surveys</NavItem>
                   {!isDoctor && <NavItem to="/results">Results</NavItem>}
                   {isDoctor && <NavItem to="/treatments">Treatments</NavItem>}
-                  <NavItem to="/survey">Surveys</NavItem>
                   <NavItem to="/symptoms">Symptoms</NavItem>
                   <NavItem to="/articles">Articles</NavItem>
                   <NavItem to="/myDocuments">Documents</NavItem>
                   <NavItem to="/scholar">Publications</NavItem>
-                  <NavItem to="/contact">Contact</NavItem>
+                  {!isDoctor && <NavItem to="/contact">Contact</NavItem>}
+                  {isDoctor && <NavItem to="/patients">Patients</NavItem>}
                   <NavItem onClick={() => logout()}>
                     <ExitIcon width="2em" />
                   </NavItem>

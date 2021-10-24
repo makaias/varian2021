@@ -19,6 +19,7 @@ import InflammatorySkin from '../pages/InflammatorySkin';
 import Login from '../pages/Login';
 import MentalHealth from '../pages/MentalHealth';
 import Other from '../pages/Other';
+import Patients from '../pages/Patients';
 import Pelvis from '../pages/Pelvis';
 import PhysicalActivity from '../pages/PhysicalActivity';
 import Scholar from '../pages/Scholar';
@@ -89,6 +90,7 @@ const routesOnlyForDoctors = [
   <Route exact path="/create-treatment-plan" component={CreateTreatmentPlan} />,
   <Route exact path="/survey-template" component={CreateSurveyTemplate} />,
   <Route exact path="/survey-template/:id" component={CreateSurveyTemplate} />,
+  <Route exact path="/patients" component={Patients} />,
 ];
 
 export default function Routing(): ReactElement {
