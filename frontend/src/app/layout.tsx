@@ -146,12 +146,14 @@ function NavItem({children, to, onClick, p = 2}: NavItemProps) {
         align="center"
         justify="center"
         _hover={{bg: 'gray.100'}}
+        cursor="pointer"
       >
         {children}
       </Flex>
     );
   return (
     <Flex
+      cursor="pointer"
       as="div"
       onClick={onClick}
       p={p}
