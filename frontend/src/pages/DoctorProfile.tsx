@@ -14,11 +14,13 @@ import {
   Tbody,
   Td,
   Tr,
+  useToast,
   VStack,
 } from '@chakra-ui/react';
 import {Form, Formik} from 'formik';
 import React, {FC, useState} from 'react';
-import {FaEnvelope} from 'react-icons/all';
+import {FaEnvelope, FaFile} from 'react-icons/all';
+import {useHistory} from 'react-router-dom';
 import {useLayoutConfig} from '../app/layout';
 import FailureParagraph from '../components/FailureParagraph';
 import FormikApiError from '../components/formik/FormikApiError';
@@ -28,6 +30,7 @@ import Spinner from '../components/Spinner';
 import SubmitDocumentsModal from '../components/submitDocument/SubmitDocumentsModal';
 import {User} from '../context/AuthBackend';
 import useEndpoint from '../hooks/useEndpoint';
+import {TreatmentPlan} from '../model/TreatmentPlan';
 import callJsonEndpoint from '../util/api/callJsonEndpoint';
 
 const getColor = (value) => {
@@ -64,6 +67,29 @@ const DoctorProfile: FC = () => {
       url: `/doctors/patients`,
     },
   });
+  const history = useHistory();
+  const toast = useToast();
+
+  const createTreatment = async (userId) => {
+    try {
+      const tp = await callJsonEndpoint<TreatmentPlan>({
+        conf: {
+          url: '/doctors/create-treatment-plan',
+          method: 'POST',
+          data: {user: userId},
+        },
+      });
+      history.push(`/treatment-plan/${tp.data.id}`);
+    } catch (err) {
+      toast({
+        title: 'Error',
+        description: err.message,
+        status: 'error',
+        duration: 9000,
+        isClosable: true,
+      });
+    }
+  };
 
   return (
     <>
@@ -105,6 +131,13 @@ const DoctorProfile: FC = () => {
                           onClick={() => {
                             setPatientIdToSubmitDocumentTo(patient.id);
                             setPatientNameToSubmitDocumentTo(patient.firstname + ' ' + patient.surename);
+                          }}
+                        />
+                        <FaFile
+                          size="1.5rem"
+                          cursor="pointer"
+                          onClick={() => {
+                            createTreatment(patient.id);
                           }}
                         />
                       </Flex>
@@ -155,7 +188,8 @@ function CreatePatientModal({onCreated, onClose}: CreatePatientModalProps) {
             initialValues={{complete: true}}
             onSubmit={async (v, formik) => {
               try {
-                await registerUser(v as any as User);
+                const user = await registerUser(v as any as User);
+                onCreated(user);
               } catch (error) {
                 formik.setFieldError('__api__', error.message);
               }
