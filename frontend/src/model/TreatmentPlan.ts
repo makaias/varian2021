@@ -46,6 +46,7 @@ export interface TreatmentPlan {
   otherComments: string;
   preparedBy: string;
   deliveredOn: Date;
+  created_at: Date;
 }
 
 interface AdditionalTreatment {
