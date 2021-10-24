@@ -126,9 +126,13 @@ module.exports = {
     if (ctx.state.user?.userType !== "DOCTOR") {
       throw Boom.forbidden("not doctor");
     }
-    return await strapi.services.doctor.createSurveyTemplate({
-      body: ctx.request.body,
+    const doctorId = ctx.state.user?.id;
+    const body = ctx.request.body;
+    const entity = await strapi.services.doctor.createSurveyTemplate({
+      ...body,
+      owner: doctorId,
     });
+    return entity;
   },
 
   async GetSurveyTemplates(ctx) {
