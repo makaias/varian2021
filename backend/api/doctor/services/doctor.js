@@ -15,14 +15,21 @@ module.exports = {
   async createUser(body, doctor) {
     // NOTE ezeket az adatokat később állítani
 
-    const statistic = await strapi.services.statistics.create();
+    const defaultStatiszticData = {
+      Badges: [],
+      LifeStatisfaction: [],
+      EatingBehavior: [],
+      Sleeping: [],
+      PhysicalActivity: [],
+      Improvement: 0,
+    };
+
     const defaultData = {
       userType: "PATIENT",
       provider: "local",
       confirmed: true,
       blocked: false,
       role: 1,
-      statistic,
     };
 
     const patient = await strapi.plugins["users-permissions"].services.user.add(
@@ -32,6 +39,9 @@ module.exports = {
         doctor,
       }
     );
+
+    const user = patient.id;
+    await strapi.services.statistics.create({ ...defaultStatiszticData, user });
     return patient;
   },
 
