@@ -1,5 +1,5 @@
 import {Button} from '@chakra-ui/button';
-import {Heading, HStack, Text, VStack} from '@chakra-ui/layout';
+import {Flex, Heading, HStack, VStack} from '@chakra-ui/layout';
 import React, {ReactElement} from 'react';
 import {Link} from 'react-router-dom';
 import Spinner from '../components/Spinner';
@@ -26,13 +26,15 @@ function SurveyTemplates() {
       <>
         <HStack justify="space-between">
           <Heading>Survey Templates</Heading>
-          <Button as={Link} to="/create-survey-template">
+          <Button as={Link} to="/survey-template">
             Create
           </Button>
         </HStack>
         <VStack align="stretch">
           {templates?.map((x) => (
-            <Text>{x.name}</Text>
+            <Link to={`/survey-template/${x.id}`}>
+              <Flex>{x.name}</Flex>
+            </Link>
           ))}
         </VStack>
       </>
