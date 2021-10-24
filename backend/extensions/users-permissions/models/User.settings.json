@@ -81,10 +81,6 @@
     "documents": {
       "collection": "document"
     },
-    "treatment_plans": {
-      "collection": "treatment-plan",
-      "via": "user"
-    },
     "doctor": {
       "plugin": "users-permissions",
       "model": "user"
@@ -99,6 +95,10 @@
     "articles": {
       "via": "users_permissions_users",
       "collection": "articles"
+    },
+    "treatment_plans": {
+      "via": "patient",
+      "collection": "treatment-plan"
     }
   }
 }

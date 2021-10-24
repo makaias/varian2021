@@ -99,8 +99,12 @@
     "deliveredOn": {
       "type": "string"
     },
-    "user": {
-      "via": "treatment_plans",
+    "patient": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "treatment_plans"
+    },
+    "doctor": {
       "plugin": "users-permissions",
       "model": "user"
     }
