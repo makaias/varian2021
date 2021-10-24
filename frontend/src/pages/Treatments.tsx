@@ -1,19 +1,17 @@
 import {Button} from '@chakra-ui/button';
-import {Box, Flex, Grid, HStack, Text, VStack} from '@chakra-ui/layout';
+import {Box, Grid, Text, VStack} from '@chakra-ui/layout';
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+import interactionPlugin from '@fullcalendar/interaction'; // needed for dayClick
+import FullCalendar from '@fullcalendar/react'; // must go before plugins
 import React, {ReactElement, useState} from 'react';
 import {NavLink} from 'react-router-dom';
 import {useLayoutConfig} from '../app/layout';
+import CalendarPopup from '../components/CalendarPopup';
 import FailureParagraph from '../components/FailureParagraph';
 import Spinner from '../components/Spinner';
-import UniformGrid from '../components/UniformGrid';
 import {useAuthBackend} from '../context/AuthBackend';
 import useEndpoint from '../hooks/useEndpoint';
 import {TreatmentPlan} from '../model/TreatmentPlan';
-import FullCalendar from '@fullcalendar/react'; // must go before plugins
-import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
-import interactionPlugin from '@fullcalendar/interaction'; // needed for dayClick
-import {isValidTzFormattedDateTime} from '../util/CommonValidators';
-import CalendarPopup from '../components/CalendarPopup';
 
 interface Props {}
 

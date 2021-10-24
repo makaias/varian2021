@@ -9,12 +9,12 @@ interface Props {
 
 const UserDocumentList: FC<Props> = (props) => {
   return (
-    <VStack w='100%' align='stretch' pt={2} maxWidth='container.xl'>
-      <VStack align='stretch' spacing={6}>
+    <VStack w="100%" align="stretch" pt={2} maxWidth="container.xl">
+      <VStack align="stretch" spacing={6}>
         {props.documents.map((document) => (
           <div key={document.id}>
             <DocumentItem document={document} />
-            <br/>
+            <br />
           </div>
         ))}
       </VStack>
@@ -25,9 +25,9 @@ const UserDocumentList: FC<Props> = (props) => {
 function DocumentItem({document}: {document: UserDocument}) {
   return (
     <>
-      <Box p={3} bg='white' borderRadius={6} border='2px solid' borderColor='primary.500'>
-        <VStack spacing={0} align='flex-start'>
-          <Text color='primary.500' fontSize='xl'>
+      <Box p={3} bg="white" borderRadius={6} border="2px solid" borderColor="primary.500">
+        <VStack spacing={0} align="stretch">
+          <Text color="primary.500" fontSize="xl">
             <b>{new Date(document.created_at).toString()}</b>
           </Text>
           <RichTextEditor readOnly={true} value={document.content} />
