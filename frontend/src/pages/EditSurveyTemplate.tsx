@@ -9,6 +9,7 @@ import {Link} from 'react-router-dom';
 import {useLayoutConfig} from '../app/layout';
 import FailureParagraph from '../components/FailureParagraph';
 import FormikInput from '../components/formik/FormikInput';
+import FormikSelect from '../components/formik/FormikSelect';
 import AllUserQueryingUserSelector from '../components/selector/AllUserQueryingUserSelector';
 import Spinner from '../components/Spinner';
 import UniformGrid from '../components/UniformGrid';
@@ -91,6 +92,7 @@ export default function EditSurveyTemplate({}: Props): ReactElement {
                         minLabel: '',
                         maxLabel: '',
                         options: [],
+                        target: 'SOCIAL',
                       })
                     }
                   >
@@ -102,6 +104,7 @@ export default function EditSurveyTemplate({}: Props): ReactElement {
                         __component: 'survey.yes-no-question',
                         yesValue: 1,
                         noValue: 0,
+                        target: 'SOCIAL',
                       })
                     }
                   >
@@ -141,6 +144,16 @@ function QuestionEditor({question, index, remove}: QuestionEditorProps) {
             <FormLabel>Question</FormLabel>
             <FormikInput name={`questions[${index}].text`} />
           </FormControl>
+          <FormControl>
+            <FormLabel>Question type</FormLabel>
+            <FormikSelect name={`questions[${index}].target`}>
+              <option value="SOCIAL">Social</option>
+              <option value="SLEEPING">Sleeping</option>
+              <option value="LIFE">Life</option>
+              <option value="EATING">Eating</option>
+              <option value="PHYSICAL">Physical</option>
+            </FormikSelect>
+          </FormControl>
           <UniformGrid columns={[1, 2, 2]} gap={4}>
             <FormControl>
               <FormLabel>No Value</FormLabel>
@@ -159,6 +172,16 @@ function QuestionEditor({question, index, remove}: QuestionEditorProps) {
           <FormControl>
             <FormLabel>Question</FormLabel>
             <FormikInput required name={`questions[${index}].text`} />
+          </FormControl>
+          <FormControl>
+            <FormLabel>Question type</FormLabel>
+            <FormikSelect name={`questions[${index}].target`}>
+              <option value="SOCIAL">Social</option>
+              <option value="SLEEPING">Sleeping</option>
+              <option value="LIFE">Life</option>
+              <option value="EATING">Eating</option>
+              <option value="PHYSICAL">Physical</option>
+            </FormikSelect>
           </FormControl>
           <UniformGrid columns={[1, 2, 2]} gap={4}>
             <FormControl>
