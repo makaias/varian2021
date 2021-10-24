@@ -31,6 +31,7 @@ module.exports = {
     if (ctx.state.user?.userType !== "DOCTOR") {
       throw Boom.forbidden("not doctor");
     }
+
     return await strapi.services.doctor.createUser(
       ctx.request.body,
       ctx.state.user?.id
