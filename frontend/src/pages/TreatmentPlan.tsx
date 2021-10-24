@@ -1,13 +1,18 @@
-import {Formik} from 'formik';
+import {Box} from '@chakra-ui/layout';
 import React, {ReactElement} from 'react';
-import {General} from '../components/treatment-plant';
+import {useParams} from 'react-router';
+import {useLayoutConfig} from '../app/layout';
+import TreatmentPlanDocument from '../components/treatment-plant/TreatmentPlanDocument';
 
 interface Props {}
 
 export default function TreatmentPlan({}: Props): ReactElement {
+  useLayoutConfig({title: 'Treatment summary', bg: 'plain'});
+  const {id} = useParams<{id}>();
+
   return (
-    <Formik initialValues={{patientName: 'asd'}} onSubmit={() => {}}>
-      <General />
-    </Formik>
+    <Box py={4}>
+      <TreatmentPlanDocument id={id} />;
+    </Box>
   );
 }

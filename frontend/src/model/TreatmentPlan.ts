@@ -33,14 +33,23 @@ export interface TreatmentPlan {
   bodyAreaTreated: string;
   endYear: number;
   systemicTherapy: boolean;
-  agentsUsed: string[];
+  agentsUsed: {
+    used: boolean;
+    endYear: number;
+  }[];
   sympthomsSideEffects: boolean;
   symptomsSideEffectsDescription: string;
   needOngoingTreatment: boolean;
-  additionalTreatment: string[];
+  additionalTreatment: AdditionalTreatment[];
   clinicVisits: ClinicVisit[];
   survillenceTests: SurvillenceTest[];
   otherComments: string;
   preparedBy: string;
   deliveredOn: Date;
+}
+
+interface AdditionalTreatment {
+  name: string;
+  duration: string;
+  possibleEffects: string;
 }

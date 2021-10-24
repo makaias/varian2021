@@ -16,14 +16,13 @@
       "type": "string"
     },
     "phone": {
-      "type": "string",
-      "regex": "^[+]?[0-9]+"
+      "type": "string"
     },
     "patientDOB": {
       "type": "string"
     },
     "email": {
-      "type": "email"
+      "type": "string"
     },
     "primaryCareProvider": {
       "type": "string"
@@ -44,8 +43,7 @@
       "type": "string"
     },
     "diagnosysDate": {
-      "type": "integer",
-      "min": 1900
+      "type": "integer"
     },
     "stage": {
       "type": "string"
@@ -57,7 +55,7 @@
       "type": "json"
     },
     "surgicalProcedure": {
-      "type": "richtext"
+      "type": "string"
     },
     "radiation": {
       "type": "boolean"
@@ -66,8 +64,7 @@
       "type": "string"
     },
     "endYear": {
-      "type": "integer",
-      "min": 1900
+      "type": "integer"
     },
     "systemicTherapy": {
       "type": "boolean"
@@ -79,7 +76,7 @@
       "type": "boolean"
     },
     "symptomsSideEffectsDescription": {
-      "type": "richtext"
+      "type": "string"
     },
     "needOngoingTreatment": {
       "type": "boolean"
@@ -100,7 +97,7 @@
       "type": "string"
     },
     "deliveredOn": {
-      "type": "date"
+      "type": "string"
     },
     "user": {
       "via": "treatment_plans",
