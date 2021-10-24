@@ -9,15 +9,16 @@ import useEndpoint from '../hooks/useEndpoint';
 import {Survey} from '../model/Survey';
 import {SurveyTemplate} from '../model/SurveyTemplate';
 
-interface Props {}
+interface Props {
+}
 
 function SurveyTemplates() {
   const usedEndpoint = useEndpoint<SurveyTemplate[]>({
     conf: {
       url: '/doctors/survey-templates',
-      method: 'GET',
+      method: 'GET'
     },
-    enableRequest: true,
+    enableRequest: true
   });
   const templates = usedEndpoint.data;
 
@@ -26,14 +27,14 @@ function SurveyTemplates() {
   if (usedEndpoint.succeeded)
     return (
       <>
-        <HStack marginTop="1rem" justify="space-between">
-          <Button colorScheme="primary" as={Link} to="/survey-template">
+        <HStack marginTop='1rem' justify='space-between'>
+          <Button colorScheme='primary' as={Link} to='/survey-template'>
             Create new survey
           </Button>
         </HStack>
-        <VStack align="stretch">
+        <VStack align='stretch'>
           {templates?.map((x) => (
-            <Box borderTop="1px" borderColor="primary.500" padding="1rem">
+            <Box borderTop='1px' borderColor='primary.500' padding='1rem'>
               <Link to={`/survey-template/${x.id}`}>
                 <Flex>{x.name}</Flex>
               </Link>
@@ -50,9 +51,9 @@ function UnconfirmedSurveys() {
   const usedEndpoint = useEndpoint<Survey[]>({
     conf: {
       url: '/patients/surveys',
-      method: 'GET',
+      method: 'GET'
     },
-    enableRequest: true,
+    enableRequest: true
   });
   const templates = usedEndpoint.data;
 
@@ -61,15 +62,18 @@ function UnconfirmedSurveys() {
   if (usedEndpoint.succeeded)
     return (
       <>
-        <VStack align="stretch" py={6}>
-          {templates?.map((x) => (
-            <Box borderTop="1px" borderColor="primary.500" padding="1rem">
-              <Link to={`/survey/${x.id}`}>
-                <Flex>{x.survey_template.name}</Flex>
+        <VStack align='stretch' py={6}>
+          {templates?.map((survey) => (
+            <Box key={survey.id} borderTop='1px' borderColor='primary.500' padding='1rem'>
+              <Link to={`/survey/${survey.id}`}>
+                <HStack justify="space-between">
+                  <Flex>{survey.survey_template.name}</Flex>
+                  <Flex>{new Date(survey['created_at'])?.toString?.()}</Flex>
+                </HStack>
               </Link>
             </Box>
           ))}
-          {!templates?.length && <Text textAlign="center">All survey filled</Text>}
+          {!templates?.length && <Text textAlign='center'>All survey filled</Text>}
         </VStack>
       </>
     );
@@ -85,7 +89,7 @@ export default function SurveyList({}: Props): ReactElement {
   }
 
   return (
-    <VStack align="stretch">
+    <VStack align='stretch'>
       {user?.userType === 'DOCTOR' && <SurveyTemplates />}
       {user?.userType === 'PATIENT' && <UnconfirmedSurveys />}
     </VStack>

@@ -55,7 +55,7 @@ module.exports = {
         const element = statistic[key];
 
         if (!targetCodeMap[key]) {
-          throw Boom.notAcceptable("statistic type doesn't exist ", key);
+          throw Boom.notAcceptable("statistic type doesn't exist: " + key, key);
         }
 
         const keyInStatistics = targetCodeMap[key];
