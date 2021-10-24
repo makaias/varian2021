@@ -132,6 +132,7 @@ export default function MentalHealth({}: Props): ReactElement {
           </UnorderedList>
         </VStack>
       </UniformGrid>
+      <br />
     </>
   );
 }

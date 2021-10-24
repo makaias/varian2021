@@ -115,6 +115,7 @@ export default function Dashboard(props: Props) {
           </UniformGrid>
         </VStack>
       )}
+      <br />
     </>
   );
 }

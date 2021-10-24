@@ -145,6 +145,7 @@ export default function InflammatorySkin({}: Props): ReactElement {
           </ListItem>
         </UnorderedList>
       </VStack>
+      <br />
     </>
   );
 }

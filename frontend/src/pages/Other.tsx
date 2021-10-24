@@ -57,6 +57,7 @@ export default function Other({}: Props): ReactElement {
           contributing to your fatigue.
         </ListItem>
       </UnorderedList>
+      <br />
     </>
   );
 }

@@ -1,5 +1,7 @@
 {
-  "dependencies": {},
+  "dependencies": {
+    "loadash": "^1.0.0"
+  },
   "scripts": {
     "develop": "cd backend; npm run develop"
   }

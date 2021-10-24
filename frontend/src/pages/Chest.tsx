@@ -109,6 +109,7 @@ export default function Chest({}: Props): ReactElement {
           <UnorderedList pl={4}></UnorderedList>
         </VStack>
       </UniformGrid>
+      <br />
     </>
   );
 }

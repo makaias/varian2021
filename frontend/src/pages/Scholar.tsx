@@ -9,6 +9,11 @@ export default function Scholar({}: Props): ReactElement {
     bg: 'plain',
     title: 'Look for publications',
   });
-
-  return <ScholarBlock defaultKeyword="cancer" itemCount={5}></ScholarBlock>;
+  
+  return (
+    <>
+      <ScholarBlock keyword="cancer" itemCount={5}></ScholarBlock>
+      <br />
+    </>
+  );
 }
