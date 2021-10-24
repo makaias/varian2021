@@ -42,6 +42,14 @@
     },
     {
       "method": "GET",
+      "path": "/doctors/survey-templates",
+      "handler": "doctor.GetSurveyTemplates",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
       "path": "/doctors/list-users-article-is-advised-for/:articleId",
       "handler": "doctor.getUsersOfArticle",
       "config": {

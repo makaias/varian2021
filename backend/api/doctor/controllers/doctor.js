@@ -131,6 +131,14 @@ module.exports = {
     });
   },
 
+  async GetSurveyTemplates(ctx) {
+    if (ctx.state.user?.userType !== "DOCTOR") {
+      throw Boom.forbidden("not doctor");
+    }
+    const doctorId = ctx.state.user?.id;
+    return await strapi.services["survey-template"].find({ owner: doctorId });
+  },
+
   async patients(ctx) {
     if (ctx.state.user?.userType !== "DOCTOR") {
       throw Boom.forbidden("not doctor");
