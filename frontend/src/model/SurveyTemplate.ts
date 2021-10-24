@@ -26,6 +26,7 @@ export interface RatingQuestion extends SurveyQuestionBase {
 export type SurveyQuestion = YesNoQuestion | RatingQuestion;
 
 export interface SurveyTemplate {
+  name: string;
   id: number;
   questions: SurveyQuestion[];
 }

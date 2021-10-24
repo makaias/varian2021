@@ -8,6 +8,7 @@ import OneArticle from '../pages/article/OneArticle';
 import OneArticleCreator from '../pages/article/OneArticleCreator';
 import Chest from '../pages/Chest';
 import Contact from '../pages/contact/Contact';
+import CreateSurveyTemplate from '../pages/CreateSurveyTemplate';
 import Dashboard from '../pages/dashboard';
 import DoctorProfile from '../pages/DoctorProfile';
 import CurrentUserDocuments from '../pages/document/CurrentUserDocuments';
@@ -23,6 +24,7 @@ import PhysicalActivity from '../pages/PhysicalActivity';
 import Scholar from '../pages/Scholar';
 import Stomach from '../pages/Stomach';
 import Survey from '../pages/Survey';
+import SurveyList from '../pages/SurveyList';
 import Symptoms from '../pages/symptoms/Symptoms';
 import TreatmentPlan from '../pages/TreatmentPlan';
 
@@ -55,6 +57,8 @@ const routesRequiringLogin = [
   <Route exact path="/scholar" component={Scholar} />,
   <Route exact path="/articles" component={ArticleList} />,
   <Route exact path="/survey/:id" component={Survey} />,
+  <Route exact path="/surveys" component={SurveyList} />,
+  <Route exact path="/create-survey-template" component={CreateSurveyTemplate} />,
   <Route
     exact
     path="/myDocuments"

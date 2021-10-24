@@ -90,7 +90,7 @@ export default function Layout({children}: PropsWithChildren<{}>): ReactElement 
                   </NavItem>
 
                   <NavItem to="/results">Results</NavItem>
-                  <NavItem to="/survey">Surveys</NavItem>
+                  <NavItem to="/surveys">Surveys</NavItem>
                   <NavItem to="/symptoms">Symptoms</NavItem>
                   <NavItem to="/articles">Articles</NavItem>
                   <NavItem to="/myDocuments">Documents</NavItem>

@@ -24,15 +24,6 @@ export default function CreateTreatmentPlan({}: Props): ReactElement {
 
   const history = useHistory();
 
-  const tpEndpoint = useEndpoint<TreatmentPlan>({
-    conf: {
-      url: '/doctors/create-treatment-plan',
-      method: 'POST',
-    },
-    deps: [],
-    enableRequest: true,
-  });
-
   if (patientsEndpoint.pending) return <Spinner />;
   if (patientsEndpoint.succeeded)
     return (
