@@ -35,7 +35,7 @@ module.exports = {
     return await strapi.services.document.create(body);
   },
 
-  async createSurveyTemplate({ body }) {
+  async createSurveyTemplate(body) {
     const surveyTemplateId = await strapi.services["survey-template"].create(
       body
     );
